@@ -1,7 +1,7 @@
-import * as React from "react"
-import { StaticImage } from "gatsby-plugin-image"
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+import * as React from "react";
+import { StaticImage } from "gatsby-plugin-image";
+import Layout from "../components/layout";
+import Seo from "../components/common/seo";
 
 const IndexPage = () => (
   <Layout>
@@ -15,6 +15,6 @@ const IndexPage = () => (
       style={{ marginBottom: `1.45rem` }}
     />
   </Layout>
-)
+);
 
-export default IndexPage
+export default IndexPage;
