@@ -1,0 +1,91 @@
+/* 300 / Light */
+@font-face {
+  font-family: "Akzidenz-Grotesk BQ";
+  src: url("./fonts/AkzidenzGroteskBQ-Light.eot");
+  src: local("Akzidenz-Grotesk BQ Light"), local("AkzidenzGroteskBQ-Light"),
+    url("./fonts/AkzidenzGroteskBQ-Light.eot?#iefix") format("embedded-opentype"),
+    url("./fonts/AkzidenzGroteskBQ-Light.woff2") format("woff2"), url("./fonts/AkzidenzGroteskBQ-Light.woff") format("woff"),
+    url("./fonts/AkzidenzGroteskBQ-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Akzidenz-Grotesk BQ";
+  src: url("./fonts/AkzidenzGroteskBQ-LightIt.eot");
+  src: local("Akzidenz-Grotesk BQ Light Italic"), local("AkzidenzGroteskBQ-LightIt"),
+    url("./fonts/AkzidenzGroteskBQ-LightIt.eot?#iefix") format("embedded-opentype"),
+    url("./fonts/AkzidenzGroteskBQ-LightIt.woff2") format("woff2"), url("./fonts/AkzidenzGroteskBQ-LightIt.woff") format("woff"),
+    url("./fonts/AkzidenzGroteskBQ-LightIt.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+/* 400 / Normal */
+@font-face {
+  font-family: "Akzidenz-Grotesk BQ";
+  src: url("./fonts/AkzidenzGroteskBQ-Reg.eot");
+  src: local("Akzidenz-Grotesk BQ Regular"), local("AkzidenzGroteskBQ-Reg"),
+    url("./fonts/AkzidenzGroteskBQ-Reg.eot?#iefix") format("embedded-opentype"), url("./fonts/AkzidenzGroteskBQ-Reg.woff2") format("woff2"),
+    url("./fonts/AkzidenzGroteskBQ-Reg.woff") format("woff"), url("./fonts/AkzidenzGroteskBQ-Reg.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Akzidenz-Grotesk BQ";
+  src: url("./fonts/AkzidenzGroteskBQ-Italic.eot");
+  src: local("Akzidenz-Grotesk BQ Italic"), local("AkzidenzGroteskBQ-Italic"),
+    url("./fonts/AkzidenzGroteskBQ-Italic.eot?#iefix") format("embedded-opentype"),
+    url("./fonts/AkzidenzGroteskBQ-Italic.woff2") format("woff2"), url("./fonts/AkzidenzGroteskBQ-Italic.woff") format("woff"),
+    url("./fonts/AkzidenzGroteskBQ-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+/* 500 / Medium */
+@font-face {
+  font-family: "Akzidenz-Grotesk BQ";
+  src: url("./fonts/AkzidenzGroteskBQ-Medium.eot");
+  src: local("Akzidenz-Grotesk BQ Medium"), local("AkzidenzGroteskBQ-Medium"),
+    url("./fonts/AkzidenzGroteskBQ-Medium.eot?#iefix") format("embedded-opentype"),
+    url("./fonts/AkzidenzGroteskBQ-Medium.woff2") format("woff2"), url("./fonts/AkzidenzGroteskBQ-Medium.woff") format("woff"),
+    url("./fonts/AkzidenzGroteskBQ-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Akzidenz-Grotesk BQ";
+  src: url("./fonts/AkzidenzGroteskBQ-MedItalic.eot");
+  src: local("Akzidenz-Grotesk BQ Medium Italic"), local("AkzidenzGroteskBQ-MedItalic"),
+    url("./fonts/AkzidenzGroteskBQ-MedItalic.eot?#iefix") format("embedded-opentype"),
+    url("./fonts/AkzidenzGroteskBQ-MedItalic.woff2") format("woff2"), url("./fonts/AkzidenzGroteskBQ-MedItalic.woff") format("woff"),
+    url("./fonts/AkzidenzGroteskBQ-MedItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+/* 700 / Bold */
+@font-face {
+  font-family: "Akzidenz-Grotesk BQ";
+  src: url("./fonts/AkzidenzGroteskBQ-Bold.eot");
+  src: local("Akzidenz-Grotesk BQ Bold"), local("AkzidenzGroteskBQ-Bold"),
+    url("./fonts/AkzidenzGroteskBQ-Bold.eot?#iefix") format("embedded-opentype"),
+    url("./fonts/AkzidenzGroteskBQ-Bold.woff2") format("woff2"), url("./fonts/AkzidenzGroteskBQ-Bold.woff") format("woff"),
+    url("./fonts/AkzidenzGroteskBQ-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Akzidenz-Grotesk BQ";
+  src: url("./fonts/AkzidenzGroteskBQ-BoldItalic.eot");
+  src: local("Akzidenz-Grotesk BQ Bold Italic"), local("AkzidenzGroteskBQ-BoldItalic"),
+    url("./fonts/AkzidenzGroteskBQ-BoldItalic.eot?#iefix") format("embedded-opentype"),
+    url("./fonts/AkzidenzGroteskBQ-BoldItalic.woff2") format("woff2"), url("./fonts/AkzidenzGroteskBQ-BoldItalic.woff") format("woff"),
+    url("./fonts/AkzidenzGroteskBQ-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
