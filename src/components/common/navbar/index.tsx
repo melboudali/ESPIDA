@@ -1,5 +1,6 @@
+import { Link } from "gatsby";
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import CustomLink from "./customLink";
 
 const NavbarWrapper = styled.div`
@@ -17,19 +18,26 @@ const Nav = styled.div`
   margin: 0 auto;
 `;
 
-const LeftMenu = styled.div`
+const LeftAndRightMenu = css`
   display: flex;
   justify-content: center;
   gap: 28px;
 `;
 
-const RightMenu = styled.div``;
+const LeftMenu = styled.div`
+  ${LeftAndRightMenu}
+`;
 
-const Logo = styled.div`
+const RightMenu = styled.div`
+  ${LeftAndRightMenu}
+`;
+
+const Logo = styled(Link)`
   display: flex;
   align-items: center;
   flex-direction: column;
   p {
+    color: var(--black);
     margin: 2px -4px 0 0;
     font-weight: 700;
     font-size: 1.5rem;
@@ -48,7 +56,7 @@ const Navbar = () => (
         <CustomLink to="/collections/all-bottoms">bottoms</CustomLink>
         <CustomLink to="/shop-all/">collections</CustomLink>
       </LeftMenu>
-      <Logo>
+      <Logo to="/">
         <svg width="92" height="37" viewBox="0 0 92 37" fill="none" xmlns="http://www.w3.org/2000/svg">
           <line
             y1="-1.5"
@@ -77,10 +85,24 @@ const Navbar = () => (
         <p>espida</p>
       </Logo>
       <RightMenu>
-        <CustomLink to="/collections/all">tops</CustomLink>
-        <CustomLink to="/collections/all-outerwear/">outerwear</CustomLink>
-        <CustomLink to="/collections/all-bottoms">bottoms</CustomLink>
-        <CustomLink to="/shop-all/">collections</CustomLink>
+        <div>
+          <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M14.319 12.9075C16.7628 9.76895 16.542 5.22832 13.6569 2.34314C10.5327 -0.781048 5.46734 -0.781048 2.34315 2.34314C-0.78105 5.46734 -0.78105 10.5327 2.34315 13.6569C5.22833 16.5421 9.769 16.7628 12.9075 14.3191C12.921 14.3344 12.9351 14.3494 12.9497 14.364L17.1924 18.6066C17.5829 18.9972 18.2161 18.9972 18.6066 18.6066C18.9971 18.2161 18.9971 17.583 18.6066 17.1924L14.364 12.9498C14.3493 12.9352 14.3343 12.9211 14.319 12.9075ZM12.2426 3.75736C14.5858 6.1005 14.5858 9.89946 12.2426 12.2427C9.8995 14.5858 6.1005 14.5858 3.75736 12.2427C1.41421 9.89946 1.41421 6.1005 3.75736 3.75736C6.1005 1.41421 9.8995 1.41421 12.2426 3.75736Z"
+              fill="black"
+            />
+          </svg>
+        </div>
+        <div>
+          <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M13.3428 1.52719C12.4306 0.542344 11.1565 0 9.75027 0C8.33652 0 7.05824 0.539062 6.15027 1.51781C5.23246 2.50734 4.78527 3.85219 4.89027 5.30437C5.09839 8.16937 7.27855 10.5 9.75027 10.5C12.222 10.5 14.3984 8.16984 14.6098 5.30531C14.7162 3.86625 14.2662 2.52422 13.3428 1.52719ZM18.0003 21H1.50027C1.2843 21.0028 1.07042 20.9574 0.874189 20.8672C0.677959 20.7769 0.504316 20.6441 0.365893 20.4783C0.0612056 20.1141 -0.0616069 19.6167 0.0293306 19.1137C0.424956 16.9191 1.65964 15.0755 3.60027 13.7812C5.32433 12.6323 7.50824 12 9.75027 12C11.9923 12 14.1762 12.6328 15.9003 13.7812C17.8409 15.075 19.0756 16.9186 19.4712 19.1133C19.5621 19.6162 19.4393 20.1136 19.1346 20.4778C18.9963 20.6437 18.8226 20.7766 18.6264 20.867C18.4302 20.9573 18.2163 21.0028 18.0003 21Z"
+              fill="black"
+            />
+          </svg>
+        </div>
       </RightMenu>
     </Nav>
   </NavbarWrapper>
