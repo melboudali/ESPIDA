@@ -58,11 +58,16 @@ const RightMenu = styled.div`
   justify-content: end;
 `;
 
+const LogoWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 33.33%;
+`;
 const Logo = styled(Link)`
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 33.33%;
+  width: fit-content;
   p {
     color: var(--black);
     margin: 2px -4px 0 0;
@@ -85,34 +90,36 @@ const Navbar = () => {
           <CustomLink to="/collections/all-bottoms">bottoms</CustomLink>
           <CustomLink to="/shop-all/">collections</CustomLink>
         </LeftMenu>
-        <Logo to="/">
-          <svg width="92" height="37" viewBox="0 0 92 37" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line
-              y1="-1.5"
-              x2="46.7056"
-              y2="-1.5"
-              transform="matrix(0.960483 -0.278339 0.415125 0.909764 1.61227 37)"
-              stroke="black"
-              strokeWidth="3"
-            />
-            <line
-              y1="-1.5"
-              x2="46.7059"
-              y2="-1.5"
-              transform="matrix(0.960495 0.278296 -0.415067 0.909791 45.221 24)"
-              stroke="black"
-              strokeWidth="3"
-            />
-            <line x1="45.5" y1="24" x2="45.5" y2="15" stroke="black" strokeWidth="3" />
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M50 9C50 12.3137 47.3137 15 44 15V18C48.9706 18 53 13.9706 53 9C53 4.02944 48.9706 0 44 0C39.0294 0 35 4.02944 35 9H38C38 5.68629 40.6863 3 44 3C47.3137 3 50 5.68629 50 9Z"
-              fill="black"
-            />
-          </svg>
-          <p>espida</p>
-        </Logo>
+        <LogoWrapper>
+          <Logo to="/">
+            <svg width="92" height="37" viewBox="0 0 92 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line
+                y1="-1.5"
+                x2="46.7056"
+                y2="-1.5"
+                transform="matrix(0.960483 -0.278339 0.415125 0.909764 1.61227 37)"
+                stroke="black"
+                strokeWidth="3"
+              />
+              <line
+                y1="-1.5"
+                x2="46.7059"
+                y2="-1.5"
+                transform="matrix(0.960495 0.278296 -0.415067 0.909791 45.221 24)"
+                stroke="black"
+                strokeWidth="3"
+              />
+              <line x1="45.5" y1="24" x2="45.5" y2="15" stroke="black" strokeWidth="3" />
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M50 9C50 12.3137 47.3137 15 44 15V18C48.9706 18 53 13.9706 53 9C53 4.02944 48.9706 0 44 0C39.0294 0 35 4.02944 35 9H38C38 5.68629 40.6863 3 44 3C47.3137 3 50 5.68629 50 9Z"
+                fill="black"
+              />
+            </svg>
+            <p>espida</p>
+          </Logo>
+        </LogoWrapper>
         <RightMenu>
           <button onClick={() => console.log("button clicked")}>
             <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
