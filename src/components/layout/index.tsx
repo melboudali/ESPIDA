@@ -2,7 +2,6 @@ import React from "react";
 import GlobalStyles from "../../styles/GlobalStyles";
 import styled from "styled-components";
 import Navbar from "../common/navbar";
-import CustomLink from "../common/navbar/customLink";
 
 const Banner = styled.div`
   display: flex;
@@ -16,6 +15,13 @@ const Banner = styled.div`
   line-height: 16px;
 `;
 
+const Main = styled.main`
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 120px 0 50px;
+  /* FIXME: fix the padding later */
+`;
+
 interface LayoutProps {
   children: React.ReactNode;
 }
@@ -27,7 +33,7 @@ const Layout = ({ children }: LayoutProps) => (
       <Banner>Free U.S. Shipping & Returns $150+ | Free Intl Shipping $200+ </Banner>
       <Navbar />
     </header>
-    <main>{children}</main>
+    <Main>{children}</Main>
   </>
 );
 
