@@ -31,11 +31,15 @@ const CustomLinkWrapper = styled(Link)`
 
 interface CustomLinkProps {
   to: string;
-  children: React.ReactNode;
+  children: string;
 }
 
-const CustomLink = ({ children, to }: CustomLinkProps) => <CustomLinkWrapper to={to}>{children}</CustomLinkWrapper>;
+const CustomLink = ({ children, to }: CustomLinkProps) => (
+  <CustomLinkWrapper to={to} aria-label={children}>
+    {children}
+  </CustomLinkWrapper>
+);
 
-CustomLink.propTypes = { to: PropTypes.string.isRequired, children: PropTypes.node.isRequired };
+CustomLink.propTypes = { to: PropTypes.string.isRequired, children: PropTypes.string.isRequired };
 
 export default CustomLink;
