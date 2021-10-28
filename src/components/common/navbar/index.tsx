@@ -8,6 +8,7 @@ const NavbarWrapper = styled.div`
   background: var(--white);
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
   padding: 11px 0;
+  z-index: 4;
 `;
 
 const Nav = styled.div`
