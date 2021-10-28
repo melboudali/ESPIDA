@@ -1,14 +1,22 @@
 import React from "react";
 import Seo from "../components/common/seo";
+import styled from "styled-components";
+import { StaticImage } from "gatsby-plugin-image";
+
+const Slider = styled.div`
+  height: 611px;
+  width: 100%;
+`;
 
 const IndexPage = () => (
   <>
     <Seo title="Home" />
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum at placeat repudiandae illo! At ipsum optio in voluptates laboriosam
-      itaque nisi vel quis libero accusantium dolores officiis ipsam, minima ut atque architecto ad eligendi suscipit ab? Non commodi totam
-      eligendi fugiat provident, facilis ullam. Tempore cumque libero dolore qui vitae.
-    </p>
+    <Slider>
+      <StaticImage
+        src="https://images.unsplash.com/photo-1509631179647-0177331693ae?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1376&q=80"
+        alt=""
+      />
+    </Slider>
   </>
 );
 
