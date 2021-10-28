@@ -18,7 +18,7 @@ const Banner = styled.div`
 const Main = styled.main`
   max-width: 1280px;
   margin: 0 auto;
-  padding: 120px 0 50px;
+  /* padding: 120px 0 50px; */
   /* FIXME: fix the padding later */
 `;
 
