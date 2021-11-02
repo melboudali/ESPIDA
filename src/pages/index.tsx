@@ -14,7 +14,7 @@ const CategoriesWrapper = styled.div`
 const Jackets = styled(Link)`
   position: relative;
   overflow: hidden;
-  height: 718px;
+  height: 500px;
   flex: 743px;
   border-radius: 15px;
   .cat_img {
@@ -36,7 +36,7 @@ const Jackets = styled(Link)`
     position: absolute;
     margin: 0;
     color: var(--white);
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 700;
     text-transform: uppercase;
     writing-mode: vertical-rl;
@@ -47,13 +47,24 @@ const Jackets = styled(Link)`
   }
 `;
 
-const Others = styled.div`
+const SweatersAndHoodiesWrapper = styled.div`
   flex: 497px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 `;
 
-const Sweaters = styled.div``;
+const Sweaters = styled.div`
+  flex: 230px;
+  background-color: red;
+  border-radius: 15px;
+`;
 
-const Hoodies = styled.div``;
+const Hoodies = styled.div`
+  flex: 230px;
+  background-color: green;
+  border-radius: 15px;
+`;
 
 const IndexPage = () => (
   <>
@@ -72,8 +83,15 @@ const Categories = () => (
       />
       <p>jackets</p>
     </Jackets>
-    <Others></Others>
+    <SweatersAndHoodies />
   </CategoriesWrapper>
+);
+
+const SweatersAndHoodies = () => (
+  <SweatersAndHoodiesWrapper>
+    <Sweaters></Sweaters>
+    <Hoodies></Hoodies>
+  </SweatersAndHoodiesWrapper>
 );
 
 export default IndexPage;
