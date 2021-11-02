@@ -6,6 +6,7 @@ import { StaticImage } from "gatsby-plugin-image";
 const Categories = styled.div`
   width: 100%;
   display: flex;
+  gap: 40px;
   margin-top: 40px;
   /* .myImage {
     width: 100%;
@@ -15,14 +16,33 @@ const Categories = styled.div`
 `;
 
 const Jackets = styled.div`
+  position: relative;
   overflow: hidden;
+  height: 718px;
+  flex: 743px;
   .cat_img {
-    transform: scale(1.1);
-    transform-origin: 80% 100%;
+    transform: scale(1.3);
+    transform-origin: 3% 155%;
+    z-index: 1;
+    width: 100%;
+  }
+  &:before {
+    z-index: 2;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--black) 0%, rgba(0, 0, 0, 0) 53.13%);
   }
 `;
 
-const Others = styled.div``;
+const Others = styled.div`
+  flex: 497px;
+`;
+
+const Sweaters = styled.div``;
+
+const Hoodies = styled.div``;
 
 const IndexPage = () => (
   <>
