@@ -4,16 +4,11 @@ import styled from "styled-components";
 import { StaticImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
 
-const Categories = styled.div`
+const CategoriesWrapper = styled.div`
   width: 100%;
   display: flex;
   gap: 40px;
   margin-top: 40px;
-  /* .myImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  } */
 `;
 
 const Jackets = styled(Link)`
@@ -63,18 +58,22 @@ const Hoodies = styled.div``;
 const IndexPage = () => (
   <>
     <Seo title="Home" />
-    <Categories>
-      <Jackets to="/jackets">
-        <StaticImage
-          src="https://images.unsplash.com/photo-1627637454030-5ddd536e06e5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
-          alt="Jackets"
-          className="cat_img"
-        />
-        <p>jackets</p>
-      </Jackets>
-      <Others></Others>
-    </Categories>
+    <Categories />
   </>
+);
+
+const Categories = () => (
+  <CategoriesWrapper>
+    <Jackets to="/jackets">
+      <StaticImage
+        src="https://images.unsplash.com/photo-1627637454030-5ddd536e06e5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
+        alt="Jackets"
+        className="cat_img"
+      />
+      <p>jackets</p>
+    </Jackets>
+    <Others></Others>
+  </CategoriesWrapper>
 );
 
 export default IndexPage;
