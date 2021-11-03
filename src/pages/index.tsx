@@ -1,23 +1,27 @@
 import React from "react";
 import Seo from "../components/common/seo";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { StaticImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
 
-const CategoriesWrapper = styled.div`
+const Categories = styled.div`
   width: 100%;
   display: flex;
   gap: 40px;
   margin-top: 40px;
 `;
 
-const Jackets = styled(Link)`
+const CommunStyle = css`
   position: relative;
   overflow: hidden;
-  height: 500px;
-  flex: 743px;
   border-radius: 15px;
   z-index: 1;
+`;
+
+const Jackets = styled(Link)`
+  ${CommunStyle}
+  height: 500px;
+  flex: 743px;
   .cat_img {
     transform: scale(1.3);
     transform-origin: 3% 155%;
@@ -48,35 +52,39 @@ const Jackets = styled(Link)`
   }
 `;
 
-const SweatersAndHoodiesWrapper = styled.div`
+const SweatersAndHoodies = styled.div`
   flex: 497px;
   display: flex;
   flex-direction: column;
   gap: 40px;
 `;
 
-const SHComponentWrapper = styled(Link)<{ to: string }>`
-  position: relative;
-  overflow: hidden;
+const SweatersStyle = css`
+  transform: scale(1.1);
+  transform-origin: 20% 40%;
+`;
+
+const HoodiesStyle = css`
+  transform: scale(2.1);
+  transform-origin: 50% 80%;
+`;
+
+const SHComponentWrapper = styled(Link)`
+  ${CommunStyle}
   flex: 230px;
-  border-radius: 15px;
-  z-index: 1;
   &:before {
-    z-index: 3;
     content: "";
     position: absolute;
     width: 100%;
     height: 100%;
     background: linear-gradient(0deg, var(--black) 0%, rgba(0, 0, 0, 0) 40.1%);
+    z-index: 3;
   }
   .cat_img {
-    transform: scale(1.3);
-    transform-origin: 3% 155%;
+    ${({ to }) => (to === "/sweaters" ? SweatersStyle : HoodiesStyle)}
     z-index: 2;
-    width: 100%;
   }
   p {
-    z-index: 4;
     position: absolute;
     margin: 0;
     color: var(--white);
@@ -88,49 +96,42 @@ const SHComponentWrapper = styled(Link)<{ to: string }>`
     bottom: 20px;
     left: 50%;
     transform: translate(-50%, 0);
+    z-index: 4;
   }
 `;
 
 const IndexPage = () => (
   <>
     <Seo title="Home" />
-    <Categories />
+    <Categories>
+      <Jackets to="/jackets">
+        <StaticImage
+          src="https://images.unsplash.com/photo-1627637454030-5ddd536e06e5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
+          alt="jackets"
+          className="cat_img"
+        />
+        <p>jackets</p>
+      </Jackets>
+      <SweatersAndHoodies>
+        <SHComponentWrapper to="/sweaters">
+          <StaticImage
+            src="https://images.unsplash.com/photo-1516826957135-700dedea698c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1374&q=80"
+            alt="sweaters"
+            className="cat_img"
+          />
+          <p>sweaters</p>
+        </SHComponentWrapper>
+        <SHComponentWrapper to="/hoodies">
+          <StaticImage
+            src="https://images.unsplash.com/photo-1569240192190-e37f8b0010be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
+            alt="hoodies"
+            className="cat_img"
+          />
+          <p>hoodies</p>
+        </SHComponentWrapper>
+      </SweatersAndHoodies>
+    </Categories>
   </>
-);
-
-const Categories = () => (
-  <CategoriesWrapper>
-    <Jackets to="/jackets">
-      <StaticImage
-        src="https://images.unsplash.com/photo-1627637454030-5ddd536e06e5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
-        alt="jackets"
-        className="cat_img"
-      />
-      <p>jackets</p>
-    </Jackets>
-    <SweatersAndHoodies />
-  </CategoriesWrapper>
-);
-
-const SweatersAndHoodies = () => (
-  <SweatersAndHoodiesWrapper>
-    <SHComponentWrapper to="sweaters">
-      <StaticImage
-        src="https://images.unsplash.com/photo-1516826957135-700dedea698c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1374&q=80"
-        alt="sweaters"
-        className="cat_img"
-      />
-      <p>sweaters</p>
-    </SHComponentWrapper>
-    <SHComponentWrapper to="hoodies">
-      <StaticImage
-        src="https://images.unsplash.com/photo-1569240192190-e37f8b0010be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
-        alt="hoodies"
-        className="cat_img"
-      />
-      <p>hoodies</p>
-    </SHComponentWrapper>
-  </SweatersAndHoodiesWrapper>
 );
 
 export default IndexPage;
