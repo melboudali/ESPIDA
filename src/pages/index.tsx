@@ -16,6 +16,7 @@ const CommunStyle = css`
   overflow: hidden;
   border-radius: 15px;
   z-index: 1;
+  color: var(--white);
 `;
 
 const Jackets = styled(Link)`
@@ -40,7 +41,6 @@ const Jackets = styled(Link)`
     z-index: 4;
     position: absolute;
     margin: 0;
-    color: var(--white);
     font-size: 3rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -87,7 +87,6 @@ const SHComponentWrapper = styled(Link)`
   p {
     position: absolute;
     margin: 0;
-    color: var(--white);
     font-size: 2.25rem;
     font-weight: 700;
     line-height: 27px;
