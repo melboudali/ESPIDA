@@ -47,6 +47,14 @@ export default {
       options: {
         password: process.env.SHOPIFY_SHOP_PASSWORD,
         storeUrl: process.env.GATSBY_SHOPIFY_STORE_URL,
+        shopifyConnections: ["orders", "collections", "locations"],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-graphql-codegen`,
+      options: {
+        fileName: `./gatsby-graphql.ts`,
+        documentPaths: ["./src/**/*.{ts,tsx}", "./node_modules/gatsby-*/**/*.js"],
       },
     },
   ],
