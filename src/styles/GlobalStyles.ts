@@ -15,7 +15,6 @@ const GlobalStyles = createGlobalStyle`
     overflow-y: auto;
   }
   body {
-    color: var(--black);
     background-color: var(--backgroundColor);
     font-size: 1rem;
     font-weight: 400;
