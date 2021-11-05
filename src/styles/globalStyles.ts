@@ -5,6 +5,7 @@ const GlobalStyles = createGlobalStyle`
   :root {
     --black: #000000;
     --white: #ffffff;
+    --grey: #808080;
     --backgroundColor: var(--white);
   }
   * {
