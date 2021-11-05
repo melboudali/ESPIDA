@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Title = styled.h1`
-  margin: 80px 0 60px;
+  margin: 0;
   color: var(--balck);
   font-size: 1.8rem;
   font-weight: 700;
