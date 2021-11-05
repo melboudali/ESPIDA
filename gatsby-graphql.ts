@@ -804,6 +804,7 @@ export type ShopifyProductVariant = Node & {
   metafields?: Maybe<Array<Maybe<ShopifyProductVariantMetafield>>>;
   availableForSale?: Maybe<Scalars['Boolean']>;
   barcode?: Maybe<Scalars['String']>;
+  compareAtPrice?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['Date']>;
   displayName?: Maybe<Scalars['String']>;
   inventoryItem?: Maybe<ShopifyProductVariantInventoryItem>;
@@ -1497,6 +1498,7 @@ export type QueryShopifyProductVariantArgs = {
   metafields?: Maybe<ShopifyProductVariantMetafieldFilterListInput>;
   availableForSale?: Maybe<BooleanQueryOperatorInput>;
   barcode?: Maybe<StringQueryOperatorInput>;
+  compareAtPrice?: Maybe<StringQueryOperatorInput>;
   createdAt?: Maybe<DateQueryOperatorInput>;
   displayName?: Maybe<StringQueryOperatorInput>;
   inventoryItem?: Maybe<ShopifyProductVariantInventoryItemFilterInput>;
@@ -3997,6 +3999,7 @@ export type ShopifyProductVariantFilterInput = {
   metafields?: Maybe<ShopifyProductVariantMetafieldFilterListInput>;
   availableForSale?: Maybe<BooleanQueryOperatorInput>;
   barcode?: Maybe<StringQueryOperatorInput>;
+  compareAtPrice?: Maybe<StringQueryOperatorInput>;
   createdAt?: Maybe<DateQueryOperatorInput>;
   displayName?: Maybe<StringQueryOperatorInput>;
   inventoryItem?: Maybe<ShopifyProductVariantInventoryItemFilterInput>;
@@ -4312,6 +4315,7 @@ export type ShopifyProductFieldsEnum =
   | 'variants___product___variants___metafields'
   | 'variants___product___variants___availableForSale'
   | 'variants___product___variants___barcode'
+  | 'variants___product___variants___compareAtPrice'
   | 'variants___product___variants___createdAt'
   | 'variants___product___variants___displayName'
   | 'variants___product___variants___inventoryPolicy'
@@ -4441,6 +4445,7 @@ export type ShopifyProductFieldsEnum =
   | 'variants___metafields___productVariant___metafields'
   | 'variants___metafields___productVariant___availableForSale'
   | 'variants___metafields___productVariant___barcode'
+  | 'variants___metafields___productVariant___compareAtPrice'
   | 'variants___metafields___productVariant___createdAt'
   | 'variants___metafields___productVariant___displayName'
   | 'variants___metafields___productVariant___inventoryPolicy'
@@ -4477,6 +4482,7 @@ export type ShopifyProductFieldsEnum =
   | 'variants___metafields___internal___type'
   | 'variants___availableForSale'
   | 'variants___barcode'
+  | 'variants___compareAtPrice'
   | 'variants___createdAt'
   | 'variants___displayName'
   | 'variants___inventoryItem___id'
@@ -4562,6 +4568,7 @@ export type ShopifyProductFieldsEnum =
   | 'metafields___product___variants___metafields'
   | 'metafields___product___variants___availableForSale'
   | 'metafields___product___variants___barcode'
+  | 'metafields___product___variants___compareAtPrice'
   | 'metafields___product___variants___createdAt'
   | 'metafields___product___variants___displayName'
   | 'metafields___product___variants___inventoryPolicy'
@@ -4720,6 +4727,7 @@ export type ShopifyProductFieldsEnum =
   | 'images___product___variants___metafields'
   | 'images___product___variants___availableForSale'
   | 'images___product___variants___barcode'
+  | 'images___product___variants___compareAtPrice'
   | 'images___product___variants___createdAt'
   | 'images___product___variants___displayName'
   | 'images___product___variants___inventoryPolicy'
@@ -4889,6 +4897,7 @@ export type ShopifyProductFieldsEnum =
   | 'collections___products___variants___metafields'
   | 'collections___products___variants___availableForSale'
   | 'collections___products___variants___barcode'
+  | 'collections___products___variants___compareAtPrice'
   | 'collections___products___variants___createdAt'
   | 'collections___products___variants___displayName'
   | 'collections___products___variants___inventoryPolicy'
@@ -5372,6 +5381,7 @@ export type ShopifyProductImageFieldsEnum =
   | 'product___variants___metafields___children'
   | 'product___variants___availableForSale'
   | 'product___variants___barcode'
+  | 'product___variants___compareAtPrice'
   | 'product___variants___createdAt'
   | 'product___variants___displayName'
   | 'product___variants___inventoryItem___id'
@@ -5922,6 +5932,7 @@ export type ShopifyProductVariantFieldsEnum =
   | 'product___variants___metafields___children'
   | 'product___variants___availableForSale'
   | 'product___variants___barcode'
+  | 'product___variants___compareAtPrice'
   | 'product___variants___createdAt'
   | 'product___variants___displayName'
   | 'product___variants___inventoryItem___id'
@@ -6293,6 +6304,7 @@ export type ShopifyProductVariantFieldsEnum =
   | 'metafields___productVariant___metafields___children'
   | 'metafields___productVariant___availableForSale'
   | 'metafields___productVariant___barcode'
+  | 'metafields___productVariant___compareAtPrice'
   | 'metafields___productVariant___createdAt'
   | 'metafields___productVariant___displayName'
   | 'metafields___productVariant___inventoryItem___id'
@@ -6376,6 +6388,7 @@ export type ShopifyProductVariantFieldsEnum =
   | 'metafields___internal___type'
   | 'availableForSale'
   | 'barcode'
+  | 'compareAtPrice'
   | 'createdAt'
   | 'displayName'
   | 'inventoryItem___id'
@@ -6849,6 +6862,7 @@ export type ShopifyProductMetafieldFieldsEnum =
   | 'product___variants___metafields___children'
   | 'product___variants___availableForSale'
   | 'product___variants___barcode'
+  | 'product___variants___compareAtPrice'
   | 'product___variants___createdAt'
   | 'product___variants___displayName'
   | 'product___variants___inventoryItem___id'
@@ -7355,6 +7369,7 @@ export type ShopifyProductVariantMetafieldFieldsEnum =
   | 'productVariant___product___variants___metafields'
   | 'productVariant___product___variants___availableForSale'
   | 'productVariant___product___variants___barcode'
+  | 'productVariant___product___variants___compareAtPrice'
   | 'productVariant___product___variants___createdAt'
   | 'productVariant___product___variants___displayName'
   | 'productVariant___product___variants___inventoryPolicy'
@@ -7484,6 +7499,7 @@ export type ShopifyProductVariantMetafieldFieldsEnum =
   | 'productVariant___metafields___productVariant___metafields'
   | 'productVariant___metafields___productVariant___availableForSale'
   | 'productVariant___metafields___productVariant___barcode'
+  | 'productVariant___metafields___productVariant___compareAtPrice'
   | 'productVariant___metafields___productVariant___createdAt'
   | 'productVariant___metafields___productVariant___displayName'
   | 'productVariant___metafields___productVariant___inventoryPolicy'
@@ -7520,6 +7536,7 @@ export type ShopifyProductVariantMetafieldFieldsEnum =
   | 'productVariant___metafields___internal___type'
   | 'productVariant___availableForSale'
   | 'productVariant___barcode'
+  | 'productVariant___compareAtPrice'
   | 'productVariant___createdAt'
   | 'productVariant___displayName'
   | 'productVariant___inventoryItem___id'
@@ -7783,6 +7800,7 @@ export type ShopifyCollectionMetafieldFieldsEnum =
   | 'collection___products___variants___metafields'
   | 'collection___products___variants___availableForSale'
   | 'collection___products___variants___barcode'
+  | 'collection___products___variants___compareAtPrice'
   | 'collection___products___variants___createdAt'
   | 'collection___products___variants___displayName'
   | 'collection___products___variants___inventoryPolicy'
@@ -8216,6 +8234,7 @@ export type ShopifyCollectionFieldsEnum =
   | 'products___variants___metafields___children'
   | 'products___variants___availableForSale'
   | 'products___variants___barcode'
+  | 'products___variants___compareAtPrice'
   | 'products___variants___createdAt'
   | 'products___variants___displayName'
   | 'products___variants___inventoryItem___id'
@@ -8867,6 +8886,7 @@ export type ShopifyOrderFieldsEnum =
   | 'lineItems___product___variants___metafields'
   | 'lineItems___product___variants___availableForSale'
   | 'lineItems___product___variants___barcode'
+  | 'lineItems___product___variants___compareAtPrice'
   | 'lineItems___product___variants___createdAt'
   | 'lineItems___product___variants___displayName'
   | 'lineItems___product___variants___inventoryPolicy'
@@ -9265,6 +9285,7 @@ export type ShopifyLineItemFieldsEnum =
   | 'product___variants___metafields___children'
   | 'product___variants___availableForSale'
   | 'product___variants___barcode'
+  | 'product___variants___compareAtPrice'
   | 'product___variants___createdAt'
   | 'product___variants___displayName'
   | 'product___variants___inventoryItem___id'
@@ -10288,7 +10309,7 @@ export type Unnamed_1_Query = { site?: { siteMetadata?: { title?: string | null 
 export type AllShopifyProductQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AllShopifyProductQuery = { allShopifyProduct: { nodes: Array<{ descriptionHtml?: string | null | undefined, id: string, title?: string | null | undefined, variants?: Array<{ availableForSale?: boolean | null | undefined, price?: string | null | undefined, selectedOptions?: Array<{ name?: string | null | undefined, value?: string | null | undefined } | null | undefined> | null | undefined } | null | undefined> | null | undefined, images?: Array<{ gatsbyImageData: any } | null | undefined> | null | undefined }> } };
+export type AllShopifyProductQuery = { bestSellers: { nodes: Array<{ title?: string | null | undefined, description?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, publishedAt?: any | null | undefined, collections?: Array<{ title?: string | null | undefined } | null | undefined> | null | undefined, images?: Array<{ altText?: string | null | undefined, gatsbyImageData: any } | null | undefined> | null | undefined }> }, newReleases: { nodes: Array<{ title?: string | null | undefined, description?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, publishedAt?: any | null | undefined, collections?: Array<{ title?: string | null | undefined } | null | undefined> | null | undefined, images?: Array<{ altText?: string | null | undefined, gatsbyImageData: any } | null | undefined> | null | undefined }> } };
 
 export type GatsbyImageSharpFixedFragment = { base64?: string | null | undefined, width: number, height: number, src: string, srcSet: string };
 
