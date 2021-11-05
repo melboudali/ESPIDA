@@ -12,6 +12,43 @@ const Card = styled.div`
   }
 `;
 
+const Details = styled.div`
+  padding: 15px 5px;
+`;
+
+const ColorsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  p {
+    margin: 0;
+    font-weight: 500;
+    font-size: 0.75rem;
+    line-height: 9px;
+    text-transform: capitalize;
+    color: var(--grey);
+  }
+`;
+
+const Colors = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`;
+
+const Title = styled.h2`
+  margin: 10px 0px;
+  font-weight: 500;
+  font-size: 0.81rem;
+  line-height: 13px;
+  text-transform: capitalize;
+  color: var(--black);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 90%;
+  white-space: nowrap;
+`;
+
 interface ProductCardProps {
   product: shopifyProduct;
 }
@@ -20,7 +57,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <Card>
       <GatsbyImage image={product.images![0]!.gatsbyImageData} alt={product.images![0]!.altText!} className="gatsby_image" />
-      {product.title}
+      <Details>
+        <ColorsWrapper>
+          <p>{product.images![0]?.altText}</p>
+          <Colors></Colors>
+        </ColorsWrapper>
+        <Title title={product.title!}>{product.title}</Title>
+      </Details>
     </Card>
   );
 };
