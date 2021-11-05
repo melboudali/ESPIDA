@@ -21,14 +21,14 @@ interface IndexPageProps {
   data: AllShopifyProductQuery;
 }
 
-const IndexPage = ({ data: { allShopifyProduct } }: IndexPageProps) => (
+const IndexPage = ({ data: { bestSellers, newReleases } }: IndexPageProps) => (
   <>
     <Seo title="Home" />
     <Categories />
     <Cards>
       <SectionTitle title="Best Sellers" />
       <CardsWrapper>
-        {allShopifyProduct.nodes.map((node: shopifyProduct) => (
+        {bestSellers.nodes.map((node: shopifyProduct) => (
           <ProductCard product={node} />
         ))}
       </CardsWrapper>
@@ -40,22 +40,34 @@ export default IndexPage;
 
 export const query = graphql`
   query allShopifyProduct {
-    allShopifyProduct {
+    bestSellers: allShopifyProduct(filter: { collections: { elemMatch: { title: { eq: "best sellers" } } } }) {
       nodes {
-        descriptionHtml
-        id
-        variants {
-          availableForSale
-          price
-          selectedOptions {
-            name
-            value
-          }
-        }
         title
+        description
+        tags
+        collections {
+          title
+        }
         images {
+          altText
           gatsbyImageData
         }
+        publishedAt
+      }
+    }
+    newReleases: allShopifyProduct(filter: { collections: { elemMatch: { title: { eq: "new releases" } } } }) {
+      nodes {
+        title
+        description
+        tags
+        collections {
+          title
+        }
+        images {
+          altText
+          gatsbyImageData
+        }
+        publishedAt
       }
     }
   }
