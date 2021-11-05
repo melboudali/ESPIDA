@@ -8,13 +8,13 @@ import { graphql } from "gatsby";
 import { AllShopifyProductQuery } from "../../gatsby-graphql";
 import { shopifyProduct } from "../types";
 
-const CardsWrapper = styled.div`
+const CardsSection = styled.section`
+  margin: 80px 0;
+`;
+const Cards = styled.div`
   display: flex;
   gap: 20px;
-`;
-
-const Cards = styled.section`
-  margin-bottom: 50px;
+  margin-top: 60px;
 `;
 
 interface IndexPageProps {
@@ -25,14 +25,14 @@ const IndexPage = ({ data: { bestSellers, newReleases } }: IndexPageProps) => (
   <>
     <Seo title="Home" />
     <Categories />
-    <Cards>
+    <CardsSection>
       <SectionTitle title="Best Sellers" />
-      <CardsWrapper>
+      <Cards>
         {bestSellers.nodes.map((node: shopifyProduct) => (
           <ProductCard product={node} />
         ))}
-      </CardsWrapper>
-    </Cards>
+      </Cards>
+    </CardsSection>
   </>
 );
 
