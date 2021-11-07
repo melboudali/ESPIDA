@@ -49,6 +49,10 @@ const Title = styled.h2`
   white-space: nowrap;
 `;
 
+const PriceWrapper = styled.div``;
+
+const Price = styled.p``;
+
 interface ProductCardProps {
   product: shopifyProduct;
 }
@@ -63,6 +67,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <Colors></Colors>
         </ColorsWrapper>
         <Title title={product.title!}>{product.title}</Title>
+        <PriceWrapper>
+          <Price></Price>
+        </PriceWrapper>
       </Details>
     </Card>
   );
