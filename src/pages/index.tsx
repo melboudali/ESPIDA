@@ -52,6 +52,14 @@ export const query = graphql`
           altText
           gatsbyImageData
         }
+        priceRangeV2 {
+          maxVariantPrice {
+            amount
+          }
+          minVariantPrice {
+            amount
+          }
+        }
         publishedAt
       }
     }
@@ -66,6 +74,14 @@ export const query = graphql`
         images {
           altText
           gatsbyImageData
+        }
+        priceRangeV2 {
+          maxVariantPrice {
+            amount
+          }
+          minVariantPrice {
+            amount
+          }
         }
         publishedAt
       }
