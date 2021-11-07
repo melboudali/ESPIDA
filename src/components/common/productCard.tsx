@@ -68,7 +68,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </ColorsWrapper>
         <Title title={product.title!}>{product.title}</Title>
         <PriceWrapper>
-          <Price></Price>
+          <Price>${product.priceRangeV2?.minVariantPrice?.amount}</Price>
         </PriceWrapper>
       </Details>
     </Card>
