@@ -807,6 +807,7 @@ export type ShopifyProductVariant = Node & {
   compareAtPrice?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['Date']>;
   displayName?: Maybe<Scalars['String']>;
+  image?: Maybe<ShopifyProductVariantImage>;
   inventoryItem?: Maybe<ShopifyProductVariantInventoryItem>;
   inventoryPolicy?: Maybe<Scalars['String']>;
   inventoryQuantity?: Maybe<Scalars['Int']>;
@@ -1501,6 +1502,7 @@ export type QueryShopifyProductVariantArgs = {
   compareAtPrice?: Maybe<StringQueryOperatorInput>;
   createdAt?: Maybe<DateQueryOperatorInput>;
   displayName?: Maybe<StringQueryOperatorInput>;
+  image?: Maybe<ShopifyProductVariantImageFilterInput>;
   inventoryItem?: Maybe<ShopifyProductVariantInventoryItemFilterInput>;
   inventoryPolicy?: Maybe<StringQueryOperatorInput>;
   inventoryQuantity?: Maybe<IntQueryOperatorInput>;
@@ -4002,6 +4004,7 @@ export type ShopifyProductVariantFilterInput = {
   compareAtPrice?: Maybe<StringQueryOperatorInput>;
   createdAt?: Maybe<DateQueryOperatorInput>;
   displayName?: Maybe<StringQueryOperatorInput>;
+  image?: Maybe<ShopifyProductVariantImageFilterInput>;
   inventoryItem?: Maybe<ShopifyProductVariantInventoryItemFilterInput>;
   inventoryPolicy?: Maybe<StringQueryOperatorInput>;
   inventoryQuantity?: Maybe<IntQueryOperatorInput>;
@@ -4234,6 +4237,15 @@ export type ShopifyProductVariantMetafieldFilterInput = {
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
+};
+
+export type ShopifyProductVariantImageFilterInput = {
+  altText?: Maybe<StringQueryOperatorInput>;
+  height?: Maybe<IntQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  originalSrc?: Maybe<StringQueryOperatorInput>;
+  transformedSrc?: Maybe<StringQueryOperatorInput>;
+  width?: Maybe<IntQueryOperatorInput>;
 };
 
 export type ShopifyProductVariantInventoryItemFilterInput = {
@@ -4485,6 +4497,12 @@ export type ShopifyProductFieldsEnum =
   | 'variants___compareAtPrice'
   | 'variants___createdAt'
   | 'variants___displayName'
+  | 'variants___image___altText'
+  | 'variants___image___height'
+  | 'variants___image___id'
+  | 'variants___image___originalSrc'
+  | 'variants___image___transformedSrc'
+  | 'variants___image___width'
   | 'variants___inventoryItem___id'
   | 'variants___inventoryItem___createdAt'
   | 'variants___inventoryItem___duplicateSkuCount'
@@ -5384,6 +5402,12 @@ export type ShopifyProductImageFieldsEnum =
   | 'product___variants___compareAtPrice'
   | 'product___variants___createdAt'
   | 'product___variants___displayName'
+  | 'product___variants___image___altText'
+  | 'product___variants___image___height'
+  | 'product___variants___image___id'
+  | 'product___variants___image___originalSrc'
+  | 'product___variants___image___transformedSrc'
+  | 'product___variants___image___width'
   | 'product___variants___inventoryItem___id'
   | 'product___variants___inventoryItem___createdAt'
   | 'product___variants___inventoryItem___duplicateSkuCount'
@@ -5935,6 +5959,12 @@ export type ShopifyProductVariantFieldsEnum =
   | 'product___variants___compareAtPrice'
   | 'product___variants___createdAt'
   | 'product___variants___displayName'
+  | 'product___variants___image___altText'
+  | 'product___variants___image___height'
+  | 'product___variants___image___id'
+  | 'product___variants___image___originalSrc'
+  | 'product___variants___image___transformedSrc'
+  | 'product___variants___image___width'
   | 'product___variants___inventoryItem___id'
   | 'product___variants___inventoryItem___createdAt'
   | 'product___variants___inventoryItem___duplicateSkuCount'
@@ -6307,6 +6337,12 @@ export type ShopifyProductVariantFieldsEnum =
   | 'metafields___productVariant___compareAtPrice'
   | 'metafields___productVariant___createdAt'
   | 'metafields___productVariant___displayName'
+  | 'metafields___productVariant___image___altText'
+  | 'metafields___productVariant___image___height'
+  | 'metafields___productVariant___image___id'
+  | 'metafields___productVariant___image___originalSrc'
+  | 'metafields___productVariant___image___transformedSrc'
+  | 'metafields___productVariant___image___width'
   | 'metafields___productVariant___inventoryItem___id'
   | 'metafields___productVariant___inventoryItem___createdAt'
   | 'metafields___productVariant___inventoryItem___duplicateSkuCount'
@@ -6391,6 +6427,12 @@ export type ShopifyProductVariantFieldsEnum =
   | 'compareAtPrice'
   | 'createdAt'
   | 'displayName'
+  | 'image___altText'
+  | 'image___height'
+  | 'image___id'
+  | 'image___originalSrc'
+  | 'image___transformedSrc'
+  | 'image___width'
   | 'inventoryItem___id'
   | 'inventoryItem___createdAt'
   | 'inventoryItem___duplicateSkuCount'
@@ -6865,6 +6907,12 @@ export type ShopifyProductMetafieldFieldsEnum =
   | 'product___variants___compareAtPrice'
   | 'product___variants___createdAt'
   | 'product___variants___displayName'
+  | 'product___variants___image___altText'
+  | 'product___variants___image___height'
+  | 'product___variants___image___id'
+  | 'product___variants___image___originalSrc'
+  | 'product___variants___image___transformedSrc'
+  | 'product___variants___image___width'
   | 'product___variants___inventoryItem___id'
   | 'product___variants___inventoryItem___createdAt'
   | 'product___variants___inventoryItem___duplicateSkuCount'
@@ -7539,6 +7587,12 @@ export type ShopifyProductVariantMetafieldFieldsEnum =
   | 'productVariant___compareAtPrice'
   | 'productVariant___createdAt'
   | 'productVariant___displayName'
+  | 'productVariant___image___altText'
+  | 'productVariant___image___height'
+  | 'productVariant___image___id'
+  | 'productVariant___image___originalSrc'
+  | 'productVariant___image___transformedSrc'
+  | 'productVariant___image___width'
   | 'productVariant___inventoryItem___id'
   | 'productVariant___inventoryItem___createdAt'
   | 'productVariant___inventoryItem___duplicateSkuCount'
@@ -8237,6 +8291,12 @@ export type ShopifyCollectionFieldsEnum =
   | 'products___variants___compareAtPrice'
   | 'products___variants___createdAt'
   | 'products___variants___displayName'
+  | 'products___variants___image___altText'
+  | 'products___variants___image___height'
+  | 'products___variants___image___id'
+  | 'products___variants___image___originalSrc'
+  | 'products___variants___image___transformedSrc'
+  | 'products___variants___image___width'
   | 'products___variants___inventoryItem___id'
   | 'products___variants___inventoryItem___createdAt'
   | 'products___variants___inventoryItem___duplicateSkuCount'
@@ -9288,6 +9348,12 @@ export type ShopifyLineItemFieldsEnum =
   | 'product___variants___compareAtPrice'
   | 'product___variants___createdAt'
   | 'product___variants___displayName'
+  | 'product___variants___image___altText'
+  | 'product___variants___image___height'
+  | 'product___variants___image___id'
+  | 'product___variants___image___originalSrc'
+  | 'product___variants___image___transformedSrc'
+  | 'product___variants___image___width'
   | 'product___variants___inventoryItem___id'
   | 'product___variants___inventoryItem___createdAt'
   | 'product___variants___inventoryItem___duplicateSkuCount'
