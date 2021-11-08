@@ -5,11 +5,5 @@ export type shopifyProduct = {
   publishedAt?: any | null | undefined;
   collections?: Array<{ title?: string | null | undefined } | null | undefined> | null | undefined;
   images?: Array<{ altText?: string | null | undefined; gatsbyImageData: any } | null | undefined> | null | undefined;
-  priceRangeV2?:
-    | {
-        maxVariantPrice?: { amount?: string | null | undefined } | null | undefined;
-        minVariantPrice?: { amount?: string | null | undefined } | null | undefined;
-      }
-    | null
-    | undefined;
+  variants?: Array<{ price?: string | null | undefined; compareAtPrice?: string | null | undefined } | null | undefined> | null | undefined;
 };
