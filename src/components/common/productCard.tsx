@@ -67,6 +67,8 @@ const Price = styled.div`
   }
 `;
 
+const AddToCartButton = styled.button``;
+
 interface ProductCardProps {
   product: shopifyProduct;
 }
@@ -85,6 +87,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <p>${product.variants![0]?.price}</p>
           <p>${product.variants![0]?.compareAtPrice}</p>
         </Price>
+        <AddToCartButton>add to cart</AddToCartButton>
       </Details>
     </Card>
   );
