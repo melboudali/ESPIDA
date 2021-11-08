@@ -42,49 +42,31 @@ export const query = graphql`
   query allShopifyProduct {
     bestSellers: allShopifyProduct(filter: { collections: { elemMatch: { title: { eq: "best sellers" } } } }) {
       nodes {
-        title
-        description
-        tags
-        collections {
-          title
-        }
-        images {
-          altText
-          gatsbyImageData
-        }
-        priceRangeV2 {
-          maxVariantPrice {
-            amount
-          }
-          minVariantPrice {
-            amount
-          }
-        }
-        publishedAt
+        ...AllShopifyProductFragment
       }
     }
     newReleases: allShopifyProduct(filter: { collections: { elemMatch: { title: { eq: "new releases" } } } }) {
       nodes {
-        title
-        description
-        tags
-        collections {
-          title
-        }
-        images {
-          altText
-          gatsbyImageData
-        }
-        priceRangeV2 {
-          maxVariantPrice {
-            amount
-          }
-          minVariantPrice {
-            amount
-          }
-        }
-        publishedAt
+        ...AllShopifyProductFragment
       }
     }
+  }
+
+  fragment AllShopifyProductFragment on ShopifyProduct {
+    title
+    description
+    tags
+    collections {
+      title
+    }
+    images {
+      altText
+      gatsbyImageData
+    }
+    variants {
+      price
+      compareAtPrice
+    }
+    publishedAt
   }
 `;
