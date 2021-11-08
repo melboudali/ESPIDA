@@ -68,7 +68,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </ColorsWrapper>
         <Title title={product.title!}>{product.title}</Title>
         <PriceWrapper>
-          <Price>${product.priceRangeV2?.minVariantPrice?.amount}</Price>
+          <Price>
+            ${product.variants![0]?.price} - <del>{product.variants![0]?.compareAtPrice}</del>
+          </Price>
         </PriceWrapper>
       </Details>
     </Card>
