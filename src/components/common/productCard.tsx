@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { shopifyProduct } from "../../types";
 import { GatsbyImage } from "gatsby-plugin-image";
 const Card = styled.div`
-  flex: 305px 4 1;
+  flex: 305px;
   .gatsby_image {
     width: 100%;
     height: 384px;
@@ -22,7 +22,6 @@ const ColorsWrapper = styled.div`
   justify-content: space-between;
   p {
     margin: 0;
-    font-weight: 500;
     font-size: 0.75rem;
     line-height: 9px;
     text-transform: capitalize;
@@ -38,8 +37,8 @@ const Colors = styled.div`
 
 const Title = styled.h2`
   margin: 10px 0px;
-  font-weight: 500;
   font-size: 0.81rem;
+  font-weight: 500;
   line-height: 13px;
   text-transform: capitalize;
   color: var(--black);
@@ -49,9 +48,24 @@ const Title = styled.h2`
   white-space: nowrap;
 `;
 
-const PriceWrapper = styled.div``;
-
-const Price = styled.p``;
+const Price = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  p {
+    font-weight: 700;
+    font-size: 1.125rem;
+    line-height: 16px;
+    margin: 0;
+    &:first-child {
+      color: var(--black);
+    }
+    &:last-child {
+      color: var(--lightGrey);
+      text-decoration: line-through;
+    }
+  }
+`;
 
 interface ProductCardProps {
   product: shopifyProduct;
@@ -67,11 +81,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <Colors></Colors>
         </ColorsWrapper>
         <Title title={product.title!}>{product.title}</Title>
-        <PriceWrapper>
-          <Price>
-            ${product.variants![0]?.price} - <del>{product.variants![0]?.compareAtPrice}</del>
-          </Price>
-        </PriceWrapper>
+        <Price>
+          <p>${product.variants![0]?.price}</p>
+          <p>${product.variants![0]?.compareAtPrice}</p>
+        </Price>
       </Details>
     </Card>
   );
