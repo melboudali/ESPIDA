@@ -16,6 +16,7 @@ const Cards = styled.div`
   display: flex;
   gap: 20px;
   margin-top: 60px;
+  flex-wrap: wrap;
 `;
 
 interface IndexPageProps {
@@ -55,12 +56,20 @@ export default IndexPage;
 
 export const query = graphql`
   query allShopifyProduct {
-    bestSellers: allShopifyProduct(filter: { collections: { elemMatch: { title: { eq: "best sellers" } } } }) {
+    bestSellers: allShopifyProduct(
+      filter: { collections: { elemMatch: { title: { eq: "best sellers" } } } }
+      limit: 4
+      sort: { order: DESC, fields: createdAt }
+    ) {
       nodes {
         ...AllShopifyProductFragment
       }
     }
-    newReleases: allShopifyProduct(filter: { collections: { elemMatch: { title: { eq: "new releases" } } } }) {
+    newReleases: allShopifyProduct(
+      filter: { collections: { elemMatch: { title: { eq: "new releases" } } } }
+      limit: 8
+      sort: { order: DESC, fields: createdAt }
+    ) {
       nodes {
         ...AllShopifyProductFragment
       }
