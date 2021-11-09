@@ -67,7 +67,18 @@ const Price = styled.div`
   }
 `;
 
-const AddToCartButton = styled.button``;
+const AddToCartButton = styled.button`
+  width: 100%;
+  padding: 12px 0;
+  color: var(--white);
+  background-color: var(--black);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  line-height: 9px;
+  text-transform: uppercase;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+`;
 
 interface ProductCardProps {
   product: shopifyProduct;
@@ -87,8 +98,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <p>${product.variants![0]?.price}</p>
           <p>${product.variants![0]?.compareAtPrice}</p>
         </Price>
-        <AddToCartButton>add to cart</AddToCartButton>
       </Details>
+      <AddToCartButton onClick={() => console.log("Add to cart")}>add to cart</AddToCartButton>
     </Card>
   );
 };
