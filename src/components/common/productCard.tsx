@@ -2,8 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { shopifyProduct } from "../../types";
 import { GatsbyImage } from "gatsby-plugin-image";
+
 const Card = styled.div`
-  flex: 305px;
+  flex: 304px 0 0;
+  width: 0;
   .gatsby_image {
     width: 100%;
     height: 384px;
