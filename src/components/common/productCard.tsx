@@ -35,6 +35,12 @@ const Colors = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
+  div {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: black;
+  }
 `;
 
 const Title = styled.h2`
@@ -93,7 +99,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <Details>
         <ColorsWrapper>
           <p>{product.images![0]?.altText}</p>
-          <Colors></Colors>
+          <Colors>
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+          </Colors>
         </ColorsWrapper>
         <Title title={product.title!}>{product.title}</Title>
         <Price>
