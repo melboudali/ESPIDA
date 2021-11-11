@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { shopifyProduct } from "../../types";
 import { GatsbyImage } from "gatsby-plugin-image";
+import { getColorsAndImages } from "../../utils";
 
 const Card = styled.div`
   flex: 304px 0 0;
@@ -93,18 +94,17 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
+  const [currentImage, setCurrentImage] = useState(product.images![0]!.gatsbyImageData);
   return (
     <Card>
-      <GatsbyImage image={product.images![0]!.gatsbyImageData} alt={product.images![0]!.altText!} className="gatsby_image" />
+      <GatsbyImage image={currentImage} alt={product.images![0]!.altText!} className="gatsby_image" />
       <Details>
         <ColorsWrapper>
           <p>{product.images![0]?.altText}</p>
           <Colors>
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
+            {getColorsAndImages([...product.variants!.map((variant) => variant)]).map((color) => (
+              <div />
+            ))}
           </Colors>
         </ColorsWrapper>
         <Title title={product.title!}>{product.title}</Title>
