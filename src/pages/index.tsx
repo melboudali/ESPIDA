@@ -33,7 +33,7 @@ const IndexPage = ({ data: { bestSellers, newReleases } }: IndexPageProps) => (
         {bestSellers.nodes.map((node: shopifyProduct) => (
           <ProductCard key={node.id} product={node} />
         ))}
-        <ProductCard key={bestSellers.nodes[0].id} product={bestSellers.nodes[0]} />
+        {/* <ProductCard key={bestSellers.nodes[0].id} product={bestSellers.nodes[0]} /> */}
       </Cards>
     </SectionContainer>
     {/* <SectionContainer>
