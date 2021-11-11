@@ -11,3 +11,7 @@ export const getColorsAndImages = (variants: variantsType) => {
 
   return selectedVariants;
 };
+
+const getColor = (color: string) => {
+  const colors = [{ black: "#000", white: "#fff" }];
+};
