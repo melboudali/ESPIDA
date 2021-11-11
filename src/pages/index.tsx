@@ -30,10 +30,10 @@ const IndexPage = ({ data: { bestSellers, newReleases } }: IndexPageProps) => (
     <SectionContainer>
       <SectionTitle title="Best Sellers" />
       <Cards>
-        {/* {bestSellers.nodes.map((node: shopifyProduct) => (
+        {bestSellers.nodes.map((node: shopifyProduct) => (
           <ProductCard key={node.id} product={node} />
-        ))} */}
-        <ProductCard key={bestSellers.nodes[0].id} product={bestSellers.nodes[0]} />
+        ))}
+        {/* <ProductCard key={bestSellers.nodes[0].id} product={bestSellers.nodes[0]} /> */}
       </Cards>
     </SectionContainer>
     <SectionContainer>
