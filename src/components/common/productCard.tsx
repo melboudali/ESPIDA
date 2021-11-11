@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { shopifyProduct } from "../../types";
 import { GatsbyImage } from "gatsby-plugin-image";
@@ -41,6 +41,9 @@ const Colors = styled.div`
     height: 10px;
     border-radius: 50%;
     background-color: black;
+    &:hover {
+      cursor: pointer;
+    }
   }
 `;
 
@@ -94,16 +97,23 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  const [currentImage, setCurrentImage] = useState(product.images![0]!.gatsbyImageData);
+  const [variants] = useState(getColorsAndImages([...product.variants!.map((variant) => variant)]));
+  const [selectedVariant, setSelectedVariant] = useState(variants[0]);
+
   return (
     <Card>
-      <GatsbyImage image={currentImage} alt={product.images![0]!.altText!} className="gatsby_image" />
+      <GatsbyImage image={selectedVariant.image} alt="product_image" className="gatsby_image" />
       <Details>
         <ColorsWrapper>
-          <p>{product.images![0]?.altText}</p>
+          <p>{selectedVariant.color}</p>
           <Colors>
-            {getColorsAndImages([...product.variants!.map((variant) => variant)]).map((color) => (
-              <div />
+            {variants.map((variant) => (
+              <div
+                key={variant.color}
+                onClick={() => {
+                  if (selectedVariant !== variant) setSelectedVariant(variant);
+                }}
+              />
             ))}
           </Colors>
         </ColorsWrapper>
