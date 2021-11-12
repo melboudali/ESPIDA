@@ -16,5 +16,5 @@
     "resolveJsonModule": true,
     "removeComments": false
   },
-  "include": ["./src/**/*"]
+  "include": ["./src/**/*", "setupTestEnv.ts"]
 }
