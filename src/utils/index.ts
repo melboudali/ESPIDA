@@ -31,7 +31,7 @@ const colorsHex: { color: string; hex: string }[] = [
 
 export const getColor = (color: string) => {
   for (const colorHex of colorsHex) {
-    if (color === colorHex.color) return colorHex.hex;
+    if (color.toLowerCase() === colorHex.color) return colorHex.hex;
   }
   return "#ff0000";
 };
