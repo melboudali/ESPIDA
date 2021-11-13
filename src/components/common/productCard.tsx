@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { shopifyProduct } from "../../types";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { getColorsAndImages } from "../../utils";
+import { getColor, getColorsAndImages } from "../../utils";
 
 const Card = styled.div`
   flex: 304px 0 0;
@@ -36,14 +36,16 @@ const Colors = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
-  div {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: black;
-    &:hover {
-      cursor: pointer;
-    }
+`;
+
+const ColorComponent = styled.div<{ color: string }>`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: ${({ color }) => color};
+  border: 1px solid ${({ color }) => (color !== "#fff" && color !== "#f5f5dc" ? color : "#000")};
+  &:hover {
+    cursor: pointer;
   }
 `;
 
@@ -108,8 +110,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <p>{selectedVariant.color}</p>
           <Colors>
             {variants.map((variant) => (
-              <div
+              <ColorComponent
                 key={variant.color}
+                title={variant.color}
+                color={getColor(variant.color)}
                 onClick={() => {
                   if (selectedVariant !== variant) setSelectedVariant(variant);
                 }}
