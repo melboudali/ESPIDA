@@ -23,7 +23,7 @@ const colorsHex: { color: string; hex: string }[] = [
   { color: "dark blue", hex: "#00008b" },
   { color: "navy", hex: "#000080" },
   { color: "purple", hex: "#800080" },
-  { color: "yellow  ", hex: "#ffff00" },
+  { color: "yellow", hex: "#ffff00" },
   { color: "khaki", hex: "#f0e68c" },
   { color: "light khaki", hex: "#f6f0ba" },
   { color: "beige", hex: "#f5f5dc" },
