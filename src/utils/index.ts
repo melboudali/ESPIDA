@@ -1,11 +1,11 @@
-import { variantsType } from "../types";
+import { variantsType, variantType } from "../types";
 
 export const getColorsAndImages = (variants: variantsType) => {
-  const selectedVariants: { color: string; image: any }[] = [];
+  const selectedVariants: variantType[] = [];
   for (const variant of variants) {
     const colorName: string = variant!.title!.split(" /")[0];
-    if (selectedVariants.findIndex((selectedVariant) => selectedVariant.color === colorName) === -1) {
-      selectedVariants.push({ color: colorName, image: variant!.image!.gatsbyImageData });
+    if (selectedVariants.findIndex(({ color }) => color === colorName) === -1) {
+      selectedVariants.push({ id: variant!.id, color: colorName, image: variant!.image!.gatsbyImageData });
     }
   }
 
@@ -33,5 +33,5 @@ export const getColor = (colorName: string) => {
   for (const { color, hex } of colorsHex) {
     if (colorName.toLowerCase() === color) return hex;
   }
-  return "#ff0000";
+  return "#c93030";
 };
