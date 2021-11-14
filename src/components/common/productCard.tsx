@@ -43,7 +43,9 @@ const ColorComponent = styled.div<{ color: string }>`
   height: 10px;
   border-radius: 50%;
   background-color: ${({ color }) => color};
-  border: 1px solid ${({ color }) => (color !== "#fff" && color !== "#f5f5dc" ? color : "#000")};
+  border: 2px solid ${({ color }) => (color !== "#fff" && color !== "#f5f5dc" ? color : "rgba(0, 0, 0, 0.12)")};
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   &:hover {
     cursor: pointer;
   }
