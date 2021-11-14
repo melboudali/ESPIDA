@@ -1,33 +1,33 @@
 import { getColorsAndImages, getColor } from "./index";
 
 const variants = [
-  { title: "Black /M", image: { gatsbyImageData: "Image" } },
-  { title: "Red /M", image: { gatsbyImageData: "Image" } },
-  { title: "Black /L", image: { gatsbyImageData: "Image" } },
-  { title: "Black /XL", image: { gatsbyImageData: "Image" } },
-  { title: "Green /M", image: { gatsbyImageData: "Image" } },
-  { title: "Green /L", image: { gatsbyImageData: "Image" } },
-  { title: "Green /XL", image: { gatsbyImageData: "Image" } },
-  { title: "Black /XXL", image: { gatsbyImageData: "Image" } },
-  { title: "Green /XXL", image: { gatsbyImageData: "Image" } },
-  { title: "Red /L", image: { gatsbyImageData: "Image" } },
-  { title: "Red /XL", image: { gatsbyImageData: "Image" } },
-  { title: "Red /XXL", image: { gatsbyImageData: "Image" } },
+  { id: "1", title: "Black /M", image: { gatsbyImageData: "Image" } },
+  { id: "2", title: "Red /M", image: { gatsbyImageData: "Image" } },
+  { id: "3", title: "Black /L", image: { gatsbyImageData: "Image" } },
+  { id: "4", title: "Black /XL", image: { gatsbyImageData: "Image" } },
+  { id: "5", title: "Green /M", image: { gatsbyImageData: "Image" } },
+  { id: "6", title: "Green /L", image: { gatsbyImageData: "Image" } },
+  { id: "7", title: "Green /XL", image: { gatsbyImageData: "Image" } },
+  { id: "8", title: "Black /XXL", image: { gatsbyImageData: "Image" } },
+  { id: "9", title: "Green /XXL", image: { gatsbyImageData: "Image" } },
+  { id: "10", title: "Red /L", image: { gatsbyImageData: "Image" } },
+  { id: "11", title: "Red /XL", image: { gatsbyImageData: "Image" } },
+  { id: "12", title: "Red /XXL", image: { gatsbyImageData: "Image" } },
 ];
 
 describe("testing getColorsndImages func", () => {
   it("should return Black, Red, and Green colors", () => {
     expect(getColorsAndImages(variants)).toEqual([
-      { color: "Black", image: "Image" },
-      { color: "Red", image: "Image" },
-      { color: "Green", image: "Image" },
+      { id: "1", color: "Black", image: "Image" },
+      { id: "2", color: "Red", image: "Image" },
+      { id: "5", color: "Green", image: "Image" },
     ]);
   });
 });
 
 describe("testing getColor func", () => {
   it("should return red if we don't have the selected color", () => {
-    expect(getColor("nocolor")).toBe("#ff0000");
+    expect(getColor("nocolor")).toBe("#c93030");
   });
   it("should return #000", () => {
     expect(getColor("Black".toLowerCase())).toBe("#000");
@@ -35,13 +35,13 @@ describe("testing getColor func", () => {
   it("should return #800020", () => {
     expect(getColor("Burgundy".toLowerCase())).toBe("#800020");
   });
-  it("should return #800080", () => {
-    expect(getColor("Purple".toLowerCase())).toBe("#800080");
+  it("should return #872d87", () => {
+    expect(getColor("Purple".toLowerCase())).toBe("#872d87");
   });
   it("should return #f6f0ba", () => {
     expect(getColor("Light Khaki".toLowerCase())).toBe("#f6f0ba");
   });
-  it("should return #00008b", () => {
-    expect(getColor("Dark Blue".toLowerCase())).toBe("#00008b");
+  it("should return #222270", () => {
+    expect(getColor("Dark Blue".toLowerCase())).toBe("#222270");
   });
 });
