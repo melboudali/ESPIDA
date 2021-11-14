@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { shopifyProduct } from "../../types";
+import { shopifyProduct, variantsType, variantType } from "../../types";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { getColor, getColorsAndImages } from "../../utils";
 
@@ -38,7 +38,8 @@ const Colors = styled.div`
   gap: 5px;
 `;
 
-const ColorComponent = styled.div<{ color: string }>`
+const ColorComponentWrapper = styled.div<{ color: string }>`
+  position: relative;
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -48,6 +49,34 @@ const ColorComponent = styled.div<{ color: string }>`
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   &:hover {
     cursor: pointer;
+  }
+`;
+
+const ToolTip = styled.div`
+  z-index: 1;
+  padding: 5px;
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--white);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  transform: translateX(-50%);
+  background: var(--black);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  &:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    border-top: 5px solid var(--black);
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid transparent;
+    transform: translateX(-50%);
   }
 `;
 
@@ -100,6 +129,13 @@ interface ProductCardProps {
   product: shopifyProduct;
 }
 
+interface ColorComponentProps {
+  color: string;
+  variant: variantType;
+  selectedVariant: variantType;
+  setSelectedVariant: Function;
+}
+
 const ProductCard = ({ product }: ProductCardProps) => {
   const [variants] = useState(getColorsAndImages([...product.variants!.map((variant) => variant)]));
   const [selectedVariant, setSelectedVariant] = useState(variants[0]);
@@ -111,14 +147,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <ColorsWrapper>
           <p>{selectedVariant.color}</p>
           <Colors>
-            {variants.map((variant) => (
+            {variants.map(({ id, color, image }) => (
               <ColorComponent
-                key={variant.color}
-                title={variant.color}
-                color={getColor(variant.color)}
-                onClick={() => {
-                  if (selectedVariant !== variant) setSelectedVariant(variant);
-                }}
+                key={id}
+                color={color}
+                variant={{ id, color, image }}
+                selectedVariant={selectedVariant}
+                setSelectedVariant={setSelectedVariant}
               />
             ))}
           </Colors>
@@ -131,6 +166,27 @@ const ProductCard = ({ product }: ProductCardProps) => {
       </Details>
       <AddToCartButton onClick={() => console.log("Add to cart")}>add to cart</AddToCartButton>
     </Card>
+  );
+};
+
+const ColorComponent = ({ color, variant, selectedVariant, setSelectedVariant }: ColorComponentProps) => {
+  const [showTooltip, setShowTooltip] = useState(false);
+
+  const onMouseEnterLeave = () => {
+    setShowTooltip(!showTooltip);
+  };
+
+  return (
+    <ColorComponentWrapper
+      color={getColor(color)}
+      onMouseEnter={onMouseEnterLeave}
+      onMouseLeave={onMouseEnterLeave}
+      onClick={() => {
+        if (selectedVariant !== variant) setSelectedVariant(variant);
+      }}
+    >
+      {showTooltip && <ToolTip>{color}</ToolTip>}
+    </ColorComponentWrapper>
   );
 };
 
