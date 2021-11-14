@@ -90,6 +90,7 @@ export const query = graphql`
       gatsbyImageData
     }
     variants {
+      id
       price
       compareAtPrice
       title
