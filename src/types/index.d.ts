@@ -1,5 +1,8 @@
-type variantsType = Array<
+export type variantType = { id: string; color: string; image: any };
+
+export type variantsType = Array<
   | {
+      id: string;
       price?: string | null | undefined;
       compareAtPrice?: string | null | undefined;
       title?: string | null | undefined;
@@ -20,6 +23,7 @@ export type shopifyProduct = {
   variants?:
     | Array<
         | {
+            id: string;
             price?: string | null | undefined;
             compareAtPrice?: string | null | undefined;
             title?: string | null | undefined;
