@@ -3,15 +3,25 @@ import styled from "styled-components";
 import { shopifyProduct, variantType } from "../../types";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { getColor, getColorsAndImages } from "../../utils";
+import { Link } from "gatsby";
 
-const Card = styled.div`
+const Card = styled(Link)`
+  z-index: 1;
   flex: 304px 0 0;
   width: 0;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+  transition: all 0.2s ease-in;
   .gatsby_image {
     width: 100%;
     height: 384px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+  }
+  &:hover {
+    z-index: 2;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+    transform: translateY(-2px);
   }
 `;
 
@@ -47,16 +57,12 @@ const ColorComponentWrapper = styled.div<{ color: string }>`
   border: 2px solid ${({ color }) => (color !== "#fff" && color !== "#f5f5dc" ? color : "rgba(0, 0, 0, 0.12)")};
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 const ToolTip = styled.div`
-  z-index: 1;
   padding: 5px;
   position: absolute;
-  top: -32px;
+  top: -36px;
   left: 50%;
   font-size: 0.8125rem;
   font-weight: 500;
@@ -71,7 +77,7 @@ const ToolTip = styled.div`
     content: "";
     position: absolute;
     left: 50%;
-    bottom: -8px;
+    bottom: -10px;
     border-top: 5px solid var(--black);
     border-right: 5px solid transparent;
     border-bottom: 5px solid transparent;
@@ -141,7 +147,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const [selectedVariant, setSelectedVariant] = useState(variants[0]);
 
   return (
-    <Card>
+    <Card to="#">
       <GatsbyImage image={selectedVariant.image} alt="product_image" className="gatsby_image" />
       <Details>
         <ColorsWrapper>
