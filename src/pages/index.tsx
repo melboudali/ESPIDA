@@ -50,6 +50,7 @@ const IndexPage = ({ data: { bestSellers, newReleases } }: IndexPageProps) => (
         ))}
       </Cards>
     </SectionContainer>
+    <SectionContainer></SectionContainer>
   </>
 );
 
