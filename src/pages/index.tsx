@@ -19,6 +19,10 @@ const Cards = styled.div`
   flex-wrap: wrap;
 `;
 
+const Wrapper = styled.div`
+  background-color: CCCCCC;
+`;
+
 interface IndexPageProps {
   data: AllShopifyProductQuery;
 }
@@ -50,7 +54,11 @@ const IndexPage = ({ data: { bestSellers, newReleases } }: IndexPageProps) => (
         ))}
       </Cards>
     </SectionContainer>
-    <SectionContainer></SectionContainer>
+    <SectionContainer>
+      <Wrapper>
+        <SectionTitle title="See what others have to say" />
+      </Wrapper>
+    </SectionContainer>
   </>
 );
 
