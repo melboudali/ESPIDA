@@ -1,9 +1,9 @@
 import React from "react";
 import Seo from "../components/common/seo";
-import Categories from "../components/indexPage/categories";
-import SectionTitle from "../components/common/sectionTitle";
+import Categories from "../components/pages/index/categories";
+import SectionTitle from "../components/common/title";
 import styled from "styled-components";
-import ProductCard from "../components/common/productCard";
+import ProductCard from "../components/common/card";
 import { graphql } from "gatsby";
 import { AllShopifyProductQuery } from "../../gatsby-graphql";
 import { shopifyProduct } from "../types";
