@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { shopifyProduct, variantsType, variantType } from "../../types";
+import { shopifyProduct, variantType } from "../../types";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { getColor, getColorsAndImages } from "../../utils";
 
@@ -71,7 +71,7 @@ const ToolTip = styled.div`
     content: "";
     position: absolute;
     left: 50%;
-    bottom: -10px;
+    bottom: -8px;
     border-top: 5px solid var(--black);
     border-right: 5px solid transparent;
     border-bottom: 5px solid transparent;
