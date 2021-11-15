@@ -11,7 +11,7 @@ const Card = styled(Link)`
   width: 0;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
-  transition: all 0.2s ease-in;
+  transition: all 150ms ease-out;
   .gatsby_image {
     width: 100%;
     height: 384px;
