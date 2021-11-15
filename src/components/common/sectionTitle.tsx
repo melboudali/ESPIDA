@@ -20,7 +20,7 @@ const TitleWithBg = styled.div`
 const Title = styled.h1`
   margin: 0;
   color: var(--balck);
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 700;
   line-height: 35px;
   letter-spacing: 0.365em;
