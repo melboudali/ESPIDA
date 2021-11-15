@@ -20,7 +20,7 @@ const Cards = styled.div`
 `;
 
 const Wrapper = styled.div`
-  background-color: #cccccc;
+  background-color: #fafafa;
 `;
 
 interface IndexPageProps {
