@@ -8,6 +8,7 @@ import { graphql } from "gatsby";
 import { AllShopifyProductQuery } from "../../gatsby-graphql";
 import { shopifyProduct } from "../types";
 import { StaticImage } from "gatsby-plugin-image";
+import CommentsSlider from "../components/pages/index/commentsSlider";
 
 const SectionContainer = styled.section`
   margin: 80px 0;
@@ -57,6 +58,7 @@ const IndexPage = ({ data: { bestSellers, newReleases } }: IndexPageProps) => (
     <SectionContainer>
       <Wrapper>
         <SectionTitle title="See what others have to say" />
+        <CommentsSlider />
       </Wrapper>
     </SectionContainer>
   </>
