@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-interface commentsSliderProps {}
+interface CommentsSliderProps {}
 
-const commentsSlider: React.FC<commentsSliderProps> = (props) => {
+const CommentsSlider: React.FC<CommentsSliderProps> = (props) => {
   return <div>This is commentsSlider Component/Page</div>;
 };
 
-commentsSlider.propTypes = {};
+CommentsSlider.propTypes = {};
 
-export default commentsSlider;
+export default CommentsSlider;
