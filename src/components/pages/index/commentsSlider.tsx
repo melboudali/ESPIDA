@@ -11,7 +11,11 @@ const CommentsSliderWrapper = styled.div`
 interface CommentsSliderProps {}
 
 const CommentsSlider: React.FC<CommentsSliderProps> = (props) => {
-  return <CommentsSliderWrapper>This is commentsSlider Component/Page</CommentsSliderWrapper>;
+  return (
+    <CommentsSliderWrapper>
+      <p>“Their ability to deliver technical yet fashionable shirts has heightened the standard of everyday attire“</p>
+    </CommentsSliderWrapper>
+  );
 };
 
 CommentsSlider.propTypes = {};
