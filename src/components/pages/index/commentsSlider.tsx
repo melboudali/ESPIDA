@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const CommentsSliderWrapper = styled.div`
+const SliderWrapper = styled.div`
   background-color: #fafafa;
   margin-top: 40px;
   padding: 63px 0;
@@ -13,24 +13,30 @@ const CommentsSliderWrapper = styled.div`
     text-align: center;
     text-transform: uppercase;
     color: #666666;
+    margin-bottom: 60px;
   }
 `;
 
-const Logos = styled.div``;
+const Logos = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+`;
 
 const Svg = styled.div``;
 
-interface CommentsSliderProps {}
+interface SliderProps {}
 
-const CommentsSlider: React.FC<CommentsSliderProps> = (props) => {
+const Slider: React.FC<SliderProps> = (props) => {
   const data = [
     {
       comment: "“Their ability to deliver technical yet fashionable shirts has heightened the standard of everyday attire“",
       svg: (fill: string) => (
         <svg width="201" height="50" viewBox="0 0 201 50" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M174.704 50V0.41241H167.514V50H174.704V50ZM145.842 0.41241V3.08734H136.701V23.4569H144.92V26.1307H136.701V50H129.514V0.41241H145.842ZM74.6678 0.41241V3.08734H81.0357V50H88.2248V3.08734H94.5928V0.41241H74.6678ZM73.2302 50V0.41241H66.0411V50H73.2302V50ZM95.4151 0.41241H102.707L108.869 25.8225L114.827 0.41241H117.188L109.998 30.76V50H102.809V30.2479L95.4151 0.41241ZM0 0.41241H7.59967L12.7359 36.6242L19.0009 0.41241H21.3626L12.8377 50H7.19024L0 0.41241ZM23.6225 32.7155H30.6068L27.5258 10.0823L23.6225 32.7155V32.7155ZM20.5414 50H18.1797L26.7046 0.411265H33.3802L40.7752 50H33.1744L31.1192 35.3916H23.1089L20.5414 50ZM42.6233 0.41241V50H44.8832V12.7572L53.2011 50H60.5972V0.41241H58.3373V39.4034L49.7095 0.41241H42.6233V0.41241ZM147.535 32.7155H154.574L151.491 10.0823L147.535 32.7155ZM144.508 50H142.145L150.671 0.411265H157.346L164.742 50H157.141L155.088 35.3916H147.076L144.508 50V50ZM187.438 2.16057H189.083C191.241 2.16057 192.368 3.49746 192.368 5.65803V20.0614C192.368 21.6045 192.265 23.9701 189.905 23.9701H187.439V2.16057H187.438V2.16057ZM187.438 26.1307H190.315C192.265 26.1307 193.807 26.8513 193.807 29.6304V50H200.997V29.5273C201.1 26.3369 198.223 25.1031 195.656 25C196.99 24.898 199.764 23.1487 199.764 19.6513V4.93859C199.764 3.08619 197.709 0 192.471 0H180.25V50H187.438V26.1307V26.1307Z"
             fill={fill}
           />
@@ -41,7 +47,7 @@ const CommentsSlider: React.FC<CommentsSliderProps> = (props) => {
       comment: "“Their ability to deliver technical yet fashionable shirts has heightened the standard of everyday attire“",
       svg: (fill: string) => (
         <svg width="130" height="50" viewBox="0 0 130 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g clip-path="url(#clip0_198_6)">
+          <g clipPath="url(#clip0_198_6)">
             <path d="M-1.52588e-05 0.0124512H130V49.9892H-1.52588e-05V0.0124512Z" fill={fill} />
             <path
               d="M76.0939 17.6348C74.4591 17.6348 73.175 17.9824 71.8902 18.6764C71.8902 14.972 71.8902 11.6153 72.0076 10.458L64.1822 11.8466V12.5412L64.9996 12.6568C66.0497 12.8882 66.4018 13.4664 66.6331 14.8563C66.8685 17.6348 66.7505 32.453 66.6331 34.8845C68.7353 35.3478 70.9548 35.6955 73.1743 35.6955C79.3642 35.6955 83.1012 31.8747 83.1012 25.8545C83.1012 21.1085 80.0649 17.6348 76.0939 17.6348V17.6348ZM73.4077 34.4212C72.9403 34.4212 72.3556 34.4212 72.0062 34.3062C71.8889 32.6857 71.7729 25.8545 71.8889 19.835C72.5896 19.603 73.0563 19.4873 73.641 19.4873C76.212 19.4873 77.6134 22.4971 77.6134 26.2008C77.6127 30.8331 75.8606 34.4212 73.4077 34.4212V34.4212ZM34.7504 10.9206H14.1953V11.9622L15.3634 12.0779C16.8808 12.3092 17.4656 13.2351 17.6982 15.4346C18.0496 19.6023 17.9323 27.1281 17.6982 30.7155C17.4649 32.9157 16.8815 33.9579 15.3634 34.0722L14.1953 34.3049V35.2308H27.3924V34.3049L25.9909 34.0722C24.4728 33.9572 23.8888 32.9157 23.6554 30.7155C23.5381 29.2099 23.4214 26.7784 23.4214 23.7693L26.2243 23.885C27.9765 23.885 28.7932 25.2742 29.1439 27.2417H30.1953V19.0247H29.1439C28.7925 20.9929 27.9765 22.3814 26.2243 22.3814L23.4221 22.4978C23.4221 18.5614 23.5387 14.857 23.6561 12.6575H27.7431C30.8974 12.6575 32.5322 14.625 33.6996 18.0988L34.8677 17.7511L34.7504 10.9206V10.9206Z"
@@ -84,13 +90,17 @@ const CommentsSlider: React.FC<CommentsSliderProps> = (props) => {
     },
   ];
   return (
-    <CommentsSliderWrapper>
+    <SliderWrapper>
       <p>“Their ability to deliver technical yet fashionable shirts has heightened the standard of everyday attire“</p>
-      <Logos>{data.map(({ comment, svg }, id) => (id > 0 ? svg("#CCCCCC") : svg("var(--black")))}</Logos>
-    </CommentsSliderWrapper>
+      <Logos>
+        {data.map(({ svg }, id) => (
+          <div key={id}>{id > 0 ? svg("#CCCCCC") : svg("var(--black")}</div>
+        ))}
+      </Logos>
+    </SliderWrapper>
   );
 };
 
-CommentsSlider.propTypes = {};
+Slider.propTypes = {};
 
-export default CommentsSlider;
+export default Slider;
