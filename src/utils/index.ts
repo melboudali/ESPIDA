@@ -14,6 +14,7 @@ export const getColorsAndImages = (variants: variantsType) => {
 
 const colorsHex: { color: string; hex: string }[] = [
   { color: "black", hex: "#000" },
+  { color: "dark grey", hex: "#4f4f4f" },
   { color: "grey", hex: "#808080" },
   { color: "white", hex: "#fff" },
   { color: "red", hex: "#c93030" },
