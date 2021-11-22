@@ -21,12 +21,37 @@ const Wrapper = styled.div`
     }
   }
   form {
-    margin: 50px 0 20px;
+    margin: 50px auto 20px;
+    text-align: center;
     input {
+      --greyColor: #4a4a4a;
+      --secGreyColor: #cacaca;
+
+      font-size: 1.125rem;
+      text-transform: uppercase;
+
+      color: var(--greyColor);
+      border-color: var(--greyColor);
+      border-style: solid;
+      border-width: 0 0 3px;
+      outline: none;
       &:nth-child(1) {
-        border: none;
+        height: 50px;
+        width: 585px;
+        margin-right: 30px;
+        padding: 0 0 0 5px;
+        font-size: 1.125rem;
+        ::placeholder {
+          color: var(--secGreyColor);
+        }
       }
-      &:nth-child(3) {
+      &:nth-child(2) {
+        width: 110px;
+        height: 50px;
+        padding: 0;
+        background-color: var(--greyColor);
+        align-items: center;
+        color: var(--white);
       }
     }
   }
