@@ -5,7 +5,7 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import { getColor, getColorsAndImages } from "../../utils";
 import { Link } from "gatsby";
 
-const Card = styled(Link)`
+const Card = styled.div`
   z-index: 1;
   flex: 304px 0 0;
   width: 0;
@@ -50,6 +50,7 @@ const Colors = styled.div`
 
 const ColorComponentWrapper = styled.div<{ color: string }>`
   position: relative;
+  cursor: pointer;
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -147,8 +148,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const [selectedVariant, setSelectedVariant] = useState(variants[0]);
 
   return (
-    <Card to="#">
-      <GatsbyImage image={selectedVariant.image} alt="product_image" className="gatsby_image" />
+    <Card>
+      <Link to="#">
+        <GatsbyImage image={selectedVariant.image} alt="product_image" className="gatsby_image" />
+      </Link>
       <Details>
         <ColorsWrapper>
           <p>{selectedVariant.color}</p>
@@ -164,11 +167,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
             ))}
           </Colors>
         </ColorsWrapper>
-        <Title title={product.title!}>{product.title}</Title>
-        <Price>
-          <p>${product.variants![0]?.price}</p>
-          <p>${product.variants![0]?.compareAtPrice}</p>
-        </Price>
+        <Link to="#">
+          <Title title={product.title!}>{product.title}</Title>
+          <Price>
+            <p>${product.variants![0]?.price}</p>
+            <p>${product.variants![0]?.compareAtPrice}</p>
+          </Price>
+        </Link>
       </Details>
       <AddToCartButton onClick={() => console.log("Add to cart")}>add to cart</AddToCartButton>
     </Card>
