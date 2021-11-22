@@ -9,6 +9,7 @@ import { AllShopifyProductQuery } from "../../gatsby-graphql";
 import { shopifyProduct } from "../types";
 import { StaticImage } from "gatsby-plugin-image";
 import Slider from "../components/pages/index/slider";
+import Subscribe from "../components/pages/index/subscribe";
 
 const SectionContainer = styled.section`
   margin: 80px 0;
@@ -57,7 +58,7 @@ const IndexPage = ({ data: { bestSellers, newReleases } }: IndexPageProps) => (
     </SectionContainer>
     <SectionContainer>
       <SectionTitle title="Subscribe for free shipping on your first order" fontSize="1.125rem" />
-      <Slider />
+      <Subscribe />
     </SectionContainer>
   </>
 );
