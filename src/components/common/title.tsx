@@ -1,6 +1,7 @@
 import { Link } from "gatsby";
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const TitleWithBg = styled.div`
   margin: 0 0 60px;
@@ -17,10 +18,10 @@ const TitleWithBg = styled.div`
   }
 `;
 
-const Title = styled.h1`
+const Title = styled.h1<{ fontSize: string }>`
   margin: 0;
   color: var(--balck);
-  font-size: 1.5rem;
+  font-size: ${({ fontSize }) => fontSize};
   font-weight: 700;
   line-height: 35px;
   letter-spacing: 0.365em;
@@ -65,9 +66,10 @@ interface SectionTitleProps {
   title: string;
   children?: React.ReactNode;
   link?: string;
+  fontSize: string;
 }
 
-const SectionTitle = ({ title, children, link }: SectionTitleProps) => {
+const SectionTitle = ({ title, link, fontSize, children }: SectionTitleProps) => {
   if (children && link)
     return (
       <TitleWithBg>
@@ -78,7 +80,18 @@ const SectionTitle = ({ title, children, link }: SectionTitleProps) => {
         </Content>
       </TitleWithBg>
     );
-  return <Title>{title}</Title>;
+  return <Title fontSize={fontSize}>{title}</Title>;
+};
+
+SectionTitle.defaultProps = {
+  fontSize: "1.5rem",
+};
+
+SectionTitle.propTypes = {
+  title: PropTypes.string.isRequired,
+  link: PropTypes.string,
+  fontSize: PropTypes.string.isRequired,
+  children: PropTypes.object,
 };
 
 export default SectionTitle;
