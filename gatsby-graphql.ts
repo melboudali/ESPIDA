@@ -347,6 +347,8 @@ export type SitePluginPluginOptions = {
   typePrefix?: Maybe<Scalars['String']>;
   salesChannel?: Maybe<Scalars['String']>;
   documentPaths?: Maybe<Array<Maybe<Scalars['String']>>>;
+  endpoint?: Maybe<Scalars['String']>;
+  timeout?: Maybe<Scalars['Int']>;
   pathCheck?: Maybe<Scalars['Boolean']>;
   allExtensions?: Maybe<Scalars['Boolean']>;
   isTSX?: Maybe<Scalars['Boolean']>;
@@ -3014,6 +3016,8 @@ export type SitePluginPluginOptionsFilterInput = {
   typePrefix?: Maybe<StringQueryOperatorInput>;
   salesChannel?: Maybe<StringQueryOperatorInput>;
   documentPaths?: Maybe<StringQueryOperatorInput>;
+  endpoint?: Maybe<StringQueryOperatorInput>;
+  timeout?: Maybe<IntQueryOperatorInput>;
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
   allExtensions?: Maybe<BooleanQueryOperatorInput>;
   isTSX?: Maybe<BooleanQueryOperatorInput>;
@@ -3238,6 +3242,8 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___typePrefix'
   | 'pluginCreator___pluginOptions___salesChannel'
   | 'pluginCreator___pluginOptions___documentPaths'
+  | 'pluginCreator___pluginOptions___endpoint'
+  | 'pluginCreator___pluginOptions___timeout'
   | 'pluginCreator___pluginOptions___pathCheck'
   | 'pluginCreator___pluginOptions___allExtensions'
   | 'pluginCreator___pluginOptions___isTSX'
@@ -3441,6 +3447,8 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___typePrefix'
   | 'pluginOptions___salesChannel'
   | 'pluginOptions___documentPaths'
+  | 'pluginOptions___endpoint'
+  | 'pluginOptions___timeout'
   | 'pluginOptions___pathCheck'
   | 'pluginOptions___allExtensions'
   | 'pluginOptions___isTSX'
