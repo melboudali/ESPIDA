@@ -1,6 +1,7 @@
 import { Link } from "gatsby";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import addToMailchimp from "gatsby-plugin-mailchimp";
 
 const Wrapper = styled.div`
   margin-top: 40px;
@@ -28,8 +29,6 @@ const Wrapper = styled.div`
       --secGreyColor: #cacaca;
 
       font-size: 1.125rem;
-      text-transform: uppercase;
-
       color: var(--greyColor);
       border-color: var(--greyColor);
       border-style: solid;
@@ -43,6 +42,7 @@ const Wrapper = styled.div`
         font-size: 1.125rem;
         ::placeholder {
           color: var(--secGreyColor);
+          text-transform: uppercase;
         }
       }
       &:nth-child(2) {
@@ -61,19 +61,29 @@ const Wrapper = styled.div`
 interface SubscribeProps {}
 
 const Subscribe = ({}: SubscribeProps) => {
+  const [email, setEmail] = useState("");
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const result = await addToMailchimp(email);
+    if (result.result === "success") return console.log(result.msg);
+    return console.log("error");
+  };
   return (
     <Wrapper>
       <p>
         Join our email list and be the first to know about new limited edition products, material innovations, and lots of other fun
         updates.
       </p>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          console.log("Form Submited");
-        }}
-      >
-        <input placeholder="enter your email address" type="email" name="emil" id="email" />
+      <form onSubmit={onSubmit}>
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="enter your email address"
+          type="email"
+          name="emil"
+          id="mce-EMAIL"
+          required
+        />
         <input type="submit" value="sign up" />
       </form>
       <p>
