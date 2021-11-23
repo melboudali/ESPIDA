@@ -90,7 +90,7 @@ const Slider = () => {
   useEffect(() => {
     const slideComment = setInterval(
       () => (selectedComment === data.length - 1 ? setSelectedComment(0) : setSelectedComment(selectedComment + 1)),
-      3000
+      4000
     );
     return () => clearInterval(slideComment);
   });
