@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const SliderWrapper = styled.div`
   background-color: #fafafa;
@@ -29,6 +29,8 @@ const Svg = styled.div``;
 interface SliderProps {}
 
 const Slider: React.FC<SliderProps> = (props) => {
+  const [selectedComment, setSelectedComment] = useState(0);
+
   const data = [
     {
       comment: "“Their ability to deliver technical yet fashionable shirts has heightened the standard of everyday attire“",
@@ -44,7 +46,7 @@ const Slider: React.FC<SliderProps> = (props) => {
       ),
     },
     {
-      comment: "“Their ability to deliver technical yet fashionable shirts has heightened the standard of everyday attire“",
+      comment: "“An everyday essential for the modern man“",
       svg: (fill: string) => (
         <svg width="130" height="50" viewBox="0 0 130 50" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g clipPath="url(#clip0_198_6)">
@@ -89,12 +91,21 @@ const Slider: React.FC<SliderProps> = (props) => {
       ),
     },
   ];
+
+  useEffect(() => {
+    const slideComment = setInterval(
+      () => (selectedComment === data.length - 1 ? setSelectedComment(0) : setSelectedComment(selectedComment + 1)),
+      3000
+    );
+    return () => clearInterval(slideComment);
+  });
+
   return (
     <SliderWrapper>
-      <p>“Their ability to deliver technical yet fashionable shirts has heightened the standard of everyday attire“</p>
+      <p>{data[selectedComment].comment}</p>
       <Logos>
         {data.map(({ svg }, id) => (
-          <div key={id}>{id > 0 ? svg("#CCCCCC") : svg("var(--black")}</div>
+          <div key={id}>{id === selectedComment ? svg("var(--black") : svg("#CCCCCC")}</div>
         ))}
       </Logos>
     </SliderWrapper>
