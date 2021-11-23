@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
 const SliderWrapper = styled.div`
   background-color: #fafafa;
@@ -24,11 +23,7 @@ const Logos = styled.div`
   gap: 40px;
 `;
 
-const Svg = styled.div``;
-
-interface SliderProps {}
-
-const Slider: React.FC<SliderProps> = (props) => {
+const Slider = () => {
   const [selectedComment, setSelectedComment] = useState(0);
 
   const data = [
@@ -46,7 +41,7 @@ const Slider: React.FC<SliderProps> = (props) => {
       ),
     },
     {
-      comment: "“An everyday essential for the modern man“",
+      comment: "“Suits any occasion from the boardroom to the beach and everything in between“",
       svg: (fill: string) => (
         <svg width="130" height="50" viewBox="0 0 130 50" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g clipPath="url(#clip0_198_6)">
@@ -69,7 +64,7 @@ const Slider: React.FC<SliderProps> = (props) => {
       ),
     },
     {
-      comment: "“Their ability to deliver technical yet fashionable shirts has heightened the standard of everyday attire“",
+      comment: "“An everyday essential for the modern man“",
       svg: (fill: string) => (
         <svg width="250" height="50" viewBox="0 0 250 50" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -80,7 +75,7 @@ const Slider: React.FC<SliderProps> = (props) => {
       ),
     },
     {
-      comment: "“Their ability to deliver technical yet fashionable shirts has heightened the standard of everyday attire“",
+      comment: "“Elevated and unique. CUTS lives up to the hype“",
       svg: (fill: string) => (
         <svg width="154" height="50" viewBox="0 0 154 50" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -111,7 +106,5 @@ const Slider: React.FC<SliderProps> = (props) => {
     </SliderWrapper>
   );
 };
-
-Slider.propTypes = {};
 
 export default Slider;
