@@ -2,6 +2,7 @@ import React from "react";
 import GlobalStyles from "../../styles/globalStyles";
 import styled from "styled-components";
 import Navbar from "../common/navbar";
+import Footer from "../common/footer";
 
 const Banner = styled.div`
   display: flex;
@@ -34,6 +35,7 @@ const Layout = ({ children }: LayoutProps) => (
       <Navbar />
     </header>
     <Main>{children}</Main>
+    <Footer />
   </>
 );
 
