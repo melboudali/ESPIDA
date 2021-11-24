@@ -4,16 +4,16 @@ import { validateEmail } from "../utils";
 
 const useSubscribe = () => {
   const [email, setEmail] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(false);
+    setLoading(true);
     setIsError(false);
     setIsSuccess(false);
 
