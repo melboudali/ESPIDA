@@ -1,7 +1,7 @@
 import { Link } from "gatsby";
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import addToMailchimp from "gatsby-plugin-mailchimp";
+import useSubscribe from "../../../hook/useSubscribe";
 
 const Wrapper = styled.div`
   margin-top: 40px;
@@ -61,13 +61,8 @@ const Wrapper = styled.div`
 interface SubscribeProps {}
 
 const Subscribe = ({}: SubscribeProps) => {
-  const [email, setEmail] = useState("");
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const result = await addToMailchimp(email);
-    if (result.result === "success") return console.log(result.msg);
-    return console.log("error");
-  };
+  const { email, loading, isSuccess, isError, onChange, onSubmit } = useSubscribe();
+
   return (
     <Wrapper>
       <p>
@@ -75,16 +70,8 @@ const Subscribe = ({}: SubscribeProps) => {
         updates.
       </p>
       <form onSubmit={onSubmit}>
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="enter your email address"
-          type="email"
-          name="emil"
-          id="mce-EMAIL"
-          required
-        />
-        <input type="submit" value="sign up" />
+        <input value={email} onChange={onChange} placeholder="enter your email address" type="email" name="emil" id="mce-EMAIL" />
+        <input type="submit" value={loading ? "sign up" : "loading ..."} />
       </form>
       <p>
         Note: You can opt-out at any time. See our <Link to="#">Privacy Policy</Link> and <Link to="#">Terms</Link>.
