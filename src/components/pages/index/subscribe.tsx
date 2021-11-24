@@ -61,7 +61,7 @@ const Wrapper = styled.div`
 interface SubscribeProps {}
 
 const Subscribe = ({}: SubscribeProps) => {
-  const { email, loading, isSuccess, isError, onChange, onSubmit } = useSubscribe();
+  const { email, loading, isSuccess, isError, errorMsg, onChange, onSubmit } = useSubscribe();
 
   return (
     <Wrapper>
@@ -73,8 +73,8 @@ const Subscribe = ({}: SubscribeProps) => {
         <input value={email} onChange={onChange} placeholder="enter your email address" type="email" name="emil" id="mce-EMAIL" />
         <input type="submit" value={loading ? "loading ..." : "sign up"} />
       </form>
-      {isSuccess && <p style={{ color: "green" }}>done</p>}
-      {isError && <p style={{ color: "red" }}>done</p>}
+      {isSuccess && <p style={{ color: "green" }}>Wow, new friends. Stay tuned, we’ll get in touch soon.</p>}
+      {isError && errorMsg && <p style={{ color: "red" }}>{errorMsg}</p>}
       <p>
         Note: You can opt-out at any time. See our <Link to="#">Privacy Policy</Link> and <Link to="#">Terms</Link>.
       </p>
