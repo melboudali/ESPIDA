@@ -71,8 +71,10 @@ const Subscribe = ({}: SubscribeProps) => {
       </p>
       <form onSubmit={onSubmit}>
         <input value={email} onChange={onChange} placeholder="enter your email address" type="email" name="emil" id="mce-EMAIL" />
-        <input type="submit" value={loading ? "sign up" : "loading ..."} />
+        <input type="submit" value={loading ? "loading ..." : "sign up"} />
       </form>
+      {isSuccess && <p style={{ color: "green" }}>done</p>}
+      {isError && <p style={{ color: "red" }}>done</p>}
       <p>
         Note: You can opt-out at any time. See our <Link to="#">Privacy Policy</Link> and <Link to="#">Terms</Link>.
       </p>
