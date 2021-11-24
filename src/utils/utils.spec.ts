@@ -1,4 +1,4 @@
-import { getColorsAndImages, getColor } from "./index";
+import { getColorsAndImages, getColor, validateEmail } from "./index";
 
 const variants = [
   { id: "1", title: "Black /M", image: { gatsbyImageData: "Image" } },
@@ -43,5 +43,16 @@ describe("testing getColor func", () => {
   });
   it("should return #222270", () => {
     expect(getColor("Dark Blue".toLowerCase())).toBe("#222270");
+  });
+});
+
+describe("testing validateEmail func", () => {
+  const email = "moe@elboudali.com";
+  const notEmail = "moe.elboudali";
+  it("should return true if we pass an email", () => {
+    expect(validateEmail(email)).toBeTruthy();
+  });
+  it("should return false if we pass an invalid email", () => {
+    expect(validateEmail(notEmail)).not.toBeTruthy();
   });
 });
