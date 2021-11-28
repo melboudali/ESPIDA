@@ -158,7 +158,10 @@ const Footer = () => {
           <FooterLinks LinksTitle="shop cuts" Links={LinksData} />
           <FooterLinks LinksTitle="shop cuts" Links={LinksData} />
         </FooterContainer>
-        <FootBanner></FootBanner>
+        <FootBanner>
+          <p>© {new Date().getFullYear()} espida</p>
+          <ul></ul>
+        </FootBanner>
       </FooterWrapper>
     </>
   );
