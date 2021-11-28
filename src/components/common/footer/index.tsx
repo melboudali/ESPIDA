@@ -169,7 +169,15 @@ const Footer = () => {
         <FootBanner>
           <div>
             <p>© {new Date().getFullYear()} espida</p>
-            <ul></ul>
+            <ul>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
           </div>
         </FootBanner>
       </FooterWrapper>
