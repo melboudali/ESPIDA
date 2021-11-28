@@ -1,8 +1,13 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import SectionTitle from "../title";
 import Subscribe from "../../pages/index/subscribe";
 import { Link } from "gatsby";
+
+const ContainerStyle = css`
+  max-width: 1280px;
+  margin: 0 auto;
+`;
 
 const SectionContainer = styled.section`
   margin: 80px 0;
@@ -28,10 +33,9 @@ const FooterWrapper = styled.footer`
 `;
 
 const FooterContainer = styled.div`
+  ${ContainerStyle}
   display: flex;
   gap: 13px;
-  max-width: 1280px;
-  margin: 0 auto;
   padding-top: 80px;
   color: var(--white);
 `;
@@ -90,6 +94,10 @@ const FootBanner = styled.div`
   background-color: #101010;
   height: 40px;
   margin-top: 80px;
+  color: var(--white);
+  div {
+    ${ContainerStyle}
+  }
 `;
 
 interface FooterLinksProps {
@@ -159,8 +167,10 @@ const Footer = () => {
           <FooterLinks LinksTitle="shop cuts" Links={LinksData} />
         </FooterContainer>
         <FootBanner>
-          <p>© {new Date().getFullYear()} espida</p>
-          <ul></ul>
+          <div>
+            <p>© {new Date().getFullYear()} espida</p>
+            <ul></ul>
+          </div>
         </FootBanner>
       </FooterWrapper>
     </>
