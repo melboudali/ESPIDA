@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import SectionTitle from "../title";
 import Subscribe from "../../pages/index/subscribe";
+import { Link } from "gatsby";
 
 const SectionContainer = styled.section`
   margin: 80px 0;
@@ -16,15 +17,19 @@ const FooterWrapper = styled.footer`
     position: absolute;
     background-color: var(--white);
     background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQzOSIgaGVpZ2h0PSIxMTgiIHZpZXdCb3g9IjAgMCAxNDM5IDExOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgNC4yOTIzMUM0OTIuNSAtMzEuODQzOSAxMTEzLjUgMTc3LjA1NCAxNDQwIDQuMjkyMzFWMTE4SDBWNC4yOTIzMVoiIGZpbGw9ImJsYWNrIi8+Cjwvc3ZnPgo=);
-    background-repeat: no-repeat;
+    background-repeat: repeat-x;
     width: 100%;
     height: 118px;
     top: 0;
+    /* left: 50%;
+    transform: translate(0, -50%); */
     z-index: -1;
   }
 `;
 
 const FooterContainer = styled.div`
+  display: flex;
+  gap: 13px;
   max-width: 1280px;
   margin: 0 auto;
   padding-top: 80px;
@@ -32,7 +37,7 @@ const FooterContainer = styled.div`
 `;
 
 const About = styled.div`
-  h3 {
+  h2 {
     margin: 0;
     font-weight: 700;
     font-size: 2.25rem;
@@ -55,13 +60,53 @@ const About = styled.div`
   }
 `;
 
+const FooterLinksWrapper = styled.div`
+  flex: 304px 0 0;
+  width: 0;
+  h3 {
+    margin: 13px 0 30px;
+    font-weight: 700;
+    font-size: 1.125rem;
+    line-height: 13px;
+    text-transform: uppercase;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0 28px;
+    li:not(:first-child) {
+      margin-top: 15px;
+    }
+    a {
+      color: var(--white);
+      font-size: 0.875rem;
+      line-height: 10px;
+      text-transform: capitalize;
+    }
+  }
+`;
+
 const FootBanner = styled.div`
   background-color: #101010;
   height: 40px;
   margin-top: 80px;
 `;
 
+interface FooterLinksProps {
+  LinksTitle: string;
+  Links: { name: string; url: string }[];
+}
+
 const Footer = () => {
+  const LinksData = [
+    { name: "shirts", url: "#" },
+    { name: "bottoms", url: "#" },
+    { name: "polos", url: "#" },
+    { name: "sweatshirts", url: "#" },
+    { name: "accessories", url: "#" },
+    { name: "gift cards", url: "#" },
+  ];
+
   return (
     <>
       <SectionContainer>
@@ -71,7 +116,7 @@ const Footer = () => {
       <FooterWrapper>
         <FooterContainer>
           <About>
-            <h3>about</h3>
+            <h2>about</h2>
             <p>
               We're here to prove that fashion can be a force for good. Through our commitment to sustainable materials, ethical
               manufacturing, and a zero-plastic policy, we're always searching for better ways to put the planet first.
@@ -109,10 +154,28 @@ const Footer = () => {
               </li>
             </ul>
           </About>
+          <FooterLinks LinksTitle="shop cuts" Links={LinksData} />
+          <FooterLinks LinksTitle="shop cuts" Links={LinksData} />
+          <FooterLinks LinksTitle="shop cuts" Links={LinksData} />
         </FooterContainer>
         <FootBanner></FootBanner>
       </FooterWrapper>
     </>
+  );
+};
+
+const FooterLinks = ({ LinksTitle, Links }: FooterLinksProps) => {
+  return (
+    <FooterLinksWrapper>
+      <h3>{LinksTitle}</h3>
+      <ul>
+        {Links.map(({ name, url }, id) => (
+          <li key={id}>
+            <Link to={url}>{name}</Link>
+          </li>
+        ))}
+      </ul>
+    </FooterLinksWrapper>
   );
 };
 
