@@ -149,7 +149,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <Card>
-      <Link to={`/`}>
+      <Link to={`/${product.productType}/${product.handle}`}>
         <GatsbyImage image={selectedVariant.image} alt="product_image" className="gatsby_image" />
       </Link>
       <Details>
