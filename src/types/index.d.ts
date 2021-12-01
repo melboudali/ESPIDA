@@ -1,3 +1,15 @@
+import { CreateShopifyProductQuery } from "../types";
+
+export interface resType {
+  data?: CreateShopifyProductQuery;
+}
+
+export interface postType {
+  handle?: string | null | undefined;
+  id: string;
+  productType?: string | null | undefined;
+}
+
 export type variantType = { id: string; color: string; image: any };
 
 export type variantsType = Array<
