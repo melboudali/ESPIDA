@@ -113,6 +113,10 @@ const FootBanner = styled.div`
       margin: 0;
       padding: 0;
       gap: 10px;
+      li {
+        display: flex;
+        align-items: center;
+      }
     }
   }
 `;
@@ -123,13 +127,29 @@ interface FooterLinksProps {
 }
 
 const Footer = () => {
-  const LinksData = [
+  const firstMenu = [
     { name: "shirts", url: "#" },
     { name: "bottoms", url: "#" },
     { name: "polos", url: "#" },
     { name: "sweatshirts", url: "#" },
     { name: "accessories", url: "#" },
     { name: "gift cards", url: "#" },
+  ];
+
+  const secondMenu = [
+    { name: "our story", url: "#" },
+    { name: "our products", url: "#" },
+    { name: "privacy policy", url: "#" },
+    { name: "terms of service", url: "#" },
+  ];
+
+  const thirdMenu = [
+    { name: "contact us", url: "#" },
+    { name: "faq", url: "#" },
+    { name: "returns & exchanges", url: "#" },
+    { name: "holiday shipping", url: "#" },
+    { name: "lifetime guarantee", url: "#" },
+    { name: "size guide", url: "#" },
   ];
 
   return (
@@ -179,9 +199,9 @@ const Footer = () => {
               </li>
             </ul>
           </About>
-          <FooterLinks LinksTitle="shop cuts" Links={LinksData} />
-          <FooterLinks LinksTitle="shop cuts" Links={LinksData} />
-          <FooterLinks LinksTitle="shop cuts" Links={LinksData} />
+          <FooterLinks LinksTitle="shop cuts" Links={firstMenu} />
+          <FooterLinks LinksTitle="company" Links={secondMenu} />
+          <FooterLinks LinksTitle="support" Links={thirdMenu} />
         </FooterContainer>
         <FootBanner>
           <div>
