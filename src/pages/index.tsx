@@ -88,6 +88,8 @@ export const query = graphql`
     title
     description
     tags
+    handle
+    productType
     collections {
       title
     }
