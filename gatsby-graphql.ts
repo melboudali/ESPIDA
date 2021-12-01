@@ -296,8 +296,13 @@ export type SitePage = Node & {
   children: Array<Node>;
   internal: Internal;
   isCreatedByStatefulCreatePages?: Maybe<Scalars['Boolean']>;
+  context?: Maybe<SitePageContext>;
   pluginCreator?: Maybe<SitePlugin>;
   pluginCreatorId?: Maybe<Scalars['String']>;
+};
+
+export type SitePageContext = {
+  id?: Maybe<Scalars['String']>;
 };
 
 export type SitePlugin = Node & {
@@ -1344,6 +1349,7 @@ export type QuerySitePageArgs = {
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
   isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>;
+  context?: Maybe<SitePageContextFilterInput>;
   pluginCreator?: Maybe<SitePluginFilterInput>;
   pluginCreatorId?: Maybe<StringQueryOperatorInput>;
 };
@@ -2969,6 +2975,10 @@ export type SiteFunctionSortInput = {
   order?: Maybe<Array<Maybe<SortOrderEnum>>>;
 };
 
+export type SitePageContextFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>;
+};
+
 export type SitePluginFilterInput = {
   resolve?: Maybe<StringQueryOperatorInput>;
   name?: Maybe<StringQueryOperatorInput>;
@@ -3205,6 +3215,7 @@ export type SitePageFieldsEnum =
   | 'internal___owner'
   | 'internal___type'
   | 'isCreatedByStatefulCreatePages'
+  | 'context___id'
   | 'pluginCreator___resolve'
   | 'pluginCreator___name'
   | 'pluginCreator___version'
@@ -3355,6 +3366,7 @@ export type SitePageFilterInput = {
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
   isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>;
+  context?: Maybe<SitePageContextFilterInput>;
   pluginCreator?: Maybe<SitePluginFilterInput>;
   pluginCreatorId?: Maybe<StringQueryOperatorInput>;
 };
@@ -10383,9 +10395,9 @@ export type Unnamed_1_Query = { site?: { siteMetadata?: { title?: string | null 
 export type AllShopifyProductQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AllShopifyProductQuery = { bestSellers: { nodes: Array<{ id: string, title?: string | null | undefined, description?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, publishedAt?: any | null | undefined, collections?: Array<{ title?: string | null | undefined } | null | undefined> | null | undefined, images?: Array<{ altText?: string | null | undefined, gatsbyImageData: any } | null | undefined> | null | undefined, variants?: Array<{ id: string, price?: string | null | undefined, compareAtPrice?: string | null | undefined, title?: string | null | undefined, image?: { gatsbyImageData: any } | null | undefined } | null | undefined> | null | undefined }> }, newReleases: { nodes: Array<{ id: string, title?: string | null | undefined, description?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, publishedAt?: any | null | undefined, collections?: Array<{ title?: string | null | undefined } | null | undefined> | null | undefined, images?: Array<{ altText?: string | null | undefined, gatsbyImageData: any } | null | undefined> | null | undefined, variants?: Array<{ id: string, price?: string | null | undefined, compareAtPrice?: string | null | undefined, title?: string | null | undefined, image?: { gatsbyImageData: any } | null | undefined } | null | undefined> | null | undefined }> } };
+export type AllShopifyProductQuery = { bestSellers: { nodes: Array<{ id: string, title?: string | null | undefined, description?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, handle?: string | null | undefined, productType?: string | null | undefined, publishedAt?: any | null | undefined, collections?: Array<{ title?: string | null | undefined } | null | undefined> | null | undefined, images?: Array<{ altText?: string | null | undefined, gatsbyImageData: any } | null | undefined> | null | undefined, variants?: Array<{ id: string, price?: string | null | undefined, compareAtPrice?: string | null | undefined, title?: string | null | undefined, image?: { gatsbyImageData: any } | null | undefined } | null | undefined> | null | undefined }> }, newReleases: { nodes: Array<{ id: string, title?: string | null | undefined, description?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, handle?: string | null | undefined, productType?: string | null | undefined, publishedAt?: any | null | undefined, collections?: Array<{ title?: string | null | undefined } | null | undefined> | null | undefined, images?: Array<{ altText?: string | null | undefined, gatsbyImageData: any } | null | undefined> | null | undefined, variants?: Array<{ id: string, price?: string | null | undefined, compareAtPrice?: string | null | undefined, title?: string | null | undefined, image?: { gatsbyImageData: any } | null | undefined } | null | undefined> | null | undefined }> } };
 
-export type AllShopifyProductFragmentFragment = { id: string, title?: string | null | undefined, description?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, publishedAt?: any | null | undefined, collections?: Array<{ title?: string | null | undefined } | null | undefined> | null | undefined, images?: Array<{ altText?: string | null | undefined, gatsbyImageData: any } | null | undefined> | null | undefined, variants?: Array<{ id: string, price?: string | null | undefined, compareAtPrice?: string | null | undefined, title?: string | null | undefined, image?: { gatsbyImageData: any } | null | undefined } | null | undefined> | null | undefined };
+export type AllShopifyProductFragmentFragment = { id: string, title?: string | null | undefined, description?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, handle?: string | null | undefined, productType?: string | null | undefined, publishedAt?: any | null | undefined, collections?: Array<{ title?: string | null | undefined } | null | undefined> | null | undefined, images?: Array<{ altText?: string | null | undefined, gatsbyImageData: any } | null | undefined> | null | undefined, variants?: Array<{ id: string, price?: string | null | undefined, compareAtPrice?: string | null | undefined, title?: string | null | undefined, image?: { gatsbyImageData: any } | null | undefined } | null | undefined> | null | undefined };
 
 export type GatsbyImageSharpFixedFragment = { base64?: string | null | undefined, width: number, height: number, src: string, srcSet: string };
 
@@ -10412,3 +10424,8 @@ export type GatsbyImageSharpFluid_WithWebp_TracedSvgFragment = { tracedSVG?: str
 export type GatsbyImageSharpFluid_NoBase64Fragment = { aspectRatio: number, src: string, srcSet: string, sizes: string };
 
 export type GatsbyImageSharpFluid_WithWebp_NoBase64Fragment = { aspectRatio: number, src: string, srcSet: string, srcWebp?: string | null | undefined, srcSetWebp?: string | null | undefined, sizes: string };
+
+export type CreateShopifyProductQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CreateShopifyProductQuery = { products: { nodes: Array<{ handle?: string | null | undefined, id: string, productType?: string | null | undefined }> } };
