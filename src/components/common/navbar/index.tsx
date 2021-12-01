@@ -7,7 +7,6 @@ const NavbarWrapper = styled.div`
   width: 100%;
   background: var(--white);
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
-  padding: 11px 0;
   z-index: 4;
 `;
 
@@ -17,12 +16,14 @@ const Nav = styled.div`
   justify-content: space-between;
   max-width: 1280px;
   margin: 0 auto;
+  height: 78px;
 `;
 
 const LeftAndRightMenu = css`
   display: flex;
   align-items: center;
   width: 33.33%;
+
   & > a:not(:nth-child(1)),
   & > button {
     display: flex;
@@ -65,19 +66,7 @@ const LogoWrapper = styled.div`
   width: 33.33%;
 `;
 const Logo = styled(Link)`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
   width: fit-content;
-  p {
-    color: var(--black);
-    margin: 2px -4px 0 0;
-    font-weight: 700;
-    font-size: 1.5rem;
-    line-height: 18px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-  }
 `;
 
 const Navbar = () => {
@@ -118,7 +107,6 @@ const Navbar = () => {
                 fill="black"
               />
             </svg>
-            <p>espida</p>
           </Logo>
         </LogoWrapper>
         <RightMenu>
