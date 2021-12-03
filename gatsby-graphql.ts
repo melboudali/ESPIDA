@@ -10399,6 +10399,13 @@ export type AllShopifyProductQuery = { bestSellers: { nodes: Array<{ id: string,
 
 export type AllShopifyProductFragmentFragment = { id: string, title?: string | null | undefined, description?: string | null | undefined, tags?: Array<string | null | undefined> | null | undefined, handle?: string | null | undefined, productType?: string | null | undefined, publishedAt?: any | null | undefined, collections?: Array<{ title?: string | null | undefined } | null | undefined> | null | undefined, images?: Array<{ altText?: string | null | undefined, gatsbyImageData: any } | null | undefined> | null | undefined, variants?: Array<{ id: string, price?: string | null | undefined, compareAtPrice?: string | null | undefined, title?: string | null | undefined, image?: { gatsbyImageData: any } | null | undefined } | null | undefined> | null | undefined };
 
+export type ShopifyProductQueryVariables = Exact<{
+  id?: Maybe<Scalars['String']>;
+}>;
+
+
+export type ShopifyProductQuery = { productData?: { title?: string | null | undefined, productType?: string | null | undefined, collections?: Array<{ title?: string | null | undefined } | null | undefined> | null | undefined, variants?: Array<{ compareAtPrice?: string | null | undefined, price?: string | null | undefined, image?: { gatsbyImageData: any } | null | undefined } | null | undefined> | null | undefined } | null | undefined };
+
 export type GatsbyImageSharpFixedFragment = { base64?: string | null | undefined, width: number, height: number, src: string, srcSet: string };
 
 export type GatsbyImageSharpFixed_TracedSvgFragment = { tracedSVG?: string | null | undefined, width: number, height: number, src: string, srcSet: string };
