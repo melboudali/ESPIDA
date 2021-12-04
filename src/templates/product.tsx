@@ -2,21 +2,31 @@ import { graphql } from "gatsby";
 import React from "react";
 import styled from "styled-components";
 import { ShopifyProductQuery } from "../../gatsby-graphql";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 const ProductWrapper = styled.section`
   margin-top: 40px;
   display: flex;
-  justify-content: center;
-  gap: 20px;
+  justify-content: space-between;
 `;
 
 const Images = styled.div`
-  flex: 2;
+  flex: 0 0 60%;
 `;
 
 const Details = styled.div`
-  flex: 1;
+  flex: 0 0 40%;
 `;
+
+const MainImage = styled.div`
+  width: 599px;
+
+  .gatsby_image {
+    width: 599px;
+  }
+`;
+
+const OtherImages = styled.div``;
 
 interface productProps {
   data: ShopifyProductQuery;
@@ -25,7 +35,12 @@ interface productProps {
 const product = ({ data: { productData } }: productProps) => {
   return (
     <ProductWrapper>
-      <Images>hello world {productData?.title}</Images>
+      <Images>
+        <OtherImages></OtherImages>
+        <MainImage>
+          <GatsbyImage image={productData?.variants![0]?.image?.gatsbyImageData} alt="product_image" className="gatsby_image" />
+        </MainImage>
+      </Images>
       <Details>hello world {productData?.title}</Details>
     </ProductWrapper>
   );
