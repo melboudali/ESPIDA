@@ -14,7 +14,6 @@ const ProductWrapper = styled.section`
 const Images = styled.div`
   flex: 0 0 60%;
   display: flex;
-  align-items: center;
   gap: 20px;
   height: 600px;
 `;
@@ -38,15 +37,23 @@ const OtherImages = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  height: 600px;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
 `;
 
 const SmallImage = styled.div<{ selected: boolean }>`
   .gatsby_image {
-    width: 127px;
-    height: 127px;
-    object-fit: cover;
     border-radius: 10px;
-    border: 2px solid ${({ selected }) => (selected ? "red" : "green")};
+    width: 124px;
+    height: 124px;
+    object-fit: cover;
+    border: 3px solid ${({ selected }) => (selected ? "rgba(0, 0, 0, .4)" : "var(--white)")};
   }
 `;
 
@@ -56,12 +63,18 @@ interface productProps {
 
 const product = ({ data: { productData } }: productProps) => {
   const [selectedImage, setSelectedImage] = React.useState(productData?.variants![0]?.image?.gatsbyImageData);
+
   return (
     <ProductWrapper>
       <Images>
         <OtherImages>
           {getColorsAndImages(productData?.variants!).map(({ id, image }) => (
-            <SmallImage selected={image === selectedImage}>
+            <SmallImage
+              selected={image === selectedImage}
+              onClick={() => {
+                if (image !== selectedImage) return setSelectedImage(image);
+              }}
+            >
               <GatsbyImage key={id} image={image} alt="product_image" className="gatsby_image" />
             </SmallImage>
           ))}
