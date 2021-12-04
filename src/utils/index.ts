@@ -1,4 +1,4 @@
-import { variantsType, variantType } from "../types";
+import { variantType, variantsType } from "../types";
 
 export const getColorsAndImages = (variants: variantsType) => {
   const selectedVariants: variantType[] = [];
