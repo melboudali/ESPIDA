@@ -6,14 +6,14 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import { getColorsAndImages } from "../utils/index";
 
 const ProductWrapper = styled.section`
-  margin-top: 40px;
   display: flex;
   justify-content: space-between;
+  margin-top: 40px;
 `;
 
 const Images = styled.div`
-  flex: 0 0 60%;
   display: flex;
+  flex: 0 0 60%;
   gap: 20px;
   height: 600px;
 `;
@@ -23,12 +23,12 @@ const Details = styled.div`
 `;
 
 const MainImage = styled.div`
-  width: 599px;
   height: 600px;
+  width: 599px;
   .gatsby_image {
-    border-radius: 10px;
-    width: 100%;
     height: 100%;
+    width: 100%;
+    border-radius: 10px;
     object-fit: cover;
   }
 `;
@@ -49,11 +49,11 @@ const OtherImages = styled.div`
 
 const SmallImage = styled.div<{ selected: boolean }>`
   .gatsby_image {
-    border-radius: 10px;
-    width: 124px;
     height: 124px;
-    object-fit: cover;
+    width: 124px;
+    border-radius: 10px;
     border: 3px solid ${({ selected }) => (selected ? "rgba(0, 0, 0, .4)" : "var(--white)")};
+    object-fit: cover;
   }
 `;
 
