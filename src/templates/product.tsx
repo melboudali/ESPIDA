@@ -80,7 +80,7 @@ const product = ({ data: { productData } }: productProps) => {
           ))}
         </OtherImages>
         <MainImage>
-          <GatsbyImage image={productData?.variants![0]?.image?.gatsbyImageData} alt="product_image" className="gatsby_image" />
+          <GatsbyImage image={selectedImage} alt="product_image" className="gatsby_image" />
         </MainImage>
       </Images>
       <Details>hello world {productData?.title}</Details>
