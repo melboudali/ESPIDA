@@ -18,10 +18,6 @@ const Images = styled.div`
   height: 600px;
 `;
 
-const Details = styled.div`
-  flex: 0 0 40%;
-`;
-
 const MainImage = styled.div`
   height: 600px;
   width: 599px;
@@ -57,6 +53,17 @@ const SmallImage = styled.div<{ selected: boolean }>`
   }
 `;
 
+const Details = styled.div`
+  flex: 0 0 40%;
+`;
+
+const Tag = styled.p`
+  font-size: 0.6875rem;
+  line-height: 8px;
+  text-transform: uppercase;
+  color: var(--black);
+`;
+
 interface productProps {
   data: ShopifyProductQuery;
 }
@@ -83,7 +90,10 @@ const product = ({ data: { productData } }: productProps) => {
           <GatsbyImage image={selectedImage} alt="product_image" className="gatsby_image" />
         </MainImage>
       </Images>
-      <Details>hello world {productData?.title}</Details>
+      <Details>
+        <h1></h1>
+        {productData?.title}
+      </Details>
     </ProductWrapper>
   );
 };
