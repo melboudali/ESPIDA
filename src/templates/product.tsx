@@ -88,8 +88,9 @@ const RateFlex = css`
 
 const Rate = styled.div`
   ${RateFlex}
+  align-items: center;
   p {
-    align-self: center;
+    margin: 0;
     font-size: 0.625rem;
     line-height: 8px;
     text-transform: capitalize;
