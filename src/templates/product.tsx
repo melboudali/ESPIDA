@@ -89,12 +89,11 @@ const RateFlex = css`
 const Rate = styled.div`
   ${RateFlex}
   p {
+    align-self: center;
     font-size: 0.625rem;
     line-height: 8px;
     text-transform: capitalize;
     color: #6b6b6b;
-    align-self: flex-end;
-    margin: 0;
   }
 `;
 
