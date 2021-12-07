@@ -10404,7 +10404,7 @@ export type ShopifyProductQueryVariables = Exact<{
 }>;
 
 
-export type ShopifyProductQuery = { productData?: { title?: string | null | undefined, productType?: string | null | undefined, collections?: Array<{ title?: string | null | undefined } | null | undefined> | null | undefined, variants?: Array<{ id: string, title?: string | null | undefined, compareAtPrice?: string | null | undefined, price?: string | null | undefined, image?: { gatsbyImageData: any } | null | undefined } | null | undefined> | null | undefined } | null | undefined };
+export type ShopifyProductQuery = { productData?: { title?: string | null | undefined, productType?: string | null | undefined, collections?: Array<{ id: string, title?: string | null | undefined } | null | undefined> | null | undefined, variants?: Array<{ id: string, title?: string | null | undefined, compareAtPrice?: string | null | undefined, price?: string | null | undefined, image?: { gatsbyImageData: any } | null | undefined } | null | undefined> | null | undefined } | null | undefined };
 
 export type GatsbyImageSharpFixedFragment = { base64?: string | null | undefined, width: number, height: number, src: string, srcSet: string };
 
