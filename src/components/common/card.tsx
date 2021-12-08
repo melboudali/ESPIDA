@@ -144,7 +144,7 @@ interface ColorComponentProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  const [variants] = useState(getColorsAndImages([...product.variants!.map((variant) => variant)]));
+  const [variants] = useState(getColorsAndImages(product.variants!));
   const [selectedVariant, setSelectedVariant] = useState(variants[0]);
 
   return (
