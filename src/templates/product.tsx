@@ -44,6 +44,7 @@ const OtherImages = styled.div`
 `;
 
 const SmallImage = styled.div<{ selected: boolean }>`
+  cursor: pointer;
   .gatsby_image {
     height: 124px;
     width: 124px;
@@ -102,12 +103,18 @@ const Stars = styled.div`
   ${RateFlex}
 `;
 
+const Prices = styled.div``;
+
+const NewPrice = styled.p``;
+
+const OldPrice = styled.p``;
+
 interface productProps {
   data: ShopifyProductQuery;
 }
 
 const product = ({ data: { productData } }: productProps) => {
-  const [selectedImage, setSelectedImage] = React.useState(productData?.variants![0]?.image?.gatsbyImageData);
+  const [selectedVariant, setSelectedVariant] = React.useState(productData?.variants![0]);
 
   return (
     <ProductWrapper>
@@ -115,9 +122,9 @@ const product = ({ data: { productData } }: productProps) => {
         <OtherImages>
           {getColorsAndImages(productData?.variants!).map(({ id, image }) => (
             <SmallImage
-              selected={image === selectedImage}
+              selected={image === selectedVariant?.image?.gatsbyImageData}
               onClick={() => {
-                if (image !== selectedImage) return setSelectedImage(image);
+                if (image !== selectedVariant?.image) setSelectedVariant(productData?.variants?.find((variant) => variant?.id === id));
               }}
             >
               <GatsbyImage key={id} image={image} alt="product_image" className="gatsby_image" />
@@ -125,7 +132,7 @@ const product = ({ data: { productData } }: productProps) => {
           ))}
         </OtherImages>
         <MainImage>
-          <GatsbyImage image={selectedImage} alt="product_image" className="gatsby_image" />
+          <GatsbyImage image={selectedVariant?.image?.gatsbyImageData} alt="product_image" className="gatsby_image" />
         </MainImage>
       </Images>
       <Details>
@@ -171,6 +178,11 @@ const product = ({ data: { productData } }: productProps) => {
           </Stars>
           <p>606 Reviews</p>
         </Rate>
+
+        <Prices>
+          <NewPrice>${selectedVariant?.price}</NewPrice>
+          {selectedVariant?.compareAtPrice && <OldPrice>${selectedVariant?.compareAtPrice}</OldPrice>}
+        </Prices>
       </Details>
     </ProductWrapper>
   );
