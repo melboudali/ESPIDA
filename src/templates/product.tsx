@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import styled, { css } from "styled-components";
 import { ShopifyProductQuery } from "../../gatsby-graphql";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { getColorsAndImages } from "../utils/index";
+import { getColorsAndImages, getColor } from "../utils/index";
 
 const ProductWrapper = styled.section`
   display: flex;
@@ -137,18 +137,34 @@ const Description = styled.p`
   color: #4f4f4f;
 `;
 
+const Colors = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 0;
+  p {
+    margin: 0;
+    font-weight: 700;
+    font-size: 0.8125rem;
+    line-height: 11px;
+    text-transform: uppercase;
+    color: #282828;
+  }
+`;
+
 interface productProps {
   data: ShopifyProductQuery;
 }
 
 const product = ({ data: { productData } }: productProps) => {
+  const [variants] = React.useState(getColorsAndImages(productData?.variants!));
   const [selectedVariant, setSelectedVariant] = React.useState(productData?.variants![0]);
 
   return (
     <ProductWrapper>
       <Images>
         <OtherImages>
-          {getColorsAndImages(productData?.variants!).map(({ id, image }) => (
+          {variants.map(({ id, image }) => (
             <SmallImage
               selected={image === selectedVariant?.image?.gatsbyImageData}
               onClick={() => {
@@ -211,6 +227,10 @@ const product = ({ data: { productData } }: productProps) => {
           {selectedVariant?.compareAtPrice && <OldPrice>${selectedVariant?.compareAtPrice}</OldPrice>}
         </Prices>
         <Description>{productData?.description}</Description>
+        <Colors>
+          <p>colors:</p>
+          <div>{variants.map((variant) => variant.color)}</div>
+        </Colors>
       </Details>
     </ProductWrapper>
   );
