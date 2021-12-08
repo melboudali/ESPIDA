@@ -64,6 +64,7 @@ const Tags = styled.div`
 
   p {
     padding: 6px 10px;
+    margin: 0;
     border: 1px solid #d7d7d7;
     border-radius: 30px;
     font-size: 0.6875rem;
@@ -103,11 +104,33 @@ const Stars = styled.div`
   ${RateFlex}
 `;
 
-const Prices = styled.div``;
+const Prices = styled.div`
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+`;
 
-const NewPrice = styled.p``;
+const PriceStyle = css`
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 23px;
+  margin: 0;
+`;
 
-const OldPrice = styled.p``;
+const NewPrice = styled.p`
+  ${PriceStyle}
+  color: var(--black);
+`;
+
+const OldPrice = styled.p`
+  ${PriceStyle}
+  text-decoration: line-through;
+  color: #989898;
+`;
+
+const Description = styled.p`
+  margin: 0;
+`;
 
 interface productProps {
   data: ShopifyProductQuery;
@@ -178,11 +201,11 @@ const product = ({ data: { productData } }: productProps) => {
           </Stars>
           <p>606 Reviews</p>
         </Rate>
-
         <Prices>
           <NewPrice>${selectedVariant?.price}</NewPrice>
           {selectedVariant?.compareAtPrice && <OldPrice>${selectedVariant?.compareAtPrice}</OldPrice>}
         </Prices>
+        <Description></Description>
       </Details>
     </ProductWrapper>
   );
@@ -194,6 +217,7 @@ export const query = graphql`
   query shopifyProduct($id: String) {
     productData: shopifyProduct(id: { eq: $id }) {
       title
+      description
       collections {
         id
         title
