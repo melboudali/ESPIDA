@@ -12,7 +12,7 @@ const SliderWrapper = styled.div`
     text-align: center;
     text-transform: uppercase;
     color: #666666;
-    margin-bottom: 60px;
+    margin: 0 0 60px 0;
   }
 `;
 
