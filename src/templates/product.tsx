@@ -130,6 +130,11 @@ const OldPrice = styled.p`
 
 const Description = styled.p`
   margin: 0;
+  font-weight: 300;
+  font-size: 0.75rem;
+  line-height: 17px;
+  text-transform: capitalize;
+  color: #4f4f4f;
 `;
 
 interface productProps {
@@ -205,7 +210,7 @@ const product = ({ data: { productData } }: productProps) => {
           <NewPrice>${selectedVariant?.price}</NewPrice>
           {selectedVariant?.compareAtPrice && <OldPrice>${selectedVariant?.compareAtPrice}</OldPrice>}
         </Prices>
-        <Description></Description>
+        <Description>{productData?.description}</Description>
       </Details>
     </ProductWrapper>
   );
