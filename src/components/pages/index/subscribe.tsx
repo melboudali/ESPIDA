@@ -6,6 +6,7 @@ import useSubscribe from "../../../hook/useSubscribe";
 const Wrapper = styled.div`
   margin-top: 40px;
   p {
+    margin: 0;
     line-height: 9px;
     text-align: center;
     text-transform: capitalize;
