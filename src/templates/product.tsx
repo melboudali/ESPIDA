@@ -162,6 +162,8 @@ const ColorElement = styled.button<{ color: string; isSelected: boolean }>`
   height: 16px;
   width: 16px;
   border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   &:after {
     position: absolute;
     content: "";
@@ -170,7 +172,7 @@ const ColorElement = styled.button<{ color: string; isSelected: boolean }>`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 2px solid ${({ color, isSelected }) => (isSelected ? "var(--white)" : color)};
+    border: 2px solid ${({ color, isSelected }) => (isSelected ? (color === "#fff" ? "var(--black)" : "var(--white)") : color)};
     border-radius: 30px;
   }
 `;
@@ -264,7 +266,7 @@ const Product = ({ data: { productData } }: ProductProps) => {
         </Prices>
         <Description>{productData?.description}</Description>
         <ColorAndSizeContainer>
-          <p>color:</p>
+          <p>color: {selectedVariant?.title?.split(" /")[0]}</p>
           <ColorAndSizeWrapper>
             {variants.map(({ id, color }) => (
               <ColorElement
@@ -280,7 +282,7 @@ const Product = ({ data: { productData } }: ProductProps) => {
           </ColorAndSizeWrapper>
         </ColorAndSizeContainer>
         <ColorAndSizeContainer>
-          <p>size:</p>
+          <p>size: {selectedSize}</p>
           <ColorAndSizeWrapper>
             {getSize(productData?.variants!).map(({ id, size }) => (
               <Size key={id} aria-label={size} isSelected={selectedSize === size} onClick={() => setSelectedSize(size)}>
