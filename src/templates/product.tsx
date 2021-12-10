@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import styled, { css } from "styled-components";
 import { ShopifyProductQuery } from "../../gatsby-graphql";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { getColorsAndImages, getColor } from "../utils/index";
+import { getColorsAndImages, getColor, getSize } from "../utils/index";
 
 const ProductWrapper = styled.section`
   display: flex;
@@ -273,8 +273,8 @@ const Product = ({ data: { productData } }: ProductProps) => {
         <ColorAndSizeContainer>
           <p>size:</p>
           <ColorAndSizeWrapper>
-            {variants.map(({ id, size }) => (
-              <p>{size}</p>
+            {getSize(productData?.variants!).map(({ id, size }) => (
+              <p key={id}>{size}</p>
             ))}
           </ColorAndSizeWrapper>
         </ColorAndSizeContainer>
