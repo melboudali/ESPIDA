@@ -159,7 +159,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             {variants.map(({ id, color, image }) => (
               <ColorComponent
                 key={id}
-                color={color}
+                color={color!}
                 variant={{ id, color, image }}
                 selectedVariant={selectedVariant}
                 setSelectedVariant={setSelectedVariant}
