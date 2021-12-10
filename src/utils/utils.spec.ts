@@ -1,4 +1,4 @@
-import { getColorsAndImages, getColor, validateEmail } from "./index";
+import { getColorsAndImages, getColor, validateEmail, getSize } from "./index";
 
 const variants = [
   { id: "1", title: "Black /M", image: { gatsbyImageData: "Image" } },
@@ -21,6 +21,17 @@ describe("testing getColorsndImages func", () => {
       { id: "1", color: "Black", image: "Image", size: "M" },
       { id: "2", color: "Red", image: "Image", size: "M" },
       { id: "5", color: "Green", image: "Image", size: "M" },
+    ]);
+  });
+});
+
+describe("testing getSize", () => {
+  it("should return", () => {
+    expect(getSize(variants)).toEqual([
+      { id: "1", color: "Black", image: "Image", size: "M" },
+      { id: "3", color: "Black", image: "Image", size: "L" },
+      { id: "4", color: "Black", image: "Image", size: "XL" },
+      { id: "8", color: "Black", image: "Image", size: "XXL" },
     ]);
   });
 });
