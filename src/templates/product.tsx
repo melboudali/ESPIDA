@@ -158,12 +158,12 @@ const ColorsWrapper = styled.div`
 `;
 
 const ColorElement = styled.button<{ color: string; selected: boolean }>`
+  cursor: pointer;
   position: relative;
   background-color: ${({ color }) => color};
   height: 16px;
   width: 16px;
   border-radius: 30px;
-  cursor: pointer;
   &:after {
     position: absolute;
     content: "";
