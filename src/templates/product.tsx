@@ -137,7 +137,7 @@ const Description = styled.p`
   color: #4f4f4f;
 `;
 
-const ColorsAndSizesContainer = styled.div`
+const ColorAndSizeContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -152,7 +152,7 @@ const ColorsAndSizesContainer = styled.div`
   }
 `;
 
-const ColorsAndSizesWrapper = styled.div`
+const ColorAndSizeWrapper = styled.div`
   display: flex;
   gap: 10px;
 `;
@@ -253,9 +253,9 @@ const Product = ({ data: { productData } }: ProductProps) => {
           {selectedVariant?.compareAtPrice && <OldPrice>${selectedVariant?.compareAtPrice}</OldPrice>}
         </Prices>
         <Description>{productData?.description}</Description>
-        <ColorsAndSizesContainer>
-          <p>colors:</p>
-          <ColorsAndSizesWrapper>
+        <ColorAndSizeContainer>
+          <p>color:</p>
+          <ColorAndSizeWrapper>
             {variants.map(({ id, color }) => (
               <ColorElement
                 aria-label={color}
@@ -267,11 +267,11 @@ const Product = ({ data: { productData } }: ProductProps) => {
                 }}
               />
             ))}
-          </ColorsAndSizesWrapper>
-        </ColorsAndSizesContainer>
-        <ColorsAndSizesContainer>
+          </ColorAndSizeWrapper>
+        </ColorAndSizeContainer>
+        <ColorAndSizeContainer>
           <p>size:</p>
-          <ColorsAndSizesWrapper>
+          <ColorAndSizeWrapper>
             {/* {variants.map(({  }) => (
               <ColorElement
                 aria-label={color}
@@ -283,8 +283,8 @@ const Product = ({ data: { productData } }: ProductProps) => {
                 }}
               />
             ))} */}
-          </ColorsAndSizesWrapper>
-        </ColorsAndSizesContainer>
+          </ColorAndSizeWrapper>
+        </ColorAndSizeContainer>
       </Details>
     </ProductWrapper>
   );
