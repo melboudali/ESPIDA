@@ -43,7 +43,7 @@ const OtherImages = styled.div`
   }
 `;
 
-const SmallImage = styled.div<{ selected: boolean }>`
+const SmallImage = styled.button<{ selected: boolean }>`
   cursor: pointer;
   .gatsby_image {
     height: 124px;
@@ -137,7 +137,7 @@ const Description = styled.p`
   color: #4f4f4f;
 `;
 
-const Colors = styled.div`
+const ColorsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -152,11 +152,36 @@ const Colors = styled.div`
   }
 `;
 
-interface productProps {
+const ColorsWrapper = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+const ColorElement = styled.button<{ color: string; selected: boolean }>`
+  position: relative;
+  background-color: ${({ color }) => color};
+  height: 16px;
+  width: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  &:after {
+    position: absolute;
+    content: "";
+    height: 65%;
+    width: 65%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid ${({ color, selected }) => (selected ? "var(--white)" : color)};
+    border-radius: 30px;
+  }
+`;
+
+interface ProductProps {
   data: ShopifyProductQuery;
 }
 
-const product = ({ data: { productData } }: productProps) => {
+const Product = ({ data: { productData } }: ProductProps) => {
   const [variants] = React.useState(getColorsAndImages(productData?.variants!));
   const [selectedVariant, setSelectedVariant] = React.useState(productData?.variants![0]);
 
@@ -166,6 +191,7 @@ const product = ({ data: { productData } }: productProps) => {
         <OtherImages>
           {variants.map(({ id, image }) => (
             <SmallImage
+              aria-label="image"
               selected={image === selectedVariant?.image?.gatsbyImageData}
               onClick={() => {
                 if (image !== selectedVariant?.image) setSelectedVariant(productData?.variants?.find((variant) => variant?.id === id));
@@ -227,16 +253,28 @@ const product = ({ data: { productData } }: productProps) => {
           {selectedVariant?.compareAtPrice && <OldPrice>${selectedVariant?.compareAtPrice}</OldPrice>}
         </Prices>
         <Description>{productData?.description}</Description>
-        <Colors>
+        <ColorsContainer>
           <p>colors:</p>
-          <div>{variants.map((variant) => variant.color)}</div>
-        </Colors>
+          <ColorsWrapper>
+            {variants.map(({ id, color }) => (
+              <ColorElement
+                aria-label={color}
+                key={id}
+                color={getColor(color)}
+                selected={id === selectedVariant?.id}
+                onClick={() => {
+                  if (id !== selectedVariant?.id) setSelectedVariant(productData?.variants?.find((variant) => variant?.id === id));
+                }}
+              />
+            ))}
+          </ColorsWrapper>
+        </ColorsContainer>
       </Details>
     </ProductWrapper>
   );
 };
 
-export default product;
+export default Product;
 
 export const query = graphql`
   query shopifyProduct($id: String) {
