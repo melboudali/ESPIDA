@@ -3,9 +3,9 @@ import { variantType, variantsType } from "../types";
 export const getColorsAndImages = (variants: variantsType) => {
   const selectedVariants: variantType[] = [];
   for (const variant of variants) {
-    const colorName: string = variant!.title!.split(" /")[0];
+    const [colorName, size] = variant!.title!.split(" /");
     if (selectedVariants.findIndex(({ color }) => color === colorName) === -1) {
-      selectedVariants.push({ id: variant!.id, color: colorName, image: variant!.image!.gatsbyImageData });
+      selectedVariants.push({ id: variant!.id, color: colorName, image: variant!.image!.gatsbyImageData, size });
     }
   }
 
