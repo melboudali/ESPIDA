@@ -191,6 +191,7 @@ const Product = ({ data: { productData } }: ProductProps) => {
         <OtherImages>
           {variants.map(({ id, image }) => (
             <SmallImage
+              key={id}
               aria-label="image"
               selected={image === selectedVariant?.image?.gatsbyImageData}
               onClick={() => {
@@ -272,17 +273,9 @@ const Product = ({ data: { productData } }: ProductProps) => {
         <ColorAndSizeContainer>
           <p>size:</p>
           <ColorAndSizeWrapper>
-            {/* {variants.map(({  }) => (
-              <ColorElement
-                aria-label={color}
-                key={id}
-                color={getColor(color)}
-                selected={id === selectedVariant?.id}
-                onClick={() => {
-                  if (id !== selectedVariant?.id) setSelectedVariant(productData?.variants?.find((variant) => variant?.id === id));
-                }}
-              />
-            ))} */}
+            {variants.map(({ id, size }) => (
+              <p>{size}</p>
+            ))}
           </ColorAndSizeWrapper>
         </ColorAndSizeContainer>
       </Details>
