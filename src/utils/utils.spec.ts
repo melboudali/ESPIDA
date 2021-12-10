@@ -18,9 +18,9 @@ const variants = [
 describe("testing getColorsndImages func", () => {
   it("should return Black, Red, and Green colors", () => {
     expect(getColorsAndImages(variants)).toEqual([
-      { id: "1", color: "Black", image: "Image" },
-      { id: "2", color: "Red", image: "Image" },
-      { id: "5", color: "Green", image: "Image" },
+      { id: "1", color: "Black", image: "Image", size: "M" },
+      { id: "2", color: "Red", image: "Image", size: "M" },
+      { id: "5", color: "Green", image: "Image", size: "M" },
     ]);
   });
 });
