@@ -261,7 +261,7 @@ const Product = ({ data: { productData } }: ProductProps) => {
               <ColorElement
                 aria-label={color}
                 key={id}
-                color={getColor(color)}
+                color={getColor(color!)}
                 selected={id === selectedVariant?.id}
                 onClick={() => {
                   if (id !== selectedVariant?.id) setSelectedVariant(productData?.variants?.find((variant) => variant?.id === id));
