@@ -44,7 +44,6 @@ const OtherImages = styled.div`
 `;
 
 const SmallImage = styled.button<{ selected: boolean }>`
-  cursor: pointer;
   .gatsby_image {
     height: 124px;
     width: 124px;
@@ -158,7 +157,6 @@ const ColorAndSizeWrapper = styled.div`
 `;
 
 const ColorElement = styled.button<{ color: string; selected: boolean }>`
-  cursor: pointer;
   position: relative;
   background-color: ${({ color }) => color};
   height: 16px;
@@ -176,6 +174,8 @@ const ColorElement = styled.button<{ color: string; selected: boolean }>`
     border-radius: 30px;
   }
 `;
+
+const Size = styled.button``;
 
 interface ProductProps {
   data: ShopifyProductQuery;
