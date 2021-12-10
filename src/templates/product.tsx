@@ -43,12 +43,12 @@ const OtherImages = styled.div`
   }
 `;
 
-const SmallImage = styled.button<{ selected: boolean }>`
+const SmallImage = styled.button<{ isSelected: boolean }>`
   .gatsby_image {
     height: 124px;
     width: 124px;
     border-radius: 10px;
-    border: 3px solid ${({ selected }) => (selected ? "rgba(0, 0, 0, .4)" : "var(--white)")};
+    border: 3px solid ${({ isSelected }) => (isSelected ? "rgba(0, 0, 0, .4)" : "var(--white)")};
     object-fit: cover;
   }
 `;
@@ -156,7 +156,7 @@ const ColorAndSizeWrapper = styled.div`
   gap: 10px;
 `;
 
-const ColorElement = styled.button<{ color: string; selected: boolean }>`
+const ColorElement = styled.button<{ color: string; isSelected: boolean }>`
   position: relative;
   background-color: ${({ color }) => color};
   height: 16px;
@@ -170,20 +170,29 @@ const ColorElement = styled.button<{ color: string; selected: boolean }>`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 2px solid ${({ color, selected }) => (selected ? "var(--white)" : color)};
+    border: 2px solid ${({ color, isSelected }) => (isSelected ? "var(--white)" : color)};
     border-radius: 30px;
   }
 `;
 
-const Size = styled.button``;
+const Size = styled.button<{ isSelected: boolean }>`
+  font-size: 0.6875rem;
+  line-height: 8px;
+  text-transform: uppercase;
+  padding: 6px 5px;
+  color: ${({ isSelected }) => (isSelected ? "var(--white)" : "#262626")};
+  background: ${({ isSelected }) => (isSelected ? "var(--black)" : "#f3f3f3")};
+  border: 1px solid #bebebe;
+`;
 
 interface ProductProps {
   data: ShopifyProductQuery;
 }
 
 const Product = ({ data: { productData } }: ProductProps) => {
-  const [variants, _] = useState(getColorsAndImages(productData?.variants!));
+  const [variants] = useState(getColorsAndImages(productData?.variants!));
   const [selectedVariant, setSelectedVariant] = useState(productData?.variants![0]);
+  const [selectedSize, setSelectedSize] = useState(getSize(productData?.variants!)[0].size);
 
   return (
     <ProductWrapper>
@@ -193,7 +202,7 @@ const Product = ({ data: { productData } }: ProductProps) => {
             <SmallImage
               key={id}
               aria-label="image"
-              selected={image === selectedVariant?.image?.gatsbyImageData}
+              isSelected={image === selectedVariant?.image?.gatsbyImageData}
               onClick={() => {
                 if (image !== selectedVariant?.image) setSelectedVariant(productData?.variants?.find((variant) => variant?.id === id));
               }}
@@ -262,7 +271,7 @@ const Product = ({ data: { productData } }: ProductProps) => {
                 aria-label={color}
                 key={id}
                 color={getColor(color!)}
-                selected={id === selectedVariant?.id}
+                isSelected={id === selectedVariant?.id}
                 onClick={() => {
                   if (id !== selectedVariant?.id) setSelectedVariant(productData?.variants?.find((variant) => variant?.id === id));
                 }}
@@ -274,7 +283,9 @@ const Product = ({ data: { productData } }: ProductProps) => {
           <p>size:</p>
           <ColorAndSizeWrapper>
             {getSize(productData?.variants!).map(({ id, size }) => (
-              <p key={id}>{size}</p>
+              <Size key={id} aria-label={size} isSelected={selectedSize === size} onClick={() => setSelectedSize(size)}>
+                {size}
+              </Size>
             ))}
           </ColorAndSizeWrapper>
         </ColorAndSizeContainer>
