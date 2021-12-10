@@ -42,3 +42,15 @@ export const validateEmail = (email: string) => {
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase()) && !!email;
 };
+
+export const getSize = (variants: variantsType) => {
+  const selectedVariants: variantType[] = [];
+  for (const variant of variants) {
+    const [color, selectedSize] = variant!.title!.split(" /");
+    if (selectedVariants.findIndex(({ size }) => size === selectedSize) === -1) {
+      selectedVariants.push({ id: variant!.id, color, image: variant!.image!.gatsbyImageData, size: selectedSize });
+    }
+  }
+
+  return selectedVariants;
+};
