@@ -3,9 +3,9 @@ import { variantType, variantsType } from "../types";
 export const getColorsAndImages = (variants: variantsType) => {
   const selectedVariants: variantType[] = [];
   for (const variant of variants) {
-    const [colorName, size] = variant!.title!.split(" /");
+    const colorName = variant!.title!.split(" /")[0];
     if (selectedVariants.findIndex(({ color }) => color === colorName) === -1) {
-      selectedVariants.push({ id: variant!.id, color: colorName, image: variant!.image!.gatsbyImageData, size });
+      selectedVariants.push({ id: variant!.id, color: colorName, image: variant!.image!.gatsbyImageData });
     }
   }
 
@@ -46,9 +46,9 @@ export const validateEmail = (email: string) => {
 export const getSize = (variants: variantsType) => {
   const selectedVariants: variantType[] = [];
   for (const variant of variants) {
-    const [color, selectedSize] = variant!.title!.split(" /");
+    const selectedSize = variant!.title!.split(" /")[1];
     if (selectedVariants.findIndex(({ size }) => size === selectedSize) === -1) {
-      selectedVariants.push({ id: variant!.id, color, image: variant!.image!.gatsbyImageData, size: selectedSize });
+      selectedVariants.push({ id: variant!.id, size: selectedSize });
     }
   }
 
