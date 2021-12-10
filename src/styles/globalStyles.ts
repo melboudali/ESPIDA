@@ -28,10 +28,10 @@ const GlobalStyles = createGlobalStyle`
     text-decoration: none;
   }
   button{
+    cursor: pointer;
     border: none;
     outline: none;
     background: none;
-    cursor: pointer;
     padding: 0;
   }
   .gatsby-image-wrapper img[src*=base64], .gatsby-resp-image-background-image {
