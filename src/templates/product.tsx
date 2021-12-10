@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { graphql } from "gatsby";
 import styled, { css } from "styled-components";
 import { ShopifyProductQuery } from "../../gatsby-graphql";
@@ -137,7 +137,7 @@ const Description = styled.p`
   color: #4f4f4f;
 `;
 
-const ColorsContainer = styled.div`
+const ColorsAndSizesContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -152,7 +152,7 @@ const ColorsContainer = styled.div`
   }
 `;
 
-const ColorsWrapper = styled.div`
+const ColorsAndSizesWrapper = styled.div`
   display: flex;
   gap: 10px;
 `;
@@ -182,8 +182,8 @@ interface ProductProps {
 }
 
 const Product = ({ data: { productData } }: ProductProps) => {
-  const [variants] = React.useState(getColorsAndImages(productData?.variants!));
-  const [selectedVariant, setSelectedVariant] = React.useState(productData?.variants![0]);
+  const [variants, _] = useState(getColorsAndImages(productData?.variants!));
+  const [selectedVariant, setSelectedVariant] = useState(productData?.variants![0]);
 
   return (
     <ProductWrapper>
@@ -253,9 +253,9 @@ const Product = ({ data: { productData } }: ProductProps) => {
           {selectedVariant?.compareAtPrice && <OldPrice>${selectedVariant?.compareAtPrice}</OldPrice>}
         </Prices>
         <Description>{productData?.description}</Description>
-        <ColorsContainer>
+        <ColorsAndSizesContainer>
           <p>colors:</p>
-          <ColorsWrapper>
+          <ColorsAndSizesWrapper>
             {variants.map(({ id, color }) => (
               <ColorElement
                 aria-label={color}
@@ -267,8 +267,24 @@ const Product = ({ data: { productData } }: ProductProps) => {
                 }}
               />
             ))}
-          </ColorsWrapper>
-        </ColorsContainer>
+          </ColorsAndSizesWrapper>
+        </ColorsAndSizesContainer>
+        <ColorsAndSizesContainer>
+          <p>size:</p>
+          <ColorsAndSizesWrapper>
+            {/* {variants.map(({  }) => (
+              <ColorElement
+                aria-label={color}
+                key={id}
+                color={getColor(color)}
+                selected={id === selectedVariant?.id}
+                onClick={() => {
+                  if (id !== selectedVariant?.id) setSelectedVariant(productData?.variants?.find((variant) => variant?.id === id));
+                }}
+              />
+            ))} */}
+          </ColorsAndSizesWrapper>
+        </ColorsAndSizesContainer>
       </Details>
     </ProductWrapper>
   );
