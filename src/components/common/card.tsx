@@ -55,8 +55,8 @@ const Colors = styled.div`
 const ColorComponentWrapper = styled.div<{ color: string }>`
   position: relative;
   cursor: pointer;
-  width: 10px;
-  height: 10px;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
   background-color: ${({ color }) => color};
   border: 2px solid ${({ color }) => (color !== "#fff" && color !== "#f5f5dc" ? color : "rgba(0, 0, 0, 0.12)")};
