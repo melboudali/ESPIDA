@@ -4,7 +4,9 @@ import styled from "styled-components";
 import useSubscribe from "../../../hook/useSubscribe";
 
 const Wrapper = styled.div`
+  --padding: 0 10px;
   margin-top: 40px;
+  padding: var(--padding);
   p {
     --lineHeight: 25px;
     --alignText: start;
@@ -79,6 +81,10 @@ const Wrapper = styled.div`
     --width: 585px;
     }
   }
+  
+  @media (min-width: 750px) {
+      --padding: 0;
+    }
 `;
 
 interface SubscribeProps {}
