@@ -6,10 +6,12 @@ import useSubscribe from "../../../hook/useSubscribe";
 const Wrapper = styled.div`
   margin-top: 40px;
   p {
+    --lineHeight: 25px;
+    --alignText: start;
     margin: 0;
-    line-height: 9px;
-    text-align: center;
+    text-align: var(--alignText);
     text-transform: capitalize;
+    line-height: var(--lineHeight);
     &:nth-child(1) {
       font-size: 1.125rem;
     }
@@ -21,10 +23,17 @@ const Wrapper = styled.div`
         font-weight: 700;
       }
     }
+    @media (min-width: 750px) {
+      --lineHeight: :9px ;
+      --alignText:  center;
+    }
   }
   form {
     margin: 50px auto 20px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
     input {
       --greyColor: #4a4a4a;
       --secGreyColor: #cacaca;
@@ -37,8 +46,7 @@ const Wrapper = styled.div`
       outline: none;
       &:nth-child(1) {
         height: 50px;
-        width: 585px;
-        margin-right: 30px;
+        width: 100%;
         padding: 0 0 0 5px;
         font-size: 1.125rem;
         ::placeholder {
@@ -51,9 +59,22 @@ const Wrapper = styled.div`
         height: 50px;
         padding: 0;
         background-color: var(--greyColor);
-        align-items: center;
+        font-size: 1.125rem;
+        text-align: center;
+        text-transform: uppercase;
         color: var(--white);
         cursor: pointer;
+      }
+    }
+    @media (min-width: 750px) {
+      flex-direction: row;
+      align-items: start;
+      justify-content: center;
+      input {
+        &:nth-child(1) {
+          height: 50px;
+          width: 585px;
+        }
       }
     }
   }
