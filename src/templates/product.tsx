@@ -3,8 +3,9 @@ import { graphql } from "gatsby";
 import styled, { css } from "styled-components";
 import { ShopifyProductQuery } from "../../gatsby-graphql";
 import { GatsbyImage } from "gatsby-plugin-image";
+// import Client from "shopify-buy";
+// import fetch from "isomorphic-fetch";
 import { getColorsAndImages, getColor, getSize } from "../utils/index";
-import Client from "shopify-buy";
 
 const ProductWrapper = styled.section`
   display: flex;
@@ -201,6 +202,14 @@ const AddToCart = styled.button`
   letter-spacing: 0.3em;
 `;
 
+// const client = Client.buildClient(
+//   {
+//     domain: process.env.GATSBY_SHOPIFY_STORE_URL,
+//     storefrontAccessToken: process.env.GATSBY_STOREFRONT_ACCESS_TOKEN,
+//   },
+//   fetch
+// );
+
 interface ProductProps {
   data: ShopifyProductQuery;
   pageContext: { id: string };
@@ -212,7 +221,7 @@ const Product = ({ data: { productData }, pageContext: { id } }: ProductProps) =
   const [selectedSize, setSelectedSize] = useState(getSize(productData?.variants!)[0].size);
 
   const addToCart = () => {
-    () => console.log({ ...selectedVariant, id, title: productData?.title, size: selectedSize, variantId: selectedVariant?.id });
+    console.log({ ...selectedVariant, id, title: productData?.title, size: selectedSize, variantId: selectedVariant?.id });
   };
 
   return (
