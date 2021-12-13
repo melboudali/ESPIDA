@@ -6,8 +6,9 @@ import { getColor, getColorsAndImages } from "../../utils";
 import { Link } from "gatsby";
 
 const Card = styled.div`
+  --flex: 100% 0 0;
   z-index: 1;
-  flex: 304px 0 0;
+  flex: var(--flex);
   width: 0;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
@@ -22,6 +23,9 @@ const Card = styled.div`
     z-index: 2;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
     transform: translateY(-2px);
+  }
+  @media (min-width: 451px) {
+    --flex: 304px 0 0;
   }
 `;
 
