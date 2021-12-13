@@ -18,6 +18,7 @@
     "gatsby-source-filesystem": "^3.14.0",
     "gatsby-source-shopify": "^5.6.1",
     "gatsby-transformer-sharp": "^3.14.0",
+    "isomorphic-fetch": "^3.0.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
