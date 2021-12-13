@@ -29,10 +29,16 @@ const Wrapper = styled.div`
     }
   }
   form {
+    --flexDirection: column;
+    --alignItems:center;
+    --justifyContent: start;
+    --width: 100%;
+
     margin: 50px auto 20px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: var(--flexDirection);
+    align-items: var(--alignItems);
+    justify-content: var(--justifyContent);
     gap: 30px;
     input {
       --greyColor: #4a4a4a;
@@ -45,8 +51,8 @@ const Wrapper = styled.div`
       border-width: 0 0 3px;
       outline: none;
       &:nth-child(1) {
+        width: var(--width);
         height: 50px;
-        width: 100%;
         padding: 0 0 0 5px;
         font-size: 1.125rem;
         ::placeholder {
@@ -67,15 +73,10 @@ const Wrapper = styled.div`
       }
     }
     @media (min-width: 750px) {
-      flex-direction: row;
-      align-items: start;
-      justify-content: center;
-      input {
-        &:nth-child(1) {
-          height: 50px;
-          width: 585px;
-        }
-      }
+    --flexDirection: row;
+    --alignItems:start;
+    --justifyContent: center;
+    --width: 585px;
     }
   }
 `;
