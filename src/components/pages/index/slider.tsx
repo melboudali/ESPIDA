@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const SliderWrapper = styled.div`
+  --height: 100px;
   background-color: #fafafa;
   margin-top: 40px;
   padding: 63px 0;
   p {
+    height: var(--height);
     font-weight: 700;
     font-size: 1.125rem;
     line-height: 21px;
@@ -14,13 +16,23 @@ const SliderWrapper = styled.div`
     color: #666666;
     margin: 0 0 60px 0;
   }
+  @media (min-width: 890px) {
+    --height: fit-content;
+  }
 `;
 
 const Logos = styled.div`
+  --flexDirection: column;
+  --gap: 10px;
   display: flex;
+  flex-direction: var(--flexDirection);
   align-items: center;
   justify-content: center;
-  gap: 40px;
+  gap: var(--gap);
+  @media (min-width: 890px) {
+    --flexDirection: row;
+    --gap: 40px;
+  }
 `;
 
 const Slider = () => {
