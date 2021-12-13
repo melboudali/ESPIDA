@@ -140,7 +140,7 @@ const ColorAndSizeContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin: 20px 0;
+  margin: 20px 0 0;
   p {
     margin: 0;
     font-weight: 700;
@@ -185,6 +185,19 @@ const Size = styled.button<{ isSelected: boolean }>`
   color: ${({ isSelected }) => (isSelected ? "var(--white)" : "#262626")};
   background: ${({ isSelected }) => (isSelected ? "var(--black)" : "#f3f3f3")};
   border: 1px solid #bebebe;
+`;
+
+const AddToCart = styled.button`
+  width: calc(100% - 34px);
+  margin: 30px 17px 0;
+  padding: 15px 0;
+  background-color: var(--black);
+  color: var(--white);
+  font-weight: 300;
+  font-size: 1.125rem;
+  line-height: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
 `;
 
 interface ProductProps {
@@ -291,6 +304,9 @@ const Product = ({ data: { productData } }: ProductProps) => {
             ))}
           </ColorAndSizeWrapper>
         </ColorAndSizeContainer>
+        <AddToCart aria-label="add to cart" onClick={() => console.log("add to cart clicked")}>
+          add to cart
+        </AddToCart>
       </Details>
     </ProductWrapper>
   );
