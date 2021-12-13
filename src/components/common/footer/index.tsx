@@ -106,6 +106,10 @@ const FooterLinksWrapper = styled.div`
 `;
 
 const FootBanner = styled.div`
+  --justifyContent: center;
+  --display: none;
+  --gap: 5px;
+
   background-color: #101010;
   height: 40px;
   margin-top: 80px;
@@ -113,33 +117,32 @@ const FootBanner = styled.div`
     ${ContainerStyle}
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: var(--justifyContent);
     height: 100%;
     p {
-      display: none;
+      display: var(--display);
       color: var(--white);
       margin: 0;
       font-size: 0.875rem;
       line-height: 10px;
       text-transform: capitalize;
-      @media (min-width: 750px) {
-        display: block;
-      }
     }
     ul {
       display: flex;
       list-style: none;
       margin: 0;
       padding: 0;
-      gap: 10px;
+      gap: var(--gap);
       li {
         display: flex;
         align-items: center;
       }
     }
-    @media (min-width: 750px) {
-      justify-content: space-between;
-    }
+  }
+  @media (min-width: 750px) {
+    --justifyContent: space-between;
+    --display: block;
+    --gap: 10px;
   }
 `;
 
