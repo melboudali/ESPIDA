@@ -304,7 +304,7 @@ const Product = ({ data: { productData } }: ProductProps) => {
             ))}
           </ColorAndSizeWrapper>
         </ColorAndSizeContainer>
-        <AddToCart aria-label="add to cart" onClick={() => console.log("add to cart clicked")}>
+        <AddToCart aria-label="add to cart" onClick={() => console.log({ size: selectedSize, ...selectedVariant })}>
           add to cart
         </AddToCart>
       </Details>
