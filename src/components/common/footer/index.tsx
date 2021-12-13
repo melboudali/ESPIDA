@@ -37,15 +37,17 @@ const FooterWrapper = styled.footer`
 `;
 
 const FooterContainer = styled.div`
+  --flexDirection: column;
   ${ContainerStyle}
   display: flex;
-  flex-direction: column;
+  flex-direction: var(--flexDirection);
+  flex-wrap: wrap;
   gap: 13px;
+  justify-content: center;
   padding: 80px 10px 0;
   color: var(--white);
   @media (min-width: 750px) {
-    flex-direction: row;
-    padding: 80px 0 0;
+    --flexDirection: row;
   }
 `;
 
@@ -62,9 +64,6 @@ const About = styled.div`
     line-height: 15px;
     text-transform: uppercase;
     margin: 30px 0 20px;
-    @media (min-width: 750px) {
-      margin: 30px 0 0;
-    }
   }
   ul {
     list-style: none;
@@ -74,10 +73,12 @@ const About = styled.div`
     margin: 0;
     padding: 0;
   }
+  @media (min-width: 750px) {
+    flex: 304px 0 0;
+  }
 `;
 
 const FooterLinksWrapper = styled.div`
-  flex: 100% 0 0;
   h3 {
     margin: 13px 0 30px;
     font-weight: 700;
@@ -101,7 +102,6 @@ const FooterLinksWrapper = styled.div`
   }
   @media (min-width: 750px) {
     flex: 304px 0 0;
-    width: 0;
   }
 `;
 
