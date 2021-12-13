@@ -62,6 +62,9 @@ const About = styled.div`
     line-height: 15px;
     text-transform: uppercase;
     margin: 30px 0 20px;
+    @media (min-width: 750px) {
+      margin: 30px 0 0;
+    }
   }
   ul {
     list-style: none;
