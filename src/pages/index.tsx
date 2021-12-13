@@ -16,9 +16,10 @@ const SectionContainer = styled.section`
 
 const Cards = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
   margin-top: 60px;
-  flex-wrap: wrap;
 `;
 
 interface IndexPageProps {
