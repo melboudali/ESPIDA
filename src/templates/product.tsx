@@ -4,6 +4,7 @@ import styled, { css } from "styled-components";
 import { ShopifyProductQuery } from "../../gatsby-graphql";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { getColorsAndImages, getColor, getSize } from "../utils/index";
+import Client from "shopify-buy";
 
 const ProductWrapper = styled.section`
   display: flex;
@@ -202,12 +203,17 @@ const AddToCart = styled.button`
 
 interface ProductProps {
   data: ShopifyProductQuery;
+  pageContext: { id: string };
 }
 
-const Product = ({ data: { productData } }: ProductProps) => {
+const Product = ({ data: { productData }, pageContext: { id } }: ProductProps) => {
   const [variants] = useState(getColorsAndImages(productData?.variants!));
   const [selectedVariant, setSelectedVariant] = useState(productData?.variants![0]);
   const [selectedSize, setSelectedSize] = useState(getSize(productData?.variants!)[0].size);
+
+  const addToCart = () => {
+    () => console.log({ ...selectedVariant, id, title: productData?.title, size: selectedSize, variantId: selectedVariant?.id });
+  };
 
   return (
     <ProductWrapper>
@@ -304,7 +310,7 @@ const Product = ({ data: { productData } }: ProductProps) => {
             ))}
           </ColorAndSizeWrapper>
         </ColorAndSizeContainer>
-        <AddToCart aria-label="add to cart" onClick={() => console.log({ size: selectedSize, ...selectedVariant })}>
+        <AddToCart aria-label="add to cart" onClick={addToCart}>
           add to cart
         </AddToCart>
       </Details>
