@@ -4,9 +4,14 @@ import { StaticImage } from "gatsby-plugin-image";
 import styled, { css } from "styled-components";
 
 const CategoriesWrapper = styled.section`
+  --flexDirection: column;
   display: flex;
+  flex-direction: var(--flexDirection);
   gap: 40px;
   margin-top: 40px;
+  @media (min-width: 750px) {
+    --flexDirection: row;
+  }
 `;
 
 const CommunStyle = css`
@@ -18,12 +23,14 @@ const CommunStyle = css`
 `;
 
 const Jackets = styled(Link)`
+  --flex: 400px;
   ${CommunStyle}
   height: 500px;
-  flex: 743px;
+  flex: var(--flex);
   .img {
-    transform: scale(1.3);
-    transform-origin: 3% 155%;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
     z-index: 2;
   }
   &:before {
@@ -47,6 +54,14 @@ const Jackets = styled(Link)`
     top: 50%;
     transform: translate(0, -50%);
   }
+  @media (min-width: 750px) {
+    --flex: 743px;
+    .img {
+      height: fit-content;
+      transform: scale(1.3);
+      transform-origin: 3% 155%;
+    }
+  }
 `;
 
 const SweatersAndHoodies = styled.div`
@@ -63,12 +78,13 @@ const SweatersStyle = css`
 
 const HoodiesStyle = css`
   transform: scale(2.1);
-  transform-origin: 50% 80%;
+  transform-origin: 50% 50%;
 `;
 
 const SHComponentWrapper = styled(Link)`
+  --flex: 280px;
   ${CommunStyle}
-  flex: 230px;
+  flex: var(--flex);
   &:before {
     content: "";
     position: absolute;
@@ -94,7 +110,14 @@ const SHComponentWrapper = styled(Link)`
     left: 50%;
     transform: translate(-50%, 0);
   }
+  @media (min-width: 750px) {
+    --flex: 230px;
+    .img {
+      transform-origin: 50% 80%;
+    }
+  }
 `;
+
 const Categories = () => (
   <CategoriesWrapper>
     <Jackets to="/jackets">
