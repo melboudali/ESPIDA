@@ -22,7 +22,7 @@ const Nav = styled.div`
 const LeftAndRightMenu = css`
   display: flex;
   align-items: center;
-  width: 33.33%;
+  flex: 33.33%;
 
   & > a:not(:nth-child(1)),
   & > button {
@@ -50,14 +50,36 @@ const LeftAndRightMenu = css`
   }
 `;
 
+const Menu = styled.button`
+  --display: block;
+  --paddingLeft: 10px;
+  width: 33.33%;
+  text-align: start;
+  padding-left: var(--paddingLeft);
+  @media (min-width: 750px) {
+    --display: none;
+    --paddingLeft: 0;
+  }
+`;
+
 const LeftMenu = styled.div`
+  --flex: none;
   ${LeftAndRightMenu}
+  display: var(--flex);
   justify-content: start;
+  @media (min-width: 750px) {
+    --flex: flex;
+  }
 `;
 
 const RightMenu = styled.div`
   ${LeftAndRightMenu}
   justify-content: end;
+  --paddingRight: 26px;
+  padding-right: var(--paddingRight);
+  @media (min-width: 750px) {
+    --paddingRight: 13px;
+  }
 `;
 
 const LogoWrapper = styled.div`
@@ -74,6 +96,14 @@ const Navbar = () => {
   return (
     <NavbarWrapper>
       <Nav>
+        <Menu>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 2H22" stroke="black" stroke-width="3" stroke-linecap="round" />
+            <path d="M2 9H16" stroke="black" stroke-width="3" stroke-linecap="round" />
+            <path d="M2 16H10" stroke="black" stroke-width="3" stroke-linecap="round" />
+          </svg>
+        </Menu>
+
         <LeftMenu>
           <CustomLink to="/collections/all">tops</CustomLink>
           <CustomLink to="/collections/all-outerwear/">outerwear</CustomLink>
@@ -120,14 +150,14 @@ const Navbar = () => {
               />
             </svg>
           </button>
-          <Link to="/account">
+          {/* <Link to="/account">
             <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M13.3428 1.52719C12.4306 0.542344 11.1565 0 9.75027 0C8.33652 0 7.05824 0.539062 6.15027 1.51781C5.23246 2.50734 4.78527 3.85219 4.89027 5.30437C5.09839 8.16937 7.27855 10.5 9.75027 10.5C12.222 10.5 14.3984 8.16984 14.6098 5.30531C14.7162 3.86625 14.2662 2.52422 13.3428 1.52719ZM18.0003 21H1.50027C1.2843 21.0028 1.07042 20.9574 0.874189 20.8672C0.677959 20.7769 0.504316 20.6441 0.365893 20.4783C0.0612056 20.1141 -0.0616069 19.6167 0.0293306 19.1137C0.424956 16.9191 1.65964 15.0755 3.60027 13.7812C5.32433 12.6323 7.50824 12 9.75027 12C11.9923 12 14.1762 12.6328 15.9003 13.7812C17.8409 15.075 19.0756 16.9186 19.4712 19.1133C19.5621 19.6162 19.4393 20.1136 19.1346 20.4778C18.9963 20.6437 18.8226 20.7766 18.6264 20.867C18.4302 20.9573 18.2163 21.0028 18.0003 21Z"
                 fill="black"
               />
             </svg>
-          </Link>
+          </Link> */}
           <button onClick={() => setCart(getCart + 1)}>
             <svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
