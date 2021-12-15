@@ -140,7 +140,7 @@ const Navbar = () => {
           </Logo>
         </LogoWrapper>
         <RightMenu>
-          <button onClick={() => console.log("button clicked")}>
+          {/* <button onClick={() => console.log("button clicked")}>
             <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 fillRule="evenodd"
@@ -149,7 +149,7 @@ const Navbar = () => {
                 fill="black"
               />
             </svg>
-          </button>
+          </button> */}
           {/* <Link to="/account">
             <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
