@@ -1,6 +1,6 @@
 import { Link } from "gatsby";
 import React, { useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import CustomLink from "./customLink";
 
 const NavbarWrapper = styled.div`
@@ -19,20 +19,47 @@ const Nav = styled.div`
   height: 78px;
 `;
 
-const LeftAndRightMenu = css`
-  display: flex;
+const Menu = styled.button`
+  --display: block;
+  --paddingLeft: 10px;
+  display: var(--display);
+  align-items: center;
+  width: 33.33%;
+  text-align: start;
+  padding-left: var(--paddingLeft);
+  @media (min-width: 750px) {
+    --display: none;
+    --paddingLeft: 0;
+  }
+`;
+
+const LeftMenu = styled.div`
+  --flex: none;
+  display: var(--flex);
   align-items: center;
   flex: 33.33%;
-
-  & > a:not(:nth-child(1)),
-  & > button {
-    display: flex;
+  justify-content: start;
+  & > a:not(:nth-child(1)) {
     margin-left: 28px;
+  }
+  @media (min-width: 750px) {
+    --flex: flex;
+  }
+`;
+
+const RightMenu = styled.div`
+  --paddingRight: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  flex: 33.33%;
+  padding-right: var(--paddingRight);
+  & button {
+    display: flex;
+    position: relative;
     svg {
       align-self: center;
     }
-    &:last-child {
-      position: relative;
       p {
         position: absolute;
         font-size: 0.8rem;
@@ -48,35 +75,6 @@ const LeftAndRightMenu = css`
       }
     }
   }
-`;
-
-const Menu = styled.button`
-  --display: block;
-  --paddingLeft: 10px;
-  width: 33.33%;
-  text-align: start;
-  padding-left: var(--paddingLeft);
-  @media (min-width: 750px) {
-    --display: none;
-    --paddingLeft: 0;
-  }
-`;
-
-const LeftMenu = styled.div`
-  --flex: none;
-  ${LeftAndRightMenu}
-  display: var(--flex);
-  justify-content: start;
-  @media (min-width: 750px) {
-    --flex: flex;
-  }
-`;
-
-const RightMenu = styled.div`
-  ${LeftAndRightMenu}
-  justify-content: end;
-  --paddingRight: 26px;
-  padding-right: var(--paddingRight);
   @media (min-width: 750px) {
     --paddingRight: 13px;
   }
