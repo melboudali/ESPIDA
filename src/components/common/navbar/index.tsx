@@ -51,7 +51,7 @@ const RightMenu = styled.div`
   --paddingRight: 23px;
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
   flex: 33.33%;
   padding-right: var(--paddingRight);
   & button {
