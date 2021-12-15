@@ -39,7 +39,8 @@ const Images = styled.div`
 const MainImage = styled.div`
   --width: 100%;
   --order: 1;
-  height: 600px;
+  --height: 400px;
+  height: var(--height);
   width: var(--width);
   order: var(--order);
   .gatsby_image {
@@ -51,6 +52,7 @@ const MainImage = styled.div`
   @media (min-width: 750px) {
     --width: 599px;
     --order: 2;
+    --height: 600px;
   }
 `;
 
