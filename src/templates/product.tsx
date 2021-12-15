@@ -8,40 +8,75 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import { getColorsAndImages, getColor, getSize } from "../utils/index";
 
 const ProductWrapper = styled.section`
+  --gap: 30px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
   margin-top: 40px;
+  gap: var(--gap);
+  @media (min-width: 750px) {
+    --gap: unset;
+  }
 `;
 
 const Images = styled.div`
+  --flex: 100%;
+  --flexDirection: column;
+  --height: fit-content;
   display: flex;
-  flex: 0 0 60%;
+  flex-direction: var(--flexDirection);
+  flex: var(--flex);
+  justify-content: center;
   gap: 20px;
-  height: 600px;
+  height: var(--height);
+  @media (min-width: 750px) {
+    --flex: 60%;
+    --flexDirection: row;
+    --height: 600px;
+  }
 `;
 
 const MainImage = styled.div`
+  --width: 100%;
+  --order: 1;
   height: 600px;
-  width: 599px;
+  width: var(--width);
+  order: var(--order);
   .gatsby_image {
     height: 100%;
     width: 100%;
     border-radius: 10px;
     object-fit: cover;
   }
+  @media (min-width: 750px) {
+    --width: 599px;
+    --order: 2;
+  }
 `;
 
 const OtherImages = styled.div`
+  --order: 2;
+  --height: 124px;
+  --flexDirection: row;
+  --width: calc(100vw - 20px);
+  width: var(--width);
   display: flex;
-  flex-direction: column;
+  flex-direction: var(--flexDirection);
   gap: 20px;
-  height: 600px;
-  overflow-x: scroll;
+  order: var(--order);
+  height: var(--height);
+  overflow: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;
   ::-webkit-scrollbar {
     width: 0;
     height: 0;
+  }
+  @media (min-width: 750px) {
+    --order: 1;
+    --height: 600px;
+    --flexDirection: column;
+    --width: fit-content;
   }
 `;
 
@@ -56,7 +91,12 @@ const SmallImage = styled.button<{ isSelected: boolean }>`
 `;
 
 const Details = styled.div`
-  flex: 0 0 40%;
+  --flex: 100%;
+
+  flex: var(--flex);
+  @media (min-width: 750px) {
+    --flex: 40%;
+  }
 `;
 
 const Tags = styled.div`
@@ -78,7 +118,7 @@ const Tags = styled.div`
 const ProductTitle = styled.h1`
   font-weight: 700;
   font-size: 1.125rem;
-  line-height: 15px;
+  line-height: 20px;
   text-transform: uppercase;
   color: #282828;
   margin: 10px 0 20px;
