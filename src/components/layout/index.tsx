@@ -5,6 +5,7 @@ import Navbar from "../common/navbar";
 import Footer from "../common/footer";
 
 const Banner = styled.div`
+  --fontSize: 0.7rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,8 +13,13 @@ const Banner = styled.div`
   width: 100%;
   color: var(--white);
   background-color: var(--black);
+  text-align: center;
   font-weight: 500;
+  font-size: var(--fontSize);
   line-height: 16px;
+  @media (min-width: 750px) {
+    --fontSize: 1rem;
+  }
 `;
 
 const Main = styled.main`
