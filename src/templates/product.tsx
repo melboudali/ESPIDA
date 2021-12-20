@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { graphql } from "gatsby";
+import { StoreContext } from "../../src/context";
 import styled, { css } from "styled-components";
 import { ShopifyProductQuery } from "../../gatsby-graphql";
 import { GatsbyImage } from "gatsby-plugin-image";
@@ -248,11 +249,13 @@ interface ProductProps {
 }
 
 const Product = ({ data: { productData }, pageContext: { id } }: ProductProps) => {
+  const { addVariantToCart } = useContext(StoreContext);
   const [variants] = useState(getColorsAndImages(productData?.variants!));
   const [selectedVariant, setSelectedVariant] = useState(productData?.variants![0]);
   const [selectedSize, setSelectedSize] = useState(getSize(productData?.variants!)[0].size);
 
   const addToCart = () => {
+    addVariantToCart(selectedVariant?.id!, "1");
     console.log({ ...selectedVariant, id, title: productData?.title, size: selectedSize, variantId: selectedVariant?.id });
   };
 
