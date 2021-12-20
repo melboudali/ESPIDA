@@ -249,14 +249,16 @@ interface ProductProps {
 }
 
 const Product = ({ data: { productData }, pageContext: { id } }: ProductProps) => {
-  const { addVariantToCart } = useContext(StoreContext);
+  const { client, addVariantToCart, checkout } = useContext(StoreContext);
   const [variants] = useState(getColorsAndImages(productData?.variants!));
   const [selectedVariant, setSelectedVariant] = useState(productData?.variants![0]);
   const [selectedSize, setSelectedSize] = useState(getSize(productData?.variants!)[0].size);
 
+  const productVariant = client.product.helpers.variantForOptions({ ...productData, id }, selectedVariant) || selectedVariant;
+
   const addToCart = () => {
-    addVariantToCart(selectedVariant?.id!, "1");
-    console.log({ ...selectedVariant, id, title: productData?.title, size: selectedSize, variantId: selectedVariant?.id });
+    addVariantToCart(productVariant.storefrontId, 1);
+    console.log(checkout.lineItems);
   };
 
   return (
@@ -374,13 +376,19 @@ export const query = graphql`
         title
       }
       productType
+      storefrontId
       variants {
         id
         title
         compareAtPrice
         price
+        storefrontId
         image {
           gatsbyImageData
+        }
+        selectedOptions {
+          name
+          value
         }
       }
     }
