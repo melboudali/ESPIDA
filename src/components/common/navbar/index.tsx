@@ -1,6 +1,7 @@
 import { Link } from "gatsby";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
+import { StoreContext } from "../../../context";
 import CustomLink from "./customLink";
 
 const NavbarWrapper = styled.div`
@@ -90,15 +91,20 @@ const Logo = styled(Link)`
 `;
 
 const Navbar = () => {
-  const [getCart, setCart] = useState(0);
+  const { checkout } = useContext(StoreContext);
+  const [getCart, setCart] = useState(checkout);
+  const items = checkout ? checkout.lineItems : [];
+  const quantity = items.reduce((total: any, item: any) => {
+    return total + item.quantity;
+  }, 0);
   return (
     <NavbarWrapper>
       <Nav>
         <Menu>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 2H22" stroke="black" stroke-width="3" stroke-linecap="round" />
-            <path d="M2 9H16" stroke="black" stroke-width="3" stroke-linecap="round" />
-            <path d="M2 16H10" stroke="black" stroke-width="3" stroke-linecap="round" />
+            <path d="M2 2H22" stroke="black" strokeWidth="3" strokeLinecap="round" />
+            <path d="M2 9H16" stroke="black" strokeWidth="3" strokeLinecap="round" />
+            <path d="M2 16H10" stroke="black" strokeWidth="3" strokeLinecap="round" />
           </svg>
         </Menu>
 
@@ -156,7 +162,7 @@ const Navbar = () => {
               />
             </svg>
           </Link> */}
-          <button onClick={() => setCart(getCart + 1)}>
+          <button onClick={() => setCart(quantity)}>
             <svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M7 17.5C7.41421 17.5 7.75 17.1642 7.75 16.75C7.75 16.3358 7.41421 16 7 16C6.58579 16 6.25 16.3358 6.25 16.75C6.25 17.1642 6.58579 17.5 7 17.5Z"
@@ -181,7 +187,7 @@ const Navbar = () => {
                 strokeLinejoin="round"
               />
             </svg>
-            <p>{getCart}</p>
+            <p>{quantity}</p>
           </button>
         </RightMenu>
       </Nav>
