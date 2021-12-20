@@ -1,10 +1,10 @@
-import { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import Client from "shopify-buy";
 import fetch from "isomorphic-fetch";
 
 const client = Client.buildClient({
-  domain: process.env.GATSBY_SHOPIFY_STORE_URL as string,
-  storefrontAccessToken: process.env.GATSBY_STOREFRONT_ACCESS_TOKEN as string,
+  domain: process.env.GATSBY_SHOPIFY_STORE_URL!,
+  storefrontAccessToken: process.env.GATSBY_STOREFRONT_ACCESS_TOKEN!,
 });
 
 interface defualtValuesType {
@@ -13,11 +13,11 @@ interface defualtValuesType {
   loading: boolean;
   onOpen: () => void;
   onClose: () => void;
-  addVariantToCart: (variantId: string, quantity: string) => void;
+  addVariantToCart: (variantId: string, quantity: number) => void;
   removeLineItem: () => void;
   updateLineItem: () => void;
   client: any;
-  checkout: { id: string; lineItems: any[] };
+  checkout: any;
 }
 
 const defaultValues: defualtValuesType = {
@@ -74,14 +74,17 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
         }
       }
 
-      const newCheckout = await client.checkout.create();
-      setCheckoutItem(newCheckout);
+      await client.checkout.create().then((checkout) => {
+        // Do something with the checkout
+        console.log(checkout);
+        setCheckoutItem(checkout);
+      });
     };
 
     initializeCheckout();
   }, []);
 
-  const addVariantToCart = async (variantId: string, quantity: string) => {
+  const addVariantToCart = async (variantId: string, quantity: number) => {
     // setLoading(true);
 
     const checkoutID = checkout.id;
@@ -89,7 +92,7 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
     const lineItemsToUpdate = [
       {
         variantId,
-        quantity: parseInt(quantity, 10),
+        quantity,
       },
     ];
 
@@ -126,7 +129,6 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
       value={{
         ...defaultValues,
         addVariantToCart,
-        checkout,
       }}
     >
       {children}
