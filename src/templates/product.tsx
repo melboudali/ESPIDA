@@ -3,8 +3,6 @@ import { graphql } from "gatsby";
 import styled, { css } from "styled-components";
 import { ShopifyProductQuery } from "../../gatsby-graphql";
 import { GatsbyImage } from "gatsby-plugin-image";
-// import Client from "shopify-buy";
-// import fetch from "isomorphic-fetch";
 import { getColorsAndImages, getColor, getSize } from "../utils/index";
 
 const ProductWrapper = styled.section`
@@ -243,14 +241,6 @@ const AddToCart = styled.button`
   text-transform: uppercase;
   letter-spacing: 0.3em;
 `;
-
-// const client = Client.buildClient(
-//   {
-//     domain: process.env.GATSBY_SHOPIFY_STORE_URL,
-//     storefrontAccessToken: process.env.GATSBY_STOREFRONT_ACCESS_TOKEN,
-//   },
-//   fetch
-// );
 
 interface ProductProps {
   data: ShopifyProductQuery;
