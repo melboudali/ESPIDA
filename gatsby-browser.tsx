@@ -1,4 +1,5 @@
 import React from "react";
+import { StoreProvider } from "./src/context";
 import Layout from "./src/components/layout";
 
 interface wrapPageElementInterface {
@@ -6,4 +7,8 @@ interface wrapPageElementInterface {
   props: object;
 }
 
-export const wrapPageElement = ({ element, props }: wrapPageElementInterface) => <Layout {...props}>{element}</Layout>;
+export const wrapPageElement = ({ element, props }: wrapPageElementInterface) => (
+  <StoreProvider>
+    <Layout {...props}>{element}</Layout>
+  </StoreProvider>
+);
