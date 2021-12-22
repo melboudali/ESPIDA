@@ -257,7 +257,7 @@ const Product = ({ data: { productData }, pageContext: { id } }: ProductProps) =
   const productVariant = client.product.helpers.variantForOptions({ ...productData, id }, selectedVariant) || selectedVariant;
 
   const addToCart = () => {
-    addVariantToCart(productVariant.storefrontId, 1);
+    addVariantToCart!(productVariant.storefrontId, 1);
     console.log(checkout.lineItems);
   };
 
