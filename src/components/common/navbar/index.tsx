@@ -55,7 +55,7 @@ const RightMenu = styled.div`
   justify-content: flex-end;
   flex: 33.33%;
   padding-right: var(--paddingRight);
-  & button {
+  & a {
     display: flex;
     position: relative;
     svg {
@@ -91,12 +91,14 @@ const Logo = styled(Link)`
 `;
 
 const Navbar = () => {
-  const { checkout } = useContext(StoreContext);
-  const [getCart, setCart] = useState(checkout);
+  const { checkout } = React.useContext(StoreContext);
+
   const items = checkout ? checkout.lineItems : [];
+
   const quantity = items.reduce((total: any, item: any) => {
     return total + item.quantity;
   }, 0);
+
   return (
     <NavbarWrapper>
       <Nav>
@@ -162,7 +164,7 @@ const Navbar = () => {
               />
             </svg>
           </Link> */}
-          <button onClick={() => setCart(quantity)}>
+          <Link to="/cart">
             <svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M7 17.5C7.41421 17.5 7.75 17.1642 7.75 16.75C7.75 16.3358 7.41421 16 7 16C6.58579 16 6.25 16.3358 6.25 16.75C6.25 17.1642 6.58579 17.5 7 17.5Z"
@@ -188,7 +190,7 @@ const Navbar = () => {
               />
             </svg>
             <p>{quantity}</p>
-          </button>
+          </Link>
         </RightMenu>
       </Nav>
     </NavbarWrapper>
