@@ -1,54 +1,40 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Client from "shopify-buy";
-import fetch from "isomorphic-fetch";
+const SHOPIFY_CHECKOUT_STORAGE_KEY = "shopify_checkout_id";
 
 const client = Client.buildClient({
-  domain: process.env.GATSBY_SHOPIFY_STORE_URL!,
   storefrontAccessToken: process.env.GATSBY_STOREFRONT_ACCESS_TOKEN!,
+  domain: process.env.GATSBY_SHOPIFY_STORE_URL!,
 });
 
 interface defualtValuesType {
   cart: any[];
-  isOpen: boolean;
-  loading: boolean;
-  onOpen: () => void;
-  onClose: () => void;
-  addVariantToCart: (variantId: string, quantity: number) => void;
-  removeLineItem: () => void;
-  updateLineItem: () => void;
+  addVariantToCart?: (variantId: any, quantity: any) => Promise<void>;
   client: any;
   checkout: any;
 }
-
-const defaultValues: defualtValuesType = {
-  cart: [],
-  isOpen: false,
-  loading: false,
-  onOpen: () => {},
-  onClose: () => {},
-  addVariantToCart: () => {},
-  removeLineItem: () => {},
-  updateLineItem: () => {},
-  client,
-  checkout: {
-    id: "",
-    lineItems: [],
-  },
-};
-
-export const StoreContext = createContext(defaultValues);
-
-const isBrowser = typeof window !== `undefined`;
-const localStorageKey = `shopify_checkout_id`;
 
 interface StoreProviderProps {
   children: React.ReactNode;
 }
 
+const defaultValues: defualtValuesType = {
+  cart: [],
+  client,
+  checkout: {
+    lineItems: [],
+  },
+};
+
+export const StoreContext = React.createContext(defaultValues);
+
+const isBrowser = typeof window !== `undefined`;
+const localStorageKey = `shopify_checkout_id`;
+
 export const StoreProvider = ({ children }: StoreProviderProps) => {
-  const [checkout, setCheckout] = useState(defaultValues.checkout);
-  //   const [loading, setLoading] = useState(false);
-  //   const [didJustAddToCart, setDidJustAddToCart] = useState(false);
+  const [checkout, setCheckout] = React.useState(defaultValues.checkout);
+  const [loading, setLoading] = React.useState(false);
+  const [didJustAddToCart, setDidJustAddToCart] = React.useState(false);
 
   const setCheckoutItem = (checkout: any) => {
     if (isBrowser) {
@@ -58,11 +44,11 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
     setCheckout(checkout);
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     const initializeCheckout = async () => {
       const existingCheckoutID = isBrowser ? localStorage.getItem(localStorageKey) : null;
 
-      if (existingCheckoutID) {
+      if (existingCheckoutID && existingCheckoutID !== `null`) {
         try {
           const existingCheckout = await client.checkout.fetch(existingCheckoutID);
           if (!existingCheckout.completedAt) {
@@ -70,65 +56,63 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
             return;
           }
         } catch (e) {
-          localStorage.setItem(localStorageKey, "");
+          localStorage.setItem(localStorageKey, null!);
         }
       }
 
-      await client.checkout.create().then((checkout) => {
-        // Do something with the checkout
-        console.log(checkout);
-        setCheckoutItem(checkout);
-      });
+      const newCheckout = await client.checkout.create();
+      setCheckoutItem(newCheckout);
     };
 
     initializeCheckout();
   }, []);
 
-  const addVariantToCart = async (variantId: string, quantity: number) => {
-    // setLoading(true);
+  const addVariantToCart = (variantId: any, quantity: any) => {
+    setLoading(true);
 
     const checkoutID = checkout.id;
 
     const lineItemsToUpdate = [
       {
         variantId,
-        quantity,
+        quantity: parseInt(quantity, 10),
       },
     ];
 
-    return await client.checkout.addLineItems(checkoutID, lineItemsToUpdate).then((res: any) => {
+    return client.checkout.addLineItems(checkoutID, lineItemsToUpdate).then((res: any) => {
       setCheckout(res);
-      //   setLoading(false);
-      //   setDidJustAddToCart(true);
-      //   setTimeout(() => setDidJustAddToCart(false), 3000);
+      setLoading(false);
+      setDidJustAddToCart(true);
+      setTimeout(() => setDidJustAddToCart(false), 3000);
     });
   };
 
-  //   const removeLineItem = (checkoutID: any, lineItemID: any) => {
-  //     setLoading(true);
+  const removeLineItem = (checkoutID: any, lineItemID: any) => {
+    setLoading(true);
 
-  //     return client.checkout.removeLineItems(checkoutID, [lineItemID]).then((res: any) => {
-  //       setCheckout(res);
-  //       setLoading(false);
-  //     });
-  //   };
+    return client.checkout.removeLineItems(checkoutID, [lineItemID]).then((res) => {
+      setCheckout(res);
+      setLoading(false);
+    });
+  };
 
-  //   const updateLineItem = (checkoutID: any, lineItemID: any, quantity: any) => {
-  //     setLoading(true);
+  const updateLineItem = (checkoutID: any, lineItemID: any, quantity: any) => {
+    setLoading(true);
 
-  //     const lineItemsToUpdate = [{ id: lineItemID, quantity: parseInt(quantity, 10) }];
+    const lineItemsToUpdate = [{ id: lineItemID, quantity: parseInt(quantity, 10) }];
 
-  //     return client.checkout.updateLineItems(checkoutID, lineItemsToUpdate).then((res) => {
-  //       setCheckout(res);
-  //       setLoading(false);
-  //     });
-  //   };
+    return client.checkout.updateLineItems(checkoutID, lineItemsToUpdate).then((res: any) => {
+      setCheckout(res);
+      setLoading(false);
+    });
+  };
 
   return (
     <StoreContext.Provider
       value={{
         ...defaultValues,
         addVariantToCart,
+        checkout,
       }}
     >
       {children}
