@@ -48,7 +48,7 @@ const LeftMenu = styled.div`
   }
 `;
 
-const RightMenu = styled.div`
+const RightMenu = styled.div<{ animation: boolean }>`
   --paddingRight: 23px;
   display: flex;
   align-items: center;
@@ -61,21 +61,35 @@ const RightMenu = styled.div`
     svg {
       align-self: center;
     }
-      p {
-        position: absolute;
-        font-size: 0.8rem;
-        font-weight: 500;
-        line-height: 9px;
-        background-color: var(--black);
-        color: var(--white);
-        border-radius: 50%;
-        padding: 4px 5px;
-        margin: 0;
-        top: -13px;
-        right: -13px;
+    p {
+      position: absolute;
+      font-size: 0.8rem;
+      font-weight: 500;
+      line-height: 9px;
+      background-color: var(--black);
+      color: var(--white);
+      border-radius: 50%;
+      padding: 4px 5px;
+      margin: 0;
+      top: -13px;
+      right: -13px;
+      ${({ animation }) => animation && "animation: bounce 1.5s linear infinite;"}
+      @keyframes bounce {
+        0%,
+        20%,
+        40%,
+        60%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
       }
     }
   }
+
   @media (min-width: 750px) {
     --paddingRight: 13px;
   }
@@ -145,7 +159,7 @@ const Navbar = () => {
             </svg>
           </Logo>
         </LogoWrapper>
-        <RightMenu>
+        <RightMenu animation={quantity > 0}>
           {/* <button onClick={() => console.log("button clicked")}>
             <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
