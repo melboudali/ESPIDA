@@ -4,7 +4,7 @@ import { StoreContext } from "../../src/context";
 import styled, { css } from "styled-components";
 import { ShopifyProductQuery } from "../../gatsby-graphql";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { getColorsAndImages, getColor, getSize } from "../utils/index";
+import { getColorsAndImages, getColor, getSize, getVariant } from "../utils/index";
 
 const ProductWrapper = styled.section`
   --gap: 30px;
@@ -253,14 +253,10 @@ const Product = ({ data: { productData }, pageContext: { id } }: ProductProps) =
   const [variants] = useState(getColorsAndImages(productData?.variants!));
   const [selectedVariant, setSelectedVariant] = useState(productData?.variants![0]);
   const [selectedSize, setSelectedSize] = useState(getSize(productData?.variants!)[0].size);
-  const [selectedColor, setSelectedColor] = useState(getSize(productData?.variants!)[0].color);
+  const [selectedColor, setSelectedColor] = useState(variants[0].color);
 
-  const productVariant = client.product.helpers.variantForOptions({ ...productData, id }, selectedVariant) || selectedVariant;
-
-  const addToCart = () => {
-    console.log(selectedColor, selectedSize);
-    // addVariantToCart!(productVariant.storefrontId, 1);
-  };
+  const chosenVariant = getVariant(productData?.variants!, selectedColor!, selectedSize!);
+  const productVariant = client.product.helpers.variantForOptions({ ...productData, id }, chosenVariant) || chosenVariant;
 
   return (
     <ProductWrapper>
@@ -363,7 +359,7 @@ const Product = ({ data: { productData }, pageContext: { id } }: ProductProps) =
             ))}
           </ColorAndSizeWrapper>
         </ColorAndSizeContainer>
-        <AddToCart aria-label="add to cart" onClick={addToCart}>
+        <AddToCart aria-label="add to cart" onClick={() => addVariantToCart!(productVariant.storefrontId, 1)}>
           add to cart
         </AddToCart>
       </Details>
