@@ -1,4 +1,4 @@
-import { getColorsAndImages, getColor, validateEmail, getSize } from "./index";
+import { getColorsAndImages, getColor, validateEmail, getSize, getVariant } from "./index";
 
 const variants = [
   { id: "1", title: "Black /M", image: { gatsbyImageData: "Image" } },
@@ -18,9 +18,9 @@ const variants = [
 describe("testing getColorsndImages func", () => {
   it("should return Black, Red, and Green colors", () => {
     expect(getColorsAndImages(variants)).toEqual([
-      { id: "1", color: "Black", image: "Image", size: "M" },
-      { id: "2", color: "Red", image: "Image", size: "M" },
-      { id: "5", color: "Green", image: "Image", size: "M" },
+      { id: "1", color: "Black", image: "Image" },
+      { id: "2", color: "Red", image: "Image" },
+      { id: "5", color: "Green", image: "Image" },
     ]);
   });
 });
@@ -28,10 +28,10 @@ describe("testing getColorsndImages func", () => {
 describe("testing getSize", () => {
   it("should return", () => {
     expect(getSize(variants)).toEqual([
-      { id: "1", color: "Black", image: "Image", size: "M" },
-      { id: "3", color: "Black", image: "Image", size: "L" },
-      { id: "4", color: "Black", image: "Image", size: "XL" },
-      { id: "8", color: "Black", image: "Image", size: "XXL" },
+      { id: "1", size: "M" },
+      { id: "3", size: "L" },
+      { id: "4", size: "XL" },
+      { id: "8", size: "XXL" },
     ]);
   });
 });
@@ -65,5 +65,17 @@ describe("testing validateEmail func", () => {
   });
   it("should return false if we pass an invalid email", () => {
     expect(validateEmail(notEmail)).not.toBeTruthy();
+  });
+});
+
+describe("testing getVariant function", () => {
+  it("should return the right varian", () => {
+    expect(getVariant(variants, "Green", "L")).toEqual({ id: "6", title: "Green /L", image: { gatsbyImageData: "Image" } });
+  });
+  it("should return undefined", () => {
+    expect(getVariant(variants, "Yellow", "L")).toBeUndefined();
+  });
+  it("should return the right variant id '6'", () => {
+    expect(getVariant(variants, "Green", "L")!.id).toBe("6");
   });
 });
