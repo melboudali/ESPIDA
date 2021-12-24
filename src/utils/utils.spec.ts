@@ -1,18 +1,18 @@
 import { getColorsAndImages, getColor, validateEmail, getSize, getVariant } from "./index";
 
 const variants = [
-  { id: "1", title: "Black /M", image: { gatsbyImageData: "Image" } },
-  { id: "2", title: "Red /M", image: { gatsbyImageData: "Image" } },
-  { id: "3", title: "Black /L", image: { gatsbyImageData: "Image" } },
-  { id: "4", title: "Black /XL", image: { gatsbyImageData: "Image" } },
-  { id: "5", title: "Green /M", image: { gatsbyImageData: "Image" } },
-  { id: "6", title: "Green /L", image: { gatsbyImageData: "Image" } },
-  { id: "7", title: "Green /XL", image: { gatsbyImageData: "Image" } },
-  { id: "8", title: "Black /XXL", image: { gatsbyImageData: "Image" } },
-  { id: "9", title: "Green /XXL", image: { gatsbyImageData: "Image" } },
-  { id: "10", title: "Red /L", image: { gatsbyImageData: "Image" } },
-  { id: "11", title: "Red /XL", image: { gatsbyImageData: "Image" } },
-  { id: "12", title: "Red /XXL", image: { gatsbyImageData: "Image" } },
+  { id: "1", title: "Black / M", image: { gatsbyImageData: "Image" } },
+  { id: "2", title: "Red / M", image: { gatsbyImageData: "Image" } },
+  { id: "3", title: "Black / L", image: { gatsbyImageData: "Image" } },
+  { id: "4", title: "Black / XL", image: { gatsbyImageData: "Image" } },
+  { id: "5", title: "Green / M", image: { gatsbyImageData: "Image" } },
+  { id: "6", title: "Green / L", image: { gatsbyImageData: "Image" } },
+  { id: "7", title: "Green / XL", image: { gatsbyImageData: "Image" } },
+  { id: "8", title: "Black / XXL", image: { gatsbyImageData: "Image" } },
+  { id: "9", title: "Green / XXL", image: { gatsbyImageData: "Image" } },
+  { id: "10", title: "Red / L", image: { gatsbyImageData: "Image" } },
+  { id: "11", title: "Red / XL", image: { gatsbyImageData: "Image" } },
+  { id: "12", title: "Red / XXL", image: { gatsbyImageData: "Image" } },
 ];
 
 describe("testing getColorsndImages func", () => {
@@ -69,8 +69,8 @@ describe("testing validateEmail func", () => {
 });
 
 describe("testing getVariant function", () => {
-  it("should return the right varian", () => {
-    expect(getVariant(variants, "Green", "L")).toEqual({ id: "6", title: "Green /L", image: { gatsbyImageData: "Image" } });
+  it("should return the right variant", () => {
+    expect(getVariant(variants, "Green", "L")).toEqual({ id: "6", title: "Green / L", image: { gatsbyImageData: "Image" } });
   });
   it("should return undefined", () => {
     expect(getVariant(variants, "Yellow", "L")).toBeUndefined();
