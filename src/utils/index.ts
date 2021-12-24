@@ -54,3 +54,6 @@ export const getSize = (variants: variantsType) => {
 
   return selectedVariants;
 };
+
+export const getVariant = (variants: variantsType, color: string, size: string) =>
+  variants.find((variant) => variant?.title?.includes(`${color} /${size}`));
