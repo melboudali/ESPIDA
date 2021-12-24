@@ -253,25 +253,29 @@ const Product = ({ data: { productData }, pageContext: { id } }: ProductProps) =
   const [variants] = useState(getColorsAndImages(productData?.variants!));
   const [selectedVariant, setSelectedVariant] = useState(productData?.variants![0]);
   const [selectedSize, setSelectedSize] = useState(getSize(productData?.variants!)[0].size);
+  const [selectedColor, setSelectedColor] = useState(getSize(productData?.variants!)[0].color);
 
   const productVariant = client.product.helpers.variantForOptions({ ...productData, id }, selectedVariant) || selectedVariant;
 
   const addToCart = () => {
-    addVariantToCart!(productVariant.storefrontId, 1);
-    console.log(checkout.lineItems);
+    console.log(selectedColor, selectedSize);
+    // addVariantToCart!(productVariant.storefrontId, 1);
   };
 
   return (
     <ProductWrapper>
       <Images>
         <OtherImages>
-          {variants.map(({ id, image }) => (
+          {variants.map(({ id, image, color }) => (
             <SmallImage
               key={id}
               aria-label="image"
               isSelected={image === selectedVariant?.image?.gatsbyImageData}
               onClick={() => {
-                if (image !== selectedVariant?.image) setSelectedVariant(productData?.variants?.find((variant) => variant?.id === id));
+                if (image !== selectedVariant?.image) {
+                  setSelectedVariant(productData?.variants?.find((variant) => variant?.id === id));
+                  setSelectedColor(color);
+                }
               }}
             >
               <GatsbyImage key={id} image={image} alt="product_image" className="gatsby_image" />
@@ -340,7 +344,10 @@ const Product = ({ data: { productData }, pageContext: { id } }: ProductProps) =
                 color={getColor(color!)}
                 isSelected={id === selectedVariant?.id}
                 onClick={() => {
-                  if (id !== selectedVariant?.id) setSelectedVariant(productData?.variants?.find((variant) => variant?.id === id));
+                  if (id !== selectedVariant?.id) {
+                    setSelectedVariant(productData?.variants?.find((variant) => variant?.id === id));
+                    setSelectedColor(color);
+                  }
                 }}
               />
             ))}
