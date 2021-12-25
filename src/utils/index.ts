@@ -3,7 +3,7 @@ import { variantType, variantsType } from "../types";
 export const getColorsAndImages = (variants: variantsType) => {
   const selectedVariants: variantType[] = [];
   for (const variant of variants) {
-    const colorName = variant!.title!.split("/")[0].trim();
+    const colorName = variant!.title!.split("/")[0]!.trim();
     if (selectedVariants.findIndex(({ color }) => color === colorName) === -1) {
       selectedVariants.push({ id: variant!.id, color: colorName, image: variant!.image!.gatsbyImageData });
     }
@@ -46,7 +46,7 @@ export const validateEmail = (email: string) => {
 export const getSize = (variants: variantsType) => {
   const selectedVariants: variantType[] = [];
   for (const variant of variants) {
-    const selectedSize = variant!.title!.split("/")[1].trim();
+    const selectedSize = variant!.title!.split("/")[1]!.trim();
     if (selectedVariants.findIndex(({ size }) => size === selectedSize) === -1) {
       selectedVariants.push({ id: variant!.id, size: selectedSize });
     }
