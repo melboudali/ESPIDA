@@ -1,6 +1,41 @@
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
 import React from "react";
+import styled from "styled-components";
 import { StoreContext } from "../context";
+
+const CartWrapper = styled.section`
+  margin-top: 40px;
+`;
+
+const Title = styled.h1`
+  --fontSize: 1.8rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+  font-size: var(--fontSize);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  line-height: 35px;
+  color: #000;
+  @media (min-width: 375px) {
+    --fontSize: 1.875rem;
+  }
+`;
+
+const ItemsCount = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 4px;
+  font-size: 0.6875rem;
+  letter-spacing: normal;
+  line-height: 13px;
+  color: #000;
+  border-radius: 5px;
+  background: #adadad;
+`;
 
 interface Props {}
 
@@ -14,9 +49,12 @@ const cart = (props: Props) => {
   }, 0);
   console.log(items[0]);
   return (
-    <div>
-      <h1>Shopping Cart</h1>
-      you have {quantity} item
+    <CartWrapper>
+      <Title>
+        Shopping Cart
+        {!!quantity && <ItemsCount>{quantity}</ItemsCount>}
+      </Title>
+
       <a href={checkout.webUrl} target="_blank">
         click me
       </a>
@@ -37,7 +75,7 @@ const cart = (props: Props) => {
           ))}
         </div>
       )}
-    </div>
+    </CartWrapper>
   );
 };
 
