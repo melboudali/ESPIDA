@@ -15,6 +15,7 @@ const cart = (props: Props) => {
   console.log(items[0]);
   return (
     <div>
+      <h1>Shopping Cart</h1>
       you have {quantity} item
       <a href={checkout.webUrl} target="_blank">
         click me
