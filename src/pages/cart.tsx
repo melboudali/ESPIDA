@@ -1,5 +1,5 @@
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { StoreContext } from "../context";
 
@@ -40,7 +40,7 @@ const ItemsCount = styled.span`
 interface Props {}
 
 const cart = (props: Props) => {
-  const { checkout } = React.useContext(StoreContext);
+  const { checkout } = useContext(StoreContext);
 
   const items = checkout ? checkout.lineItems : [];
 
@@ -54,27 +54,31 @@ const cart = (props: Props) => {
         Shopping Cart
         {!!quantity && <ItemsCount>{quantity}</ItemsCount>}
       </Title>
+      {!!quantity ? (
+        items && (
+          <div>
+            {checkout.lineItems.map((qtty: any) => (
+              <div key={qtty.id}>
+                <p>title: {qtty.title}</p>
+                <p>quantity: {qtty.quantity}</p>
+                <p>variant id: {qtty.variant.id}</p>
+                {/* {qtty.variant.image && (
+                <GatsbyImage image={qtty.variant.image} alt="product_image" className="gatsby_image" style={{ width: "100px" }} />
+              )} */}
+                <img src={qtty.variant.image.src} alt="jackets" style={{ width: "100px" }} />
+                <p>variant title: {qtty.variant.title}</p>
+                <p>variant price: {qtty.variant.price}</p>
+              </div>
+            ))}
+          </div>
+        )
+      ) : (
+        <div>no items</div>
+      )}
 
       <a href={checkout.webUrl} target="_blank">
         click me
       </a>
-      {items && (
-        <div>
-          {checkout.lineItems.map((qtty: any) => (
-            <div key={qtty.id}>
-              <p>title: {qtty.title}</p>
-              <p>quantity: {qtty.quantity}</p>
-              <p>variant id: {qtty.variant.id}</p>
-              {/* {qtty.variant.image && (
-                <GatsbyImage image={qtty.variant.image} alt="product_image" className="gatsby_image" style={{ width: "100px" }} />
-              )} */}
-              <img src={qtty.variant.image.src} alt="jackets" style={{ width: "100px" }} />
-              <p>variant title: {qtty.variant.title}</p>
-              <p>variant price: {qtty.variant.price}</p>
-            </div>
-          ))}
-        </div>
-      )}
     </CartWrapper>
   );
 };
