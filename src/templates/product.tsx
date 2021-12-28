@@ -257,7 +257,7 @@ const Product = ({ data: { productData }, pageContext: { id } }: ProductProps) =
 
   const chosenVariant = getVariant(productData?.variants!, selectedColor!, selectedSize!);
   const productVariant = client.product.helpers.variantForOptions({ ...productData, id }, chosenVariant) || chosenVariant;
-
+  console.log(productVariant.storefrontId);
   return (
     <ProductWrapper>
       <Images>
