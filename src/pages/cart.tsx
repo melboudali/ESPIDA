@@ -145,15 +145,11 @@ const Checkout = styled.div`
 interface Props {}
 
 const cart = (props: Props) => {
-  const { checkout, removeLineItem } = useContext(StoreContext);
+  const { checkout, updateLineItem, removeLineItem } = useContext(StoreContext);
 
   const items = checkout ? checkout.lineItems : [];
 
-  const quantity = items.reduce((total: any, item: any) => {
-    return total + item.quantity;
-  }, 0);
-
-  console.log(checkout);
+  const quantity = items.reduce((total: number, item: { quantity: number }) => total + item.quantity, 0);
 
   return (
     <CartWrapper>
@@ -169,8 +165,11 @@ const cart = (props: Props) => {
                 <button
                   className="remove"
                   onClick={() => {
-                    removeLineItem!(item.variant.id);
-                    console.log("clicked");
+                    removeLineItem!(
+                      "Z2lkOi8vc2hvcGlmeS9DaGVja291dC82YWU3YWUxYmI3Yzg5NjM0N2QzNzYyOTI5YjFkMzhiZT9rZXk9MzQ4ZDQ1NTM0YWIzZjg3MTMxNTdmYjQzMzFkMjk1OWU=",
+                      item.variant.id
+                    );
+                    console.log(checkout);
                   }}
                 >
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -198,7 +197,7 @@ const cart = (props: Props) => {
                       </svg>
                     </button>
                     <p>{item.quantity}</p>
-                    <button>
+                    <button onClick={() => updateLineItem!(item.variant.id, item.quantity + 1)}>
                       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fillRule="evenodd" clipRule="evenodd" d="M5 5V0H7V5H12V7H7V12H5V7H0V5H5Z" />
                       </svg>
