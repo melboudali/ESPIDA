@@ -9,7 +9,8 @@ const client = Client.buildClient({
 
 interface defualtValuesType {
   cart: any[];
-  addVariantToCart?: (variantId: any, quantity: any) => Promise<void>;
+  addVariantToCart?: (variantId: string | number, quantity: number) => Promise<void>;
+  removeLineItem?: (checkoutId: string | number, lineItemID: string) => Promise<void>;
   client: any;
   checkout: any;
 }
@@ -67,7 +68,7 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
     initializeCheckout();
   }, []);
 
-  const addVariantToCart = (variantId: any, quantity: any) => {
+  const addVariantToCart = async (variantId: string | number, quantity: number) => {
     setLoading(true);
 
     const checkoutID = checkout.id;
@@ -75,25 +76,23 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
     const lineItemsToUpdate = [
       {
         variantId,
-        quantity: parseInt(quantity, 10),
+        quantity: quantity,
       },
     ];
 
-    return client.checkout.addLineItems(checkoutID, lineItemsToUpdate).then((res: any) => {
-      setCheckout(res);
-      setLoading(false);
-      setDidJustAddToCart(true);
-      setTimeout(() => setDidJustAddToCart(false), 3000);
-    });
+    const res = await client.checkout.addLineItems(checkoutID, lineItemsToUpdate);
+    setCheckout(res);
+    setLoading(false);
+    setDidJustAddToCart(true);
+    setTimeout(() => setDidJustAddToCart(false), 3000);
   };
 
-  const removeLineItem = (checkoutID: any, lineItemID: any) => {
+  const removeLineItem = async (checkoutId: string | number, lineItemID: string) => {
     setLoading(true);
 
-    return client.checkout.removeLineItems(checkoutID, [lineItemID]).then((res) => {
-      setCheckout(res);
-      setLoading(false);
-    });
+    const res = await client.checkout.removeLineItems(checkoutId, [lineItemID]);
+    setCheckout(res);
+    setLoading(false);
   };
 
   const updateLineItem = (checkoutID: any, lineItemID: any, quantity: any) => {
@@ -112,6 +111,7 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
       value={{
         ...defaultValues,
         addVariantToCart,
+        removeLineItem,
         checkout,
       }}
     >
