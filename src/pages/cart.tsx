@@ -1,6 +1,6 @@
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
 import React, { useContext } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { StoreContext } from "../context";
 
 const CartWrapper = styled.section`
@@ -48,6 +48,12 @@ const CartItems = styled.div`
   flex: 60%;
 `;
 
+const ButtonStyle = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const CartItem = styled.div`
   position: relative;
   display: flex;
@@ -55,13 +61,11 @@ const CartItem = styled.div`
   margin-top: 10px;
   padding: 10px;
   border-radius: 10px;
-  button {
+  .remove {
+    ${ButtonStyle}
     position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 0;
-    right: 0;
+    top: 10px;
+    right: 10px;
     width: 40px;
     height: 40px;
   }
@@ -71,7 +75,7 @@ const CartItem = styled.div`
   }
 
   &:nth-child(odd) {
-    background: #efef;
+    background: #7951e614;
   }
 
   &:nth-child(even) {
@@ -80,10 +84,11 @@ const CartItem = styled.div`
 `;
 
 const Details = styled.div`
+  position: relative;
   flex: 100%;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
+  justify-content: center;
   gap: 10px;
   font-weight: 500;
   h3 {
@@ -99,14 +104,36 @@ const Details = styled.div`
     span {
       margin: 0 10px;
     }
-    &:last-of-type {
-      font-size: 1.1rem;
-      color: #7056d1;
-    }
+  }
+  .price {
+    font-size: 1.1rem;
+    color: #7056d1;
   }
 `;
 
-const Quantity = styled.div``;
+const Quantity = styled.div`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  p {
+    font-size: 1.1rem;
+    color: #6d6d6d;
+  }
+  button {
+    ${ButtonStyle}
+    background-color: var(--white);
+    border: 1px solid #6845e424;
+    border-radius: 5px;
+    width: 36px;
+    height: 30px;
+    svg {
+      fill: #6d6d6d;
+    }
+  }
+`;
 
 const Checkout = styled.div`
   flex: calc(100% - (60% + 50px));
@@ -134,15 +161,7 @@ const cart = (props: Props) => {
           <CartItems>
             {checkout.lineItems.map((item: any) => (
               <CartItem key={item.variant.id}>
-                <button onClick={() => console.log("close")}>
-                  {/* <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M10.22 8.00003L15.845 13.625L13.625 15.845L8.00003 10.22L2.37503 15.845L0.155029 13.625L5.78003 8.00003L0.155029 2.37503L2.37503 0.155029L8.00003 5.78003L13.625 0.155029L15.845 2.37503L10.22 8.00003Z"
-                      fill="#aaa"
-                    />
-                  </svg> */}
+                <button onClick={() => console.log("close")} className="remove">
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       fillRule="evenodd"
@@ -160,12 +179,20 @@ const cart = (props: Props) => {
                     <span>|</span>
                     {item.variant.title.split(" / ")[1]}
                   </p>
-                  {/* <p>quantity: {item.quantity}</p> */}
-                  {/* {qtty.variant.image && (
-                <GatsbyImage image={qtty.variant.image} alt="product_image" className="gatsby_image" style={{ width: "100px" }} />
-              )} */}
-                  <p>${item.variant.price}</p>
-                  <Quantity></Quantity>
+                  <p className="price">${item.variant.price}</p>
+                  <Quantity>
+                    <button>
+                      <svg width="12" height="2" viewBox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fillRule="evenodd" clipRule="evenodd" d="M12 2H0V0H12V2Z" />
+                      </svg>
+                    </button>
+                    <p>{item.quantity}</p>
+                    <button>
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fillRule="evenodd" clipRule="evenodd" d="M5 5V0H7V5H12V7H7V12H5V7H0V5H5Z" />
+                      </svg>
+                    </button>
+                  </Quantity>
                 </Details>
               </CartItem>
             ))}
