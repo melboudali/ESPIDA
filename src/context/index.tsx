@@ -10,7 +10,8 @@ const client = Client.buildClient({
 interface defualtValuesType {
   cart: any[];
   addVariantToCart?: (variantId: string | number, quantity: number) => Promise<void>;
-  removeLineItem?: (checkoutId: string | number, lineItemID: string) => Promise<void>;
+  removeLineItem?: (lineItemID: string) => Promise<void>;
+  updateLineItem?: (lineItemID: string, quantity: number) => Promise<void>;
   client: any;
   checkout: any;
 }
@@ -23,6 +24,7 @@ const defaultValues: defualtValuesType = {
   cart: [],
   client,
   checkout: {
+    id: "",
     lineItems: [],
   },
 };
@@ -49,7 +51,7 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
     const initializeCheckout = async () => {
       const existingCheckoutID = isBrowser ? localStorage.getItem(localStorageKey) : null;
 
-      if (existingCheckoutID && existingCheckoutID !== `null`) {
+      if (existingCheckoutID && existingCheckoutID !== "null") {
         try {
           const existingCheckout = await client.checkout.fetch(existingCheckoutID);
           if (!existingCheckout.completedAt) {
@@ -57,7 +59,7 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
             return;
           }
         } catch (e) {
-          localStorage.setItem(localStorageKey, null!);
+          localStorage.setItem(localStorageKey, "null");
         }
       }
 
@@ -71,39 +73,33 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
   const addVariantToCart = async (variantId: string | number, quantity: number) => {
     setLoading(true);
 
-    const checkoutID = checkout.id;
-
-    const lineItemsToUpdate = [
+    const res = await client.checkout.addLineItems(checkout.id, [
       {
         variantId,
-        quantity: quantity,
+        quantity,
       },
-    ];
+    ]);
 
-    const res = await client.checkout.addLineItems(checkoutID, lineItemsToUpdate);
     setCheckout(res);
     setLoading(false);
     setDidJustAddToCart(true);
     setTimeout(() => setDidJustAddToCart(false), 3000);
   };
 
-  const removeLineItem = async (checkoutId: string | number, lineItemID: string) => {
+  const removeLineItem = async (lineItemID: string) => {
     setLoading(true);
-
-    const res = await client.checkout.removeLineItems(checkoutId, [lineItemID]);
+    const res = await client.checkout.removeLineItems(checkout.id, [lineItemID]);
     setCheckout(res);
     setLoading(false);
   };
 
-  const updateLineItem = (checkoutID: any, lineItemID: any, quantity: any) => {
+  const updateLineItem = async (lineItemID: string, quantity: number) => {
     setLoading(true);
 
-    const lineItemsToUpdate = [{ id: lineItemID, quantity: parseInt(quantity, 10) }];
+    const res = await client.checkout.updateLineItems(checkout.id, [{ id: lineItemID, quantity }]);
 
-    return client.checkout.updateLineItems(checkoutID, lineItemsToUpdate).then((res: any) => {
-      setCheckout(res);
-      setLoading(false);
-    });
+    setCheckout(res);
+    setLoading(false);
   };
 
   return (
@@ -111,6 +107,7 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
       value={{
         ...defaultValues,
         addVariantToCart,
+        updateLineItem,
         removeLineItem,
         checkout,
       }}
