@@ -10,7 +10,7 @@ const client = Client.buildClient({
 interface defualtValuesType {
   cart: any[];
   addVariantToCart?: (variantId: string | number, quantity: number) => Promise<void>;
-  removeLineItem?: (lineItemID: string) => Promise<void>;
+  removeLineItem?: (checkoutId: string | number, lineItemID: string) => Promise<void>;
   updateLineItem?: (lineItemID: string, quantity: number) => Promise<void>;
   client: any;
   checkout: any;
@@ -86,9 +86,9 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
     setTimeout(() => setDidJustAddToCart(false), 3000);
   };
 
-  const removeLineItem = async (lineItemID: string) => {
+  const removeLineItem = async (checkoutId: string | number, lineItemID: string) => {
     setLoading(true);
-    const res = await client.checkout.removeLineItems(checkout.id, [lineItemID]);
+    const res = await client.checkout.removeLineItems(checkoutId, [lineItemID]);
     setCheckout(res);
     setLoading(false);
   };
