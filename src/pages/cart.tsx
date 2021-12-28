@@ -106,6 +106,8 @@ const Details = styled.div`
   }
 `;
 
+const Quantity = styled.div``;
+
 const Checkout = styled.div`
   flex: calc(100% - (60% + 50px));
 `;
@@ -163,6 +165,7 @@ const cart = (props: Props) => {
                 <GatsbyImage image={qtty.variant.image} alt="product_image" className="gatsby_image" style={{ width: "100px" }} />
               )} */}
                   <p>${item.variant.price}</p>
+                  <Quantity></Quantity>
                 </Details>
               </CartItem>
             ))}
