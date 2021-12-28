@@ -63,11 +63,13 @@ const CartItem = styled.div`
   border-radius: 10px;
   .remove {
     ${ButtonStyle}
+    z-index:1;
     position: absolute;
     top: 10px;
     right: 10px;
     width: 40px;
     height: 40px;
+    cursor: pointer;
   }
   img {
     border-radius: 10px;
@@ -129,6 +131,7 @@ const Quantity = styled.div`
     border-radius: 5px;
     width: 36px;
     height: 30px;
+    cursor: pointer;
     svg {
       fill: #6d6d6d;
     }
@@ -142,13 +145,15 @@ const Checkout = styled.div`
 interface Props {}
 
 const cart = (props: Props) => {
-  const { checkout } = useContext(StoreContext);
+  const { checkout, removeLineItem } = useContext(StoreContext);
 
   const items = checkout ? checkout.lineItems : [];
 
   const quantity = items.reduce((total: any, item: any) => {
     return total + item.quantity;
   }, 0);
+
+  console.log(checkout);
 
   return (
     <CartWrapper>
@@ -161,7 +166,13 @@ const cart = (props: Props) => {
           <CartItems>
             {checkout.lineItems.map((item: any) => (
               <CartItem key={item.variant.id}>
-                <button onClick={() => console.log("close")} className="remove">
+                <button
+                  className="remove"
+                  onClick={() => {
+                    removeLineItem!(item.variant.id);
+                    console.log("clicked");
+                  }}
+                >
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       fillRule="evenodd"
