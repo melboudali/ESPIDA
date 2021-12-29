@@ -1,13 +1,13 @@
 import React from "react";
-import Seo from "../components/common/seo";
-import Categories from "../components/pages/index/categories";
-import SectionTitle from "../components/common/title";
-import styled from "styled-components";
-import ProductCard from "../components/common/card";
 import { graphql } from "gatsby";
 import { AllShopifyProductQuery } from "../../gatsby-graphql";
 import { shopifyProduct } from "../types";
 import { StaticImage } from "gatsby-plugin-image";
+import styled from "styled-components";
+import Seo from "../components/common/seo";
+import Categories from "../components/pages/index/categories";
+import SectionTitle from "../components/common/title";
+import ProductCard from "../components/common/card";
 import Slider from "../components/pages/index/slider";
 
 const SectionContainer = styled.section`
