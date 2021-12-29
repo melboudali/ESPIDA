@@ -12,6 +12,7 @@ interface defualtValuesType {
   updateLineItems?: (lineItemID: string, quantity: number) => Promise<void>;
   client: any;
   checkout: Client.Cart;
+  loading: boolean;
 }
 
 interface StoreProviderProps {
@@ -28,6 +29,7 @@ const defaultValues: defualtValuesType = {
     subtotalPrice: "0",
     completedAt: "0",
   },
+  loading: false,
 };
 
 export const StoreContext = React.createContext(defaultValues);
@@ -102,6 +104,7 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
         updateLineItems,
         removeLineItems,
         checkout,
+        loading,
       }}
     >
       {children}
