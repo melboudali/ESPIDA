@@ -4,7 +4,7 @@ import { StoreContext } from "../../src/context";
 import styled, { css } from "styled-components";
 import { ShopifyProductQuery } from "../../gatsby-graphql";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { getColorsAndImages, getColor, getSize, getVariant } from "../utils/index";
+import { getColorsAndImages, getColor, getSize, getVariant } from "../utils";
 
 const ProductWrapper = styled.section`
   --gap: 30px;
@@ -256,7 +256,7 @@ const Product = ({ data: { productData }, pageContext: { id } }: ProductProps) =
   const [selectedColor, setSelectedColor] = useState(variants[0].color);
 
   const chosenVariant = getVariant(productData?.variants!, selectedColor!, selectedSize!);
-  const productVariant = client.product.variantForOptions({ ...productData, id }, chosenVariant) || chosenVariant;
+  const productVariant = client.product.helpers.variantForOptions({ ...productData, id }, chosenVariant) || chosenVariant;
 
   return (
     <ProductWrapper>
