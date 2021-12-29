@@ -1,4 +1,5 @@
 import React from "react";
+import { StoreContext } from "../../context";
 import GlobalStyles from "../../styles/globalStyles";
 import styled from "styled-components";
 import Navbar from "../common/navbar";
@@ -34,20 +35,44 @@ const Main = styled.main`
   }
 `;
 
+const Loading = styled.div`
+  position: fixed;
+  z-index: 5;
+  bottom: 10px;
+  right: 10px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--white);
+  background-color: #5e4df0;
+  padding: 15px 30px;
+  p {
+    margin: 0;
+  }
+`;
+
 interface LayoutProps {
   children: React.ReactNode;
 }
 
-const Layout = ({ children }: LayoutProps) => (
-  <>
-    <GlobalStyles />
-    <header>
-      <Banner>Free U.S. Shipping & Returns $150+ | Free Intl Shipping $200+ </Banner>
-      <Navbar />
-    </header>
-    <Main>{children}</Main>
-    <Footer />
-  </>
-);
+const Layout = ({ children }: LayoutProps) => {
+  const { loading } = React.useContext(StoreContext);
+  return (
+    <>
+      <GlobalStyles />
+      <header>
+        <Banner>Free U.S. Shipping & Returns $150+ | Free Intl Shipping $200+ </Banner>
+        <Navbar />
+      </header>
+      <Main>{children}</Main>
+      <Footer />
+      {loading && (
+        <Loading>
+          <p>Loading ...</p>
+        </Loading>
+      )}
+    </>
+  );
+};
 
 export default Layout;
