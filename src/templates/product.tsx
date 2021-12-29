@@ -249,15 +249,15 @@ interface ProductProps {
 }
 
 const Product = ({ data: { productData }, pageContext: { id } }: ProductProps) => {
-  const { client, addVariantToCart, checkout } = useContext(StoreContext);
+  const { client, addLineItems } = useContext(StoreContext);
   const [variants] = useState(getColorsAndImages(productData?.variants!));
   const [selectedVariant, setSelectedVariant] = useState(productData?.variants![0]);
   const [selectedSize, setSelectedSize] = useState(getSize(productData?.variants!)[0].size);
   const [selectedColor, setSelectedColor] = useState(variants[0].color);
 
   const chosenVariant = getVariant(productData?.variants!, selectedColor!, selectedSize!);
-  const productVariant = client.product.helpers.variantForOptions({ ...productData, id }, chosenVariant) || chosenVariant;
-  console.log(productVariant.storefrontId);
+  const productVariant = client.product.variantForOptions({ ...productData, id }, chosenVariant) || chosenVariant;
+
   return (
     <ProductWrapper>
       <Images>
@@ -359,7 +359,7 @@ const Product = ({ data: { productData }, pageContext: { id } }: ProductProps) =
             ))}
           </ColorAndSizeWrapper>
         </ColorAndSizeContainer>
-        <AddToCart aria-label="add to cart" onClick={() => addVariantToCart!(productVariant.storefrontId, 1)}>
+        <AddToCart aria-label="add to cart" onClick={() => addLineItems!(productVariant.storefrontId, 1)}>
           add to cart
         </AddToCart>
       </Details>
