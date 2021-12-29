@@ -1,4 +1,3 @@
-import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
 import React, { useContext } from "react";
 import styled, { css } from "styled-components";
 import { StoreContext } from "../context";
@@ -142,10 +141,8 @@ const Checkout = styled.div`
   flex: calc(100% - (60% + 50px));
 `;
 
-interface Props {}
-
-const cart = (props: Props) => {
-  const { checkout, updateLineItem, removeLineItem } = useContext(StoreContext);
+const cart = () => {
+  const { checkout, updateLineItems, removeLineItems } = useContext(StoreContext);
 
   const items = checkout ? checkout.lineItems : [];
 
@@ -162,16 +159,7 @@ const cart = (props: Props) => {
           <CartItems>
             {checkout.lineItems.map((item: any) => (
               <CartItem key={item.variant.id}>
-                <button
-                  className="remove"
-                  onClick={() => {
-                    removeLineItem!(
-                      "Z2lkOi8vc2hvcGlmeS9DaGVja291dC82YWU3YWUxYmI3Yzg5NjM0N2QzNzYyOTI5YjFkMzhiZT9rZXk9MzQ4ZDQ1NTM0YWIzZjg3MTMxNTdmYjQzMzFkMjk1OWU=",
-                      item.variant.id
-                    );
-                    console.log(checkout);
-                  }}
-                >
+                <button className="remove" onClick={() => removeLineItems!(item.id)}>
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       fillRule="evenodd"
@@ -191,13 +179,13 @@ const cart = (props: Props) => {
                   </p>
                   <p className="price">${item.variant.price}</p>
                   <Quantity>
-                    <button>
+                    <button onClick={() => updateLineItems!(item.id, item.quantity - 1)}>
                       <svg width="12" height="2" viewBox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fillRule="evenodd" clipRule="evenodd" d="M12 2H0V0H12V2Z" />
                       </svg>
                     </button>
                     <p>{item.quantity}</p>
-                    <button onClick={() => updateLineItem!(item.variant.id, item.quantity + 1)}>
+                    <button onClick={() => updateLineItems!(item.id, item.quantity + 1)}>
                       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fillRule="evenodd" clipRule="evenodd" d="M5 5V0H7V5H12V7H7V12H5V7H0V5H5Z" />
                       </svg>
@@ -208,7 +196,7 @@ const cart = (props: Props) => {
             ))}
           </CartItems>
           <Checkout>
-            <a href={checkout.webUrl} target="_blank">
+            <a href={checkout.checkoutUrl} target="_blank">
               click me
             </a>
           </Checkout>
