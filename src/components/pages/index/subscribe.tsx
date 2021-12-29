@@ -1,7 +1,7 @@
 import { Link } from "gatsby";
 import React from "react";
 import styled from "styled-components";
-import useSubscribe from "../../../hook/useSubscribe";
+import useSubscribe from "../../../hooks/useSubscribe";
 
 const Wrapper = styled.div`
   --padding: 0 10px;
