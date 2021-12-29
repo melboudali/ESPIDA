@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
 import Client from "shopify-buy";
-const SHOPIFY_CHECKOUT_STORAGE_KEY = "shopify_checkout_id";
 
 const client = Client.buildClient({
   storefrontAccessToken: process.env.GATSBY_STOREFRONT_ACCESS_TOKEN!,
@@ -8,12 +7,11 @@ const client = Client.buildClient({
 });
 
 interface defualtValuesType {
-  cart: any[];
-  addVariantToCart?: (variantId: string | number, quantity: number) => Promise<void>;
-  removeLineItem?: (checkoutId: string | number, lineItemID: string) => Promise<void>;
-  updateLineItem?: (lineItemID: string, quantity: number) => Promise<void>;
+  addLineItems?: (variantId: string | number, quantity: number) => Promise<void>;
+  removeLineItems?: (lineItemID: string) => Promise<void>;
+  updateLineItems?: (lineItemID: string, quantity: number) => Promise<void>;
   client: any;
-  checkout: any;
+  checkout: Client.Cart;
 }
 
 interface StoreProviderProps {
@@ -21,11 +19,14 @@ interface StoreProviderProps {
 }
 
 const defaultValues: defualtValuesType = {
-  cart: [],
   client,
   checkout: {
     id: "",
     lineItems: [],
+    checkoutUrl: "",
+    lineItemCount: 0,
+    subtotalPrice: "0",
+    completedAt: "0",
   },
 };
 
@@ -33,11 +34,10 @@ export const StoreContext = React.createContext(defaultValues);
 
 const isBrowser = typeof window !== `undefined`;
 const localStorageKey = `shopify_checkout_id`;
-
+console.log(typeof client);
 export const StoreProvider = ({ children }: StoreProviderProps) => {
   const [checkout, setCheckout] = React.useState(defaultValues.checkout);
   const [loading, setLoading] = React.useState(false);
-  const [didJustAddToCart, setDidJustAddToCart] = React.useState(false);
 
   const setCheckoutItem = (checkout: any) => {
     if (isBrowser) {
@@ -49,15 +49,12 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
 
   React.useEffect(() => {
     const initializeCheckout = async () => {
-      const existingCheckoutID = isBrowser ? localStorage.getItem(localStorageKey) : null;
+      const existingCheckoutID = isBrowser ? localStorage.getItem(localStorageKey) : "null";
 
       if (existingCheckoutID && existingCheckoutID !== "null") {
         try {
           const existingCheckout = await client.checkout.fetch(existingCheckoutID);
-          if (!existingCheckout.completedAt) {
-            setCheckoutItem(existingCheckout);
-            return;
-          }
+          if (!existingCheckout.completedAt) return setCheckoutItem(existingCheckout);
         } catch (e) {
           localStorage.setItem(localStorageKey, "null");
         }
@@ -70,9 +67,8 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
     initializeCheckout();
   }, []);
 
-  const addVariantToCart = async (variantId: string | number, quantity: number) => {
+  const addLineItems = async (variantId: string | number, quantity: number) => {
     setLoading(true);
-
     const res = await client.checkout.addLineItems(checkout.id, [
       {
         variantId,
@@ -82,22 +78,18 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
 
     setCheckout(res);
     setLoading(false);
-    setDidJustAddToCart(true);
-    setTimeout(() => setDidJustAddToCart(false), 3000);
   };
 
-  const removeLineItem = async (checkoutId: string | number, lineItemID: string) => {
+  const removeLineItems = async (lineItemID: string) => {
     setLoading(true);
-    const res = await client.checkout.removeLineItems(checkoutId, [lineItemID]);
+    const res = await client.checkout.removeLineItems(checkout.id, [lineItemID]);
     setCheckout(res);
     setLoading(false);
   };
 
-  const updateLineItem = async (lineItemID: string, quantity: number) => {
+  const updateLineItems = async (lineItemID: string, quantity: number) => {
     setLoading(true);
-
     const res = await client.checkout.updateLineItems(checkout.id, [{ id: lineItemID, quantity }]);
-
     setCheckout(res);
     setLoading(false);
   };
@@ -106,9 +98,9 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
     <StoreContext.Provider
       value={{
         ...defaultValues,
-        addVariantToCart,
-        updateLineItem,
-        removeLineItem,
+        addLineItems,
+        updateLineItems,
+        removeLineItems,
         checkout,
       }}
     >
