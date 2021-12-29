@@ -1,4 +1,4 @@
-import { getColorsAndImages, getColor, validateEmail, getSize, getVariant } from "./index";
+import { getColorsAndImages, getColor, validateEmail, getSize, getVariant } from "./";
 
 const variants = [
   { id: "1", title: "Black / M", image: { gatsbyImageData: "Image" } },
