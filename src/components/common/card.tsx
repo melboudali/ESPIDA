@@ -14,6 +14,7 @@ const Card = styled.div`
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
   transition: all 150ms ease-out;
+
   .gatsby_image {
     width: 100%;
     height: 384px;
@@ -26,7 +27,7 @@ const Card = styled.div`
     transform: translateY(-2px);
   }
   @media (min-width: 451px) {
-    --flex: 304px 0 0;
+    --flex: 300px 0 0;
   }
 `;
 
@@ -149,7 +150,7 @@ interface ColorComponentProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  const { client, addLineItems } = useContext(StoreContext);
+  const { addLineItems } = useContext(StoreContext);
   const [variants] = useState(getColorsAndImages(product.variants!));
   const [selectedVariant, setSelectedVariant] = useState(variants[0]);
 
@@ -176,8 +177,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <Link to={`/${product.productType}/${product.handle}`}>
           <Title title={product.title!}>{product.title}</Title>
           <Price>
-            <p>${product.variants![0]?.price}</p>
-            <p>${product.variants![0]?.compareAtPrice}</p>
+            <p>${selectedVariant.price}</p>
+            <p>${selectedVariant.compareAtPrice}</p>
           </Price>
         </Link>
       </Details>
