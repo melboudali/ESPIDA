@@ -8,8 +8,10 @@ export const getColorsAndImages = (variants: variantsType) => {
       selectedVariants.push({
         id: variant!.id,
         color: colorName,
-        image: variant!.image!.gatsbyImageData,
+        image: variant?.image!.gatsbyImageData,
         storefrontId: variant?.storefrontId,
+        price: variant?.price,
+        compareAtPrice: variant?.compareAtPrice,
       });
     }
   }
