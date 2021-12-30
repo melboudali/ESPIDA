@@ -235,11 +235,7 @@ const cart = () => {
         </CartAndCheckoutWrapper>
       ) : (
         <EmptyCart>
-          <StaticImage
-            src="https://lh3.googleusercontent.com/proxy/gZ1jrB7ZLCXK2_9Bq-DQYx0XUqJ-kI0A-KUd_93Wb_GY9iNa0Ad0KfyrKdKSu7Q9OUZLkuGgJH5xWX6QTx188KOauksp20CEog"
-            alt=""
-            className="img"
-          />
+          <StaticImage src="../assets/images/cart.png" alt="" className="img" />
           <p>no roducts in the cart</p>
         </EmptyCart>
       )}
