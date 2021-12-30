@@ -40,7 +40,7 @@ const ItemsCount = styled.span`
 const CartAndCheckoutWrapper = styled.div`
   display: flex;
   gap: 50px;
-  margin-top: 40px;
+  margin: 40px 0 200px;
 `;
 
 const CartItems = styled.div`
@@ -147,7 +147,7 @@ const EmptyCart = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin: 80px 0;
+  margin: 80px 0 200px;
   .img {
     width: 200px;
   }
