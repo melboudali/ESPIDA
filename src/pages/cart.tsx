@@ -1,3 +1,4 @@
+import { StaticImage } from "gatsby-plugin-image";
 import React, { useContext } from "react";
 import styled, { css } from "styled-components";
 import { StoreContext } from "../context";
@@ -141,6 +142,24 @@ const Checkout = styled.div`
   flex: calc(100% - (60% + 50px));
 `;
 
+const EmptyCart = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 80px 0;
+  .img {
+    width: 200px;
+  }
+  p {
+    margin: 30px 0 0;
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+`;
+
 const cart = () => {
   const { checkout, updateLineItems, removeLineItems } = useContext(StoreContext);
 
@@ -202,7 +221,14 @@ const cart = () => {
           </Checkout>
         </CartAndCheckoutWrapper>
       ) : (
-        <div>no items</div>
+        <EmptyCart>
+          <StaticImage
+            src="https://lh3.googleusercontent.com/proxy/gZ1jrB7ZLCXK2_9Bq-DQYx0XUqJ-kI0A-KUd_93Wb_GY9iNa0Ad0KfyrKdKSu7Q9OUZLkuGgJH5xWX6QTx188KOauksp20CEog"
+            alt=""
+            className="img"
+          />
+          <p>no roducts in the cart</p>
+        </EmptyCart>
       )}
     </CartWrapper>
   );
