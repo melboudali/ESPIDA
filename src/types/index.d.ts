@@ -10,7 +10,7 @@ export interface postType {
   productType?: string | null | undefined;
 }
 
-export type variantType = { id: string; color?: string; image?: any; size?: string };
+export type variantType = { id: string; color?: string; image?: any; size?: string; storefrontId?: string | null | undefined };
 
 export type variantsType = Array<
   | {
@@ -41,6 +41,7 @@ export type shopifyProduct = {
             price?: string | null | undefined;
             compareAtPrice?: string | null | undefined;
             title?: string | null | undefined;
+            storefrontId?: string | null | undefined;
             image?: { gatsbyImageData: any } | null | undefined;
           }
         | null
