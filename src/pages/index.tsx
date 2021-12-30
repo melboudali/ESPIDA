@@ -29,6 +29,7 @@ interface IndexPageProps {
 const IndexPage = ({ data: { bestSellers, newReleases } }: IndexPageProps) => (
   <>
     <Seo title="Home" />
+    <p>{bestSellers.nodes[0].variants![0]?.storefrontId}</p>
     <Categories />
     <SectionContainer>
       <SectionTitle title="Best Sellers" />
@@ -100,9 +101,10 @@ export const query = graphql`
     }
     variants {
       id
+      title
+      storefrontId
       price
       compareAtPrice
-      title
       image {
         gatsbyImageData
       }
