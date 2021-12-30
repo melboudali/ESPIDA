@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { shopifyProduct, variantType } from "../../types";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { getColor, getColorsAndImages } from "../../utils";
 import { Link } from "gatsby";
+import { StoreContext } from "../../context";
 
 const Card = styled.div`
   --flex: 100% 0 0;
@@ -148,9 +149,10 @@ interface ColorComponentProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
+  // const { client, addLineItems } = useContext(StoreContext);
   const [variants] = useState(getColorsAndImages(product.variants!));
   const [selectedVariant, setSelectedVariant] = useState(variants[0]);
-
+  console.log(selectedVariant.storefrontId);
   return (
     <Card>
       <Link to={`/${product.productType}/${product.handle}`}>
@@ -160,18 +162,18 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <ColorsWrapper>
           <p>{selectedVariant.color}</p>
           <Colors>
-            {variants.map(({ id, color, image }) => (
+            {variants.map(({ id, color, ...rest }) => (
               <ColorComponent
                 key={id}
                 color={color!}
-                variant={{ id, color, image }}
+                variant={{ id, color, ...rest }}
                 selectedVariant={selectedVariant}
                 setSelectedVariant={setSelectedVariant}
               />
             ))}
           </Colors>
         </ColorsWrapper>
-        <Link to="#">
+        <Link to={`/${product.productType}/${product.handle}`}>
           <Title title={product.title!}>{product.title}</Title>
           <Price>
             <p>${product.variants![0]?.price}</p>
@@ -179,7 +181,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           </Price>
         </Link>
       </Details>
-      <AddToCartButton onClick={() => console.log("Add to cart")}>add to cart</AddToCartButton>
+      <AddToCartButton onClick={() => console.log(selectedVariant.storefrontId)}>add to cart</AddToCartButton>
     </Card>
   );
 };
