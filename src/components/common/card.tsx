@@ -149,10 +149,10 @@ interface ColorComponentProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  // const { client, addLineItems } = useContext(StoreContext);
+  const { client, addLineItems } = useContext(StoreContext);
   const [variants] = useState(getColorsAndImages(product.variants!));
   const [selectedVariant, setSelectedVariant] = useState(variants[0]);
-  console.log(selectedVariant.storefrontId);
+
   return (
     <Card>
       <Link to={`/${product.productType}/${product.handle}`}>
@@ -181,7 +181,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           </Price>
         </Link>
       </Details>
-      <AddToCartButton onClick={() => console.log(selectedVariant.storefrontId)}>add to cart</AddToCartButton>
+      <AddToCartButton onClick={() => addLineItems!(selectedVariant.storefrontId!, 1)}>add to cart</AddToCartButton>
     </Card>
   );
 };
