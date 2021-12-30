@@ -5,7 +5,12 @@ export const getColorsAndImages = (variants: variantsType) => {
   for (const variant of variants) {
     const colorName = variant!.title!.split("/")[0].trim();
     if (selectedVariants.findIndex(({ color }) => color === colorName) === -1) {
-      selectedVariants.push({ id: variant!.id, color: colorName, image: variant!.image!.gatsbyImageData });
+      selectedVariants.push({
+        id: variant!.id,
+        color: colorName,
+        image: variant!.image!.gatsbyImageData,
+        storefrontId: variant?.storefrontId,
+      });
     }
   }
 
