@@ -24,15 +24,9 @@ const Banner = styled.div`
 `;
 
 const Main = styled.main`
-  --padding: 0 10px;
   max-width: 1280px;
   margin: 0 auto;
-  padding: var(--padding);
-  /* padding: 120px 0 50px; */
-  /* FIXME: fix the padding later */
-  @media (min-width: 750px) {
-    --padding: 0;
-  }
+  padding: 0 10px;
 `;
 
 const Loading = styled.div`
