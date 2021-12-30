@@ -18,6 +18,7 @@ export type variantsType = Array<
       price?: string | null | undefined;
       compareAtPrice?: string | null | undefined;
       title?: string | null | undefined;
+      storefrontId?: string | null | undefined;
       image?: { gatsbyImageData: any } | null | undefined;
     }
   | null
