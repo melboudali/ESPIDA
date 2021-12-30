@@ -10,7 +10,15 @@ export interface postType {
   productType?: string | null;
 }
 
-export type variantType = { id: string; color?: string; image?: any; size?: string; storefrontId?: string | null };
+export type variantType = {
+  id: string;
+  color?: string;
+  image?: any;
+  size?: string;
+  storefrontId?: string | null;
+  price?: string | null;
+  compareAtPrice?: string | null;
+};
 
 export type variantsType = Array<
   | {
