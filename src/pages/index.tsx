@@ -29,7 +29,6 @@ interface IndexPageProps {
 const IndexPage = ({ data: { bestSellers, newReleases } }: IndexPageProps) => (
   <>
     <Seo title="Home" />
-    <p>{bestSellers.nodes[0].variants![0]?.storefrontId}</p>
     <Categories />
     <SectionContainer>
       <SectionTitle title="Best Sellers" />
@@ -37,7 +36,6 @@ const IndexPage = ({ data: { bestSellers, newReleases } }: IndexPageProps) => (
         {bestSellers.nodes.map((node: shopifyProduct) => (
           <ProductCard key={node.id} product={node} />
         ))}
-        {/* <ProductCard key={bestSellers.nodes[0].id} product={bestSellers.nodes[0]} /> */}
       </Cards>
     </SectionContainer>
     <SectionContainer>
