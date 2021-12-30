@@ -140,6 +140,18 @@ const Quantity = styled.div`
 
 const Checkout = styled.div`
   flex: calc(100% - (60% + 50px));
+  margin-top: 11px;
+  border-radius: 10px;
+  background-color: #000;
+  padding: 10px;
+  h3 {
+    margin: 0 0 10px;
+    font-size: 1.1rem;
+    text-transform: capitalize;
+    letter-spacing: 3px;
+    font-weight: 500;
+    color: var(--white);
+  }
 `;
 
 const EmptyCart = styled.div`
@@ -215,6 +227,7 @@ const cart = () => {
             ))}
           </CartItems>
           <Checkout>
+            <h3>order summary</h3>
             <a href={checkout.checkoutUrl} target="_blank">
               click me
             </a>
