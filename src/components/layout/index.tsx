@@ -38,14 +38,14 @@ const Main = styled.main`
 const Loading = styled.div`
   position: fixed;
   z-index: 5;
-  bottom: 10px;
-  right: 10px;
-  border-radius: 10px;
-  font-size: 1.1rem;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
   font-weight: 500;
   color: var(--white);
-  background-color: #5e4df0;
-  padding: 15px 30px;
+  background-image: linear-gradient(to left, #a14df0, #5e4df0);
+  padding: 15px 25px;
   p {
     margin: 0;
   }
