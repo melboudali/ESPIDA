@@ -1,5 +1,5 @@
 import { Link } from "gatsby";
-import React, { useContext, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { StoreContext } from "../../../context";
 import CustomLink from "./customLink";
@@ -18,6 +18,7 @@ const Nav = styled.div`
   max-width: 1280px;
   margin: 0 auto;
   height: 78px;
+  padding: 0 10px;
 `;
 
 const Menu = styled.button`
