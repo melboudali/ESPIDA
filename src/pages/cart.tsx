@@ -140,12 +140,15 @@ const Quantity = styled.div`
 `;
 
 const Checkout = styled.div`
+  position: sticky;
+  top: 10px;
   height: fit-content;
   flex: calc(100% - (60% + 50px));
   margin-top: 11px;
   border-radius: 10px;
   background-color: #000;
   padding: 10px;
+
   h3 {
     margin: 0 0 10px;
     font-size: 1.1rem;
