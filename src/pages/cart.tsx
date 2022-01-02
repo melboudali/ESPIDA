@@ -156,9 +156,30 @@ const Checkout = styled.div`
     border-bottom: 1px solid #575757;
     padding-bottom: 10px;
   }
+  a {
+    width: 70%;
+    margin: 0 auto;
+    background-image: linear-gradient(to left, #a14df0, #5e4df0);
+    color: var(--white);
+  }
 `;
 
-const OrderSummaryItemWrapper = styled.div``;
+const OrderSummaryItemWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  text-transform: capitalize;
+  padding: 0 20px;
+  p {
+    &:first-child {
+      color: #d8d8d8;
+    }
+    &:last-child {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #ffffff;
+    }
+  }
+`;
 
 const EmptyCart = styled.div`
   width: 100%;
@@ -240,7 +261,7 @@ const cart = () => {
           <Checkout>
             <h3>order summary</h3>
             <OrderSummaryItem title="subtotal" price={`$${totalPrice.toFixed(2)}`} />
-            <OrderSummaryItem title="Shipping estimate" price={totalPrice > 200 ? "Free" : "$50"} />
+            <OrderSummaryItem title="shipping estimate" price={totalPrice > 200 ? "Free" : "$50"} />
             <a href={checkout.checkoutUrl} target="_blank">
               checkout
             </a>
