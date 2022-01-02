@@ -1,5 +1,6 @@
 import { StaticImage } from "gatsby-plugin-image";
 import React, { useContext } from "react";
+import { GraphModel, LineItem } from "shopify-buy";
 import styled, { css } from "styled-components";
 import { StoreContext } from "../context";
 
@@ -139,6 +140,7 @@ const Quantity = styled.div`
 `;
 
 const Checkout = styled.div`
+  height: fit-content;
   flex: calc(100% - (60% + 50px));
   margin-top: 11px;
   border-radius: 10px;
@@ -151,6 +153,8 @@ const Checkout = styled.div`
     letter-spacing: 3px;
     font-weight: 500;
     color: var(--white);
+    border-bottom: 1px solid #575757;
+    padding-bottom: 10px;
   }
 `;
 
@@ -172,12 +176,17 @@ const EmptyCart = styled.div`
   }
 `;
 
+interface OrderSummaryItemType {
+  title: string;
+  price: number | string;
+}
+
 const cart = () => {
   const { checkout, updateLineItems, removeLineItems } = useContext(StoreContext);
 
   const items = checkout ? checkout.lineItems : [];
-
   const quantity = items.reduce((total: number, item: { quantity: number }) => total + item.quantity, 0);
+  const totalPrice = items.reduce((total, item: any) => total + +item.variant.price * quantity, 0);
 
   return (
     <CartWrapper>
@@ -188,7 +197,7 @@ const cart = () => {
       {!!quantity ? (
         <CartAndCheckoutWrapper>
           <CartItems>
-            {checkout.lineItems.map((item: any) => (
+            {items.map((item: any) => (
               <CartItem key={item.variant.id}>
                 <button className="remove" onClick={() => removeLineItems!(item.id)}>
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -228,8 +237,17 @@ const cart = () => {
           </CartItems>
           <Checkout>
             <h3>order summary</h3>
+            <div>
+              <p>subtotal</p>
+              <p>${totalPrice.toFixed(2)}</p>
+            </div>
+            <div>
+              <p>Shipping estimate</p>
+              <p>{totalPrice > 200 ? "Free" : "$50"}</p>
+            </div>
+
             <a href={checkout.checkoutUrl} target="_blank">
-              click me
+              checkout
             </a>
           </Checkout>
         </CartAndCheckoutWrapper>
@@ -242,5 +260,12 @@ const cart = () => {
     </CartWrapper>
   );
 };
+
+const OrderSummaryItem = ({ title, price }: OrderSummaryItemType) => (
+  <div>
+    <p>{title}</p>
+    <p>{price}</p>
+  </div>
+);
 
 export default cart;
