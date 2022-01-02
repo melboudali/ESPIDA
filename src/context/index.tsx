@@ -6,26 +6,6 @@ const client = Client.buildClient({
   domain: process.env.GATSBY_SHOPIFY_STORE_URL!,
 });
 
-interface checkoutType {
-  id: string;
-  lineItems: {
-    id: string;
-    title: string;
-    price: string;
-    quantity: number;
-    variant: {
-      id: string;
-      title: string;
-      price: string;
-      image: { src: string };
-    };
-  }[];
-  checkoutUrl: string;
-  lineItemCount: number;
-  subtotalPrice: string;
-  completedAt: string;
-}
-
 interface defualtValuesType {
   addLineItems?: (variantId: string | number, quantity: number) => Promise<void>;
   removeLineItems?: (lineItemID: string) => Promise<void>;
@@ -56,7 +36,7 @@ export const StoreContext = React.createContext(defaultValues);
 
 const isBrowser = typeof window !== `undefined`;
 const localStorageKey = `shopify_checkout_id`;
-console.log(typeof client);
+
 export const StoreProvider = ({ children }: StoreProviderProps) => {
   const [checkout, setCheckout] = React.useState(defaultValues.checkout);
   const [loading, setLoading] = React.useState(false);
