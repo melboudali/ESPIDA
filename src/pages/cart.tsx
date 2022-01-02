@@ -158,6 +158,8 @@ const Checkout = styled.div`
   }
 `;
 
+const OrderSummaryItemWrapper = styled.div``;
+
 const EmptyCart = styled.div`
   width: 100%;
   display: flex;
@@ -178,7 +180,7 @@ const EmptyCart = styled.div`
 
 interface OrderSummaryItemType {
   title: string;
-  price: number | string;
+  price: string;
 }
 
 const cart = () => {
@@ -237,15 +239,8 @@ const cart = () => {
           </CartItems>
           <Checkout>
             <h3>order summary</h3>
-            <div>
-              <p>subtotal</p>
-              <p>${totalPrice.toFixed(2)}</p>
-            </div>
-            <div>
-              <p>Shipping estimate</p>
-              <p>{totalPrice > 200 ? "Free" : "$50"}</p>
-            </div>
-
+            <OrderSummaryItem title="subtotal" price={`$${totalPrice.toFixed(2)}`} />
+            <OrderSummaryItem title="Shipping estimate" price={totalPrice > 200 ? "Free" : "$50"} />
             <a href={checkout.checkoutUrl} target="_blank">
               checkout
             </a>
@@ -262,10 +257,10 @@ const cart = () => {
 };
 
 const OrderSummaryItem = ({ title, price }: OrderSummaryItemType) => (
-  <div>
+  <OrderSummaryItemWrapper>
     <p>{title}</p>
     <p>{price}</p>
-  </div>
+  </OrderSummaryItemWrapper>
 );
 
 export default cart;
