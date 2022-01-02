@@ -1,6 +1,5 @@
-import { StaticImage } from "gatsby-plugin-image";
 import React, { useContext } from "react";
-import { GraphModel, LineItem } from "shopify-buy";
+import { StaticImage } from "gatsby-plugin-image";
 import styled, { css } from "styled-components";
 import { StoreContext } from "../context";
 
@@ -39,9 +38,14 @@ const ItemsCount = styled.span`
 `;
 
 const CartAndCheckoutWrapper = styled.div`
+  --flexDirection: column;
   display: flex;
-  gap: 50px;
-  margin: 40px 0 200px;
+  flex-direction: var(--flexDirection);
+  gap: 40px;
+  margin: 40px 0;
+  @media (min-width: 750px) {
+    --flexDirection: row;
+  }
 `;
 
 const CartItems = styled.div`
@@ -56,61 +60,76 @@ const ButtonStyle = css`
 `;
 
 const CartItem = styled.div`
+  --imageWidth: 100px;
+  --gap: 10px;
+  --padding: 5px;
   position: relative;
   display: flex;
-  gap: 20px;
+  gap: var(--gap);
   margin-top: 10px;
-  padding: 10px;
+  padding: var(--padding);
   border-radius: 10px;
   .remove {
     ${ButtonStyle}
     z-index:1;
     position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 40px;
+    top: var(--padding);
+    right: var(--padding);
+    width: 36px;
     height: 40px;
-    cursor: pointer;
   }
   img {
     border-radius: 10px;
-    width: 200px;
+    width: var(--imageWidth);
   }
-
   &:nth-child(odd) {
     background: #7951e614;
   }
-
   &:nth-child(even) {
     background: #fff;
+  }
+  @media (min-width: 750px) {
+    --imageWidth: 200px;
+    --gap: 20px;
+    --padding: 10px;
   }
 `;
 
 const Details = styled.div`
+  --headingSize: 0.9rem;
+  --pSize: 0.7rem;
+  --priceSize: 1rem;
   position: relative;
-  flex: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 10px;
+  flex: 100%;
+  gap: var(--padding);
   font-weight: 500;
   h3 {
+    width: calc(100% - 50px);
     margin: 0;
     line-height: 20px;
     text-transform: capitalize;
     color: var(--black);
+    font-size: var(--headingSize);
   }
   p {
     margin: 0;
-    font-size: 0.8rem;
+    font-size: var(--pSize);
     color: #aaa;
     span {
       margin: 0 10px;
     }
   }
   .price {
-    font-size: 1.1rem;
+    font-size: var(--priceSize);
     color: #7056d1;
+  }
+  @media (min-width: 750px) {
+    --headingSize: 1rem;
+    --pSize: 0.8rem;
+    --priceSize: 1.1rem;
   }
 `;
 
@@ -132,7 +151,6 @@ const Quantity = styled.div`
     border-radius: 5px;
     width: 36px;
     height: 30px;
-    cursor: pointer;
     svg {
       fill: #6d6d6d;
     }
@@ -140,15 +158,15 @@ const Quantity = styled.div`
 `;
 
 const Checkout = styled.div`
-  position: sticky;
+  --sticky: relative;
+  position: var(--sticky);
   top: 10px;
   height: fit-content;
-  flex: calc(100% - (60% + 50px));
+  flex: calc(100% - (60% + 40px));
   margin-top: 11px;
   border-radius: 10px;
   background-color: #000;
   padding: 10px;
-
   h3 {
     margin: 0 0 10px;
     font-size: 1.1rem;
@@ -158,6 +176,9 @@ const Checkout = styled.div`
     color: var(--white);
     border-bottom: 1px solid #575757;
     padding-bottom: 10px;
+  }
+  @media (min-width: 750px) {
+    --sticky: sticky;
   }
 `;
 
@@ -183,7 +204,6 @@ const OrderSummaryItemWrapper = styled.div`
 `;
 
 const CheckoutButton = styled.a`
-  display: block;
   div {
     height: 40px;
     width: 100%;
