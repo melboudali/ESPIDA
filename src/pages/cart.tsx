@@ -156,20 +156,18 @@ const Checkout = styled.div`
     border-bottom: 1px solid #575757;
     padding-bottom: 10px;
   }
-  a {
-    width: 70%;
-    margin: 0 auto;
-    background-image: linear-gradient(to left, #a14df0, #5e4df0);
-    color: var(--white);
-  }
 `;
 
 const OrderSummaryItemWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   text-transform: capitalize;
+  margin-bottom: 20px;
   padding: 0 20px;
   p {
+    margin: 0;
+    display: flex;
+    align-items: center;
     &:first-child {
       color: #d8d8d8;
     }
@@ -178,6 +176,22 @@ const OrderSummaryItemWrapper = styled.div`
       font-weight: 500;
       color: #ffffff;
     }
+  }
+`;
+
+const CheckoutButton = styled.a`
+  display: block;
+  div {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(to left, #a14df0, #5e4df0);
+    color: var(--white);
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
   }
 `;
 
@@ -209,7 +223,7 @@ const cart = () => {
 
   const items = checkout ? checkout.lineItems : [];
   const quantity = items.reduce((total: number, item: { quantity: number }) => total + item.quantity, 0);
-  const totalPrice = items.reduce((total, item: any) => total + +item.variant.price * quantity, 0);
+  const totalPrice = items.reduce((total, item: any) => total + item.variant.price * item.quantity, 0);
 
   return (
     <CartWrapper>
@@ -240,7 +254,7 @@ const cart = () => {
                     <span>|</span>
                     {item.variant.title.split(" / ")[1]}
                   </p>
-                  <p className="price">${item.variant.price}</p>
+                  <p className="price">${(item.variant.price * item.quantity).toFixed(2)}</p>
                   <Quantity>
                     <button onClick={() => updateLineItems!(item.id, item.quantity - 1)}>
                       <svg width="12" height="2" viewBox="0 0 12 2" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -261,10 +275,10 @@ const cart = () => {
           <Checkout>
             <h3>order summary</h3>
             <OrderSummaryItem title="subtotal" price={`$${totalPrice.toFixed(2)}`} />
-            <OrderSummaryItem title="shipping estimate" price={totalPrice > 200 ? "Free" : "$50"} />
-            <a href={checkout.checkoutUrl} target="_blank">
-              checkout
-            </a>
+            <OrderSummaryItem title="shipping estimate" price="free" />
+            <CheckoutButton href={(checkout as any).webUrl} target="_blank">
+              <div>checkout</div>
+            </CheckoutButton>
           </Checkout>
         </CartAndCheckoutWrapper>
       ) : (
