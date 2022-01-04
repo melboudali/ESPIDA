@@ -133,28 +133,26 @@ const Navbar = () => {
         </LeftMenu>
         <LogoWrapper>
           <Logo to="/">
-            <svg width="92" height="37" viewBox="0 0 92 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="114" height="47" viewBox="0 0 114 47" fill="none" xmlns="http://www.w3.org/2000/svg">
               <line
                 y1="-1.5"
-                x2="46.7056"
+                x2="58.2606"
                 y2="-1.5"
-                transform="matrix(0.960483 -0.278339 0.415125 0.909764 1.61227 37)"
+                transform="matrix(0.960751 -0.277412 0.416369 0.909196 1.6123 47)"
                 stroke="black"
                 strokeWidth="3"
               />
               <line
                 y1="-1.5"
-                x2="46.7059"
+                x2="58.261"
                 y2="-1.5"
-                transform="matrix(0.960495 0.278296 -0.415067 0.909791 45.221 24)"
+                transform="matrix(0.960764 0.277368 -0.416311 0.909222 56.025 30.8378)"
                 stroke="black"
                 strokeWidth="3"
               />
-              <line x1="45.5" y1="24" x2="45.5" y2="15" stroke="black" strokeWidth="3" />
+              <line x1="56.7448" y1="30.8378" x2="56.7448" y2="19.6486" stroke="black" strokeWidth="3" />
               <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M50 9C50 12.3137 47.3137 15 44 15V18C48.9706 18 53 13.9706 53 9C53 4.02944 48.9706 0 44 0C39.0294 0 35 4.02944 35 9H38C38 5.68629 40.6863 3 44 3C47.3137 3 50 5.68629 50 9Z"
+                d="M63.4595 11.1892C63.4595 15.7017 59.7851 19.3784 55.2297 19.3784V22.3784C61.4318 22.3784 66.4595 17.3688 66.4595 11.1892C66.4595 5.00957 61.4318 0 55.2297 0C49.0277 0 44 5.00957 44 11.1892H47C47 6.67665 50.6743 3 55.2297 3C59.7851 3 63.4595 6.67665 63.4595 11.1892Z"
                 fill="black"
               />
             </svg>
