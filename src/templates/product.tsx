@@ -11,10 +11,10 @@ const ProductWrapper = styled.section`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 40px;
   gap: var(--gap);
+  margin-top: 40px;
   @media (min-width: 750px) {
-    --gap: unset;
+    --gap: 20px;
   }
 `;
 
@@ -22,16 +22,18 @@ const Images = styled.div`
   --flex: 100%;
   --flexDirection: column;
   --height: fit-content;
+  --justifContent: center;
   display: flex;
   flex-direction: var(--flexDirection);
   flex: var(--flex);
-  justify-content: center;
+  justify-content: var(--justifContent);
   gap: 20px;
   height: var(--height);
   @media (min-width: 750px) {
-    --flex: 60%;
+    --flex: 743px;
     --flexDirection: row;
     --height: 600px;
+    --justifContent: start;
   }
 `;
 
@@ -93,10 +95,9 @@ const SmallImage = styled.button<{ isSelected: boolean }>`
 
 const Details = styled.div`
   --flex: 100%;
-
   flex: var(--flex);
   @media (min-width: 750px) {
-    --flex: 40%;
+    --flex: calc(100% - 763px);
   }
 `;
 
