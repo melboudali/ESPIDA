@@ -126,10 +126,10 @@ const Navbar = () => {
         </Menu>
 
         <LeftMenu>
-          <CustomLink to="/collections/all">tops</CustomLink>
-          <CustomLink to="/collections/all-outerwear/">outerwear</CustomLink>
-          <CustomLink to="/collections/all-bottoms">bottoms</CustomLink>
-          <CustomLink to="/shop-all/">collections</CustomLink>
+          <CustomLink to="/collections/tops">tops</CustomLink>
+          <CustomLink to="/collections/outerwear">outerwear</CustomLink>
+          <CustomLink to="/collections/bottoms">bottoms</CustomLink>
+          <CustomLink to="/collections">collections</CustomLink>
         </LeftMenu>
         <LogoWrapper>
           <Logo to="/">
