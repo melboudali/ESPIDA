@@ -17,7 +17,7 @@ const Nav = styled.div`
   justify-content: space-between;
   max-width: 1280px;
   margin: 0 auto;
-  height: 78px;
+  height: 66px;
   padding: 0 10px;
 `;
 
@@ -126,9 +126,10 @@ const Navbar = () => {
         </Menu>
 
         <LeftMenu>
-          <CustomLink to="/collections/tops">tops</CustomLink>
-          <CustomLink to="/collections/outerwear">outerwear</CustomLink>
+          <CustomLink to="/collections/coats">coats</CustomLink>
           <CustomLink to="/collections/bottoms">bottoms</CustomLink>
+          <CustomLink to="/collections/sneakers">sneakers</CustomLink>
+          <CustomLink to="/collections/boots">boots</CustomLink>
           <CustomLink to="/collections">collections</CustomLink>
         </LeftMenu>
         <LogoWrapper>
