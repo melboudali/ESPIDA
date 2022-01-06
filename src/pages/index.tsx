@@ -86,13 +86,8 @@ export const query = graphql`
   fragment AllShopifyProductFragment on ShopifyProduct {
     id
     title
-    description
-    tags
     handle
     productType
-    collections {
-      title
-    }
     images {
       altText
       gatsbyImageData
@@ -107,6 +102,5 @@ export const query = graphql`
         gatsbyImageData
       }
     }
-    publishedAt
   }
 `;
