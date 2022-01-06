@@ -19,7 +19,7 @@ const turnProductsIntoPages = async (args: CreatePagesArgs) => {
 
   res.data?.products.nodes.forEach((post: postType) => {
     actions.createPage({
-      path: `${post.productType!}/${post.handle!}`,
+      path: `collections/${post.productType!}/${post.handle!}`,
       component: postTemplate,
       context: { id: post.id },
     });
