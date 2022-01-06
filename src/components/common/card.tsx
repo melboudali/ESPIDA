@@ -115,14 +115,16 @@ const Price = styled.div`
     font-size: 1.125rem;
     line-height: 16px;
     margin: 0;
-    &:first-child {
-      color: var(--black);
-    }
-    &:last-child {
-      color: var(--lightGrey);
-      text-decoration: line-through;
-    }
   }
+`;
+
+const NewPrice = styled.p`
+  color: var(--black);
+`;
+
+const OldPrice = styled.div`
+  color: var(--lightGrey);
+  text-decoration: line-through;
 `;
 
 const AddToCartButton = styled.button`
@@ -177,8 +179,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <Link to={`/collections/${product.productType}/${product.handle}`}>
           <Title title={product.title!}>{product.title}</Title>
           <Price>
-            <p>${selectedVariant.price}</p>
-            <p>${selectedVariant.compareAtPrice}</p>
+            <NewPrice>${selectedVariant.price}</NewPrice>
+            {selectedVariant.compareAtPrice && <OldPrice>${selectedVariant.compareAtPrice}</OldPrice>}
           </Price>
         </Link>
       </Details>
