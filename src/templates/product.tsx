@@ -285,7 +285,6 @@ const Product = ({ data: { productData }, pageContext: { id } }: ProductProps) =
       </Images>
       <Details>
         <Tags>
-          <p>{productData?.productType}</p>
           {productData?.collections?.map((collection) => (
             <p key={collection?.id}>{collection?.title}</p>
           ))}
@@ -379,8 +378,6 @@ export const query = graphql`
         id
         title
       }
-      productType
-      storefrontId
       variants {
         id
         title
