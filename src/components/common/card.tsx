@@ -156,7 +156,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <Card>
-      <Link to={`/${product.productType}/${product.handle}`}>
+      <Link to={`/collections/${product.productType}/${product.handle}`}>
         <GatsbyImage image={selectedVariant.image} alt="product_image" className="gatsby_image" />
       </Link>
       <Details>
@@ -174,7 +174,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             ))}
           </Colors>
         </ColorsWrapper>
-        <Link to={`/${product.productType}/${product.handle}`}>
+        <Link to={`/collections/${product.productType}/${product.handle}`}>
           <Title title={product.title!}>{product.title}</Title>
           <Price>
             <p>${selectedVariant.price}</p>
