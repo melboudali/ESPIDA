@@ -25,7 +25,7 @@ const colorsHex: { color: string; hex: string }[] = [
   { color: "grey", hex: "#808080" },
   { color: "white", hex: "#fff" },
   { color: "red", hex: "#c93030" },
-  { color: "brown", hex: "#541906" },
+  { color: "brown", hex: "#8E3100" },
   { color: "burgundy", hex: "#800020" },
   { color: "blue", hex: "#4848cf" },
   { color: "dark blue", hex: "#222270" },
@@ -39,6 +39,8 @@ const colorsHex: { color: string; hex: string }[] = [
   { color: "army green", hex: "#667C4D" },
   { color: "orange", hex: "#FC6103" },
   { color: "green", hex: "#00C060" },
+  { color: "pink", hex: "#F06FB8" },
+  { color: "apple green", hex: "#79F0B1" },
 ];
 
 export const getColor = (colorName: string) => {
