@@ -38,6 +38,7 @@ const colorsHex: { color: string; hex: string }[] = [
   { color: "auburn", hex: "#922724" },
   { color: "army green", hex: "#667C4D" },
   { color: "orange", hex: "#FC6103" },
+  { color: "green", hex: "#00C060" },
 ];
 
 export const getColor = (colorName: string) => {
