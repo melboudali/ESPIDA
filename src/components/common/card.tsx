@@ -73,6 +73,7 @@ const ToolTip = styled.div`
   left: 50%;
   font-size: 0.8125rem;
   font-weight: 500;
+  text-transform: capitalize;
   white-space: nowrap;
   color: var(--white);
   border-bottom-left-radius: 5px;
