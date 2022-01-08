@@ -8,7 +8,6 @@ const CategoriesWrapper = styled.section`
   display: flex;
   flex-direction: var(--flexDirection);
   gap: 40px;
-  margin-top: 40px;
   @media (min-width: 750px) {
     --flexDirection: row;
   }
