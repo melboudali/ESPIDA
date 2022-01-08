@@ -2,39 +2,10 @@ import React, { useContext } from "react";
 import { StaticImage } from "gatsby-plugin-image";
 import styled, { css } from "styled-components";
 import { StoreContext } from "../context";
+import { PageTitle } from "../components/common/pageTitle";
 
 const CartWrapper = styled.section`
   margin-top: 40px;
-`;
-
-const Title = styled.h1`
-  --fontSize: 1.8rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin: 0;
-  font-size: var(--fontSize);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  text-transform: uppercase;
-  line-height: 35px;
-  color: #000;
-  @media (min-width: 375px) {
-    --fontSize: 1.875rem;
-  }
-`;
-
-const ItemsCount = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2px 4px;
-  font-size: 0.6875rem;
-  letter-spacing: normal;
-  line-height: 13px;
-  color: #000;
-  border-radius: 5px;
-  background: #adadad;
 `;
 
 const CartAndCheckoutWrapper = styled.div`
@@ -250,10 +221,7 @@ const cart = () => {
 
   return (
     <CartWrapper>
-      <Title>
-        Shopping Cart
-        {!!quantity && <ItemsCount>{quantity}</ItemsCount>}
-      </Title>
+      <PageTitle quantity={quantity}>shopping Cart</PageTitle>
       {!!quantity ? (
         <CartAndCheckoutWrapper>
           <CartItems>
