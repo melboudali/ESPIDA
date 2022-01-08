@@ -20,19 +20,19 @@ const Cards = styled.div`
 `;
 
 interface Props {
-  pageContext: { id: string; title: string };
+  pageContext: { id: string; title: string; location: string };
   data: CollectionQuery;
 }
 
 const Collection = ({
-  pageContext: { title },
+  pageContext: { title, location },
   data: {
     collectionProducts: { nodes },
   },
 }: Props) => {
   return (
     <>
-      <Seo title={title} location="/collections}" />
+      <Seo title={title} location={location} />
       <PageTitle quantity={nodes.length}>{title}</PageTitle>
       <Cards>
         {nodes.map((node: shopifyProduct) => (
