@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { StaticImage } from "gatsby-plugin-image";
 import styled, { css } from "styled-components";
 import { StoreContext } from "../context";
-import { PageTitle } from "../components/common/pageTitle";
+import PageTitle from "../components/common/pageTitle";
 
 const CartWrapper = styled.section`
   margin-top: 40px;
