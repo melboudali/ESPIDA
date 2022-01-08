@@ -266,8 +266,8 @@ export type SiteSiteMetadata = {
   title?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   image?: Maybe<Scalars['String']>;
-  siteUrl?: Maybe<Scalars['String']>;
   author?: Maybe<Scalars['String']>;
+  siteUrl?: Maybe<Scalars['String']>;
   fbid?: Maybe<Scalars['String']>;
 };
 
@@ -303,6 +303,7 @@ export type SitePage = Node & {
 
 export type SitePageContext = {
   id?: Maybe<Scalars['String']>;
+  location?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
 };
 
@@ -355,6 +356,7 @@ export type SitePluginPluginOptions = {
   documentPaths?: Maybe<Array<Maybe<Scalars['String']>>>;
   endpoint?: Maybe<Scalars['String']>;
   timeout?: Maybe<Scalars['Int']>;
+  trackingIds?: Maybe<Array<Maybe<Scalars['String']>>>;
   pathCheck?: Maybe<Scalars['Boolean']>;
   allExtensions?: Maybe<Scalars['Boolean']>;
   isTSX?: Maybe<Scalars['Boolean']>;
@@ -2568,8 +2570,8 @@ export type SiteSiteMetadataFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
   description?: Maybe<StringQueryOperatorInput>;
   image?: Maybe<StringQueryOperatorInput>;
-  siteUrl?: Maybe<StringQueryOperatorInput>;
   author?: Maybe<StringQueryOperatorInput>;
+  siteUrl?: Maybe<StringQueryOperatorInput>;
   fbid?: Maybe<StringQueryOperatorInput>;
 };
 
@@ -2623,8 +2625,8 @@ export type SiteFieldsEnum =
   | 'siteMetadata___title'
   | 'siteMetadata___description'
   | 'siteMetadata___image'
-  | 'siteMetadata___siteUrl'
   | 'siteMetadata___author'
+  | 'siteMetadata___siteUrl'
   | 'siteMetadata___fbid'
   | 'port'
   | 'host'
@@ -2978,6 +2980,7 @@ export type SiteFunctionSortInput = {
 
 export type SitePageContextFilterInput = {
   id?: Maybe<StringQueryOperatorInput>;
+  location?: Maybe<StringQueryOperatorInput>;
   title?: Maybe<StringQueryOperatorInput>;
 };
 
@@ -3030,6 +3033,7 @@ export type SitePluginPluginOptionsFilterInput = {
   documentPaths?: Maybe<StringQueryOperatorInput>;
   endpoint?: Maybe<StringQueryOperatorInput>;
   timeout?: Maybe<IntQueryOperatorInput>;
+  trackingIds?: Maybe<StringQueryOperatorInput>;
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
   allExtensions?: Maybe<BooleanQueryOperatorInput>;
   isTSX?: Maybe<BooleanQueryOperatorInput>;
@@ -3218,6 +3222,7 @@ export type SitePageFieldsEnum =
   | 'internal___type'
   | 'isCreatedByStatefulCreatePages'
   | 'context___id'
+  | 'context___location'
   | 'context___title'
   | 'pluginCreator___resolve'
   | 'pluginCreator___name'
@@ -3258,6 +3263,7 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___documentPaths'
   | 'pluginCreator___pluginOptions___endpoint'
   | 'pluginCreator___pluginOptions___timeout'
+  | 'pluginCreator___pluginOptions___trackingIds'
   | 'pluginCreator___pluginOptions___pathCheck'
   | 'pluginCreator___pluginOptions___allExtensions'
   | 'pluginCreator___pluginOptions___isTSX'
@@ -3464,6 +3470,7 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___documentPaths'
   | 'pluginOptions___endpoint'
   | 'pluginOptions___timeout'
+  | 'pluginOptions___trackingIds'
   | 'pluginOptions___pathCheck'
   | 'pluginOptions___allExtensions'
   | 'pluginOptions___isTSX'
@@ -10390,10 +10397,10 @@ export type ShopifyLocationSortInput = {
   order?: Maybe<Array<Maybe<SortOrderEnum>>>;
 };
 
-export type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
+export type MySiteMetaDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type Unnamed_1_Query = { site?: { siteMetadata?: { title?: string | null | undefined, description?: string | null | undefined, author?: string | null | undefined, image?: string | null | undefined } | null | undefined } | null | undefined };
+export type MySiteMetaDataQuery = { site?: { siteMetadata?: { siteUrl?: string | null | undefined, author?: string | null | undefined, fbid?: string | null | undefined, defaultTitle?: string | null | undefined, defaultDescription?: string | null | undefined, defaultImage?: string | null | undefined } | null | undefined } | null | undefined };
 
 export type AllCollectionsProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
