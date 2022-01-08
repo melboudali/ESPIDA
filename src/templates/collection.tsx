@@ -1,9 +1,16 @@
 import React from "react";
 
-interface Props {}
+interface Props {
+  pageContext: { id: string; title: string };
+}
 
-const collection = (props: Props) => {
-  return <div>collection</div>;
+const Collection = ({ pageContext: { id, title } }: Props) => {
+  return (
+    <div>
+      <p>id: {id}</p>
+      <p>{title}</p>
+    </div>
+  );
 };
 
-export default collection;
+export default Collection;
