@@ -10393,7 +10393,7 @@ export type ShopifyLocationSortInput = {
 export type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type Unnamed_1_Query = { site?: { siteMetadata?: { title?: string | null | undefined, description?: string | null | undefined, author?: string | null | undefined } | null | undefined } | null | undefined };
+export type Unnamed_1_Query = { site?: { siteMetadata?: { title?: string | null | undefined, description?: string | null | undefined, author?: string | null | undefined, image?: string | null | undefined } | null | undefined } | null | undefined };
 
 export type AllCollectionsProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
