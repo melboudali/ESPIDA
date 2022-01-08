@@ -1,13 +1,23 @@
 import { CreateShopifyProductQuery } from "../types";
 
-export interface resType {
+export interface resPostType {
   data?: CreateShopifyProductQuery;
+}
+
+export interface resCollectionType {
+  data?: CreateShopifyCollectionQuery;
 }
 
 export interface postType {
   handle?: string | null;
   id: string;
   productType?: string | null;
+}
+
+export interface collectionType {
+  id: string;
+  title?: string | null;
+  handle?: string | null;
 }
 
 export type variantType = {
