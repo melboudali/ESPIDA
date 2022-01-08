@@ -31,7 +31,7 @@ const Seo = ({ title, image, description, location }: SeoProps) => {
   const seo = {
     title: title ?? site?.siteMetadata?.defaultTitle,
     description: description ?? site?.siteMetadata?.defaultDescription,
-    image: `${site?.siteMetadata?.siteUrl}${image ?? site?.siteMetadata?.defaultImage}`,
+    image: image ?? site?.siteMetadata?.siteUrl! + site?.siteMetadata?.defaultImage,
     siteUrl: `${site?.siteMetadata?.siteUrl}${location ?? ""}`,
   };
 
