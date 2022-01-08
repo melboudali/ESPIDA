@@ -61,8 +61,4 @@ export type shopifyProduct = {
     | null
     | undefined
   > | null;
-  // description?: string | null;
-  // tags?: Array<string | null | undefined> | null;
-  // publishedAt?: any | null;
-  // collections?: Array<{ title?: string | null } | null | undefined> | null;
 };
