@@ -63,10 +63,10 @@ function Seo({ description, lang, title, image }: SeoProps) {
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary_large_image`,
         },
         {
-          name: `twitter:image`,
+          name: `twitter:twitter:image:src`,
           content: defaultImage,
         },
         {
