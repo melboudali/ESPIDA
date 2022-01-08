@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { AllCollectionsProductsQuery } from "../../gatsby-graphql";
 import ProductCard from "../components/common/card";
 import PageTitle from "../components/common/pageTitle";
+import Seo from "../components/common/seo";
 import { shopifyProduct } from "../types";
 
 const Cards = styled.div`
@@ -25,6 +26,7 @@ const Collections = ({
 }: CollectionsProps) => {
   return (
     <>
+      <Seo title="Collections" location="/collections" />
       <PageTitle quantity={nodes.length}>collections</PageTitle>
       <Cards>
         {nodes.map((node: shopifyProduct) => (
