@@ -10392,6 +10392,11 @@ export type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 export type Unnamed_1_Query = { site?: { siteMetadata?: { title?: string | null | undefined, description?: string | null | undefined, author?: string | null | undefined } | null | undefined } | null | undefined };
 
+export type AllCollectionsProductsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AllCollectionsProductsQuery = { allShopifyProduct: { nodes: Array<{ id: string, title?: string | null | undefined, handle?: string | null | undefined, productType?: string | null | undefined, images?: Array<{ altText?: string | null | undefined, gatsbyImageData: any } | null | undefined> | null | undefined, variants?: Array<{ id: string, title?: string | null | undefined, storefrontId?: string | null | undefined, price?: string | null | undefined, compareAtPrice?: string | null | undefined, image?: { gatsbyImageData: any } | null | undefined } | null | undefined> | null | undefined }> } };
+
 export type AllShopifyProductQueryVariables = Exact<{ [key: string]: never; }>;
 
 
