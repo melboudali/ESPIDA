@@ -5,6 +5,7 @@ import styled from "styled-components";
 import PageTitle from "../components/common/pageTitle";
 import { shopifyProduct } from "../types";
 import ProductCard from "../components/common/card";
+import Seo from "../components/common/seo";
 
 const Cards = styled.div`
   --justifyContent: center;
@@ -31,6 +32,7 @@ const Collection = ({
 }: Props) => {
   return (
     <>
+      <Seo title={title} location="/collections}" />
       <PageTitle quantity={nodes.length}>{title}</PageTitle>
       <Cards>
         {nodes.map((node: shopifyProduct) => (

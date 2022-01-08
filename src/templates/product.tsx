@@ -5,6 +5,7 @@ import styled, { css } from "styled-components";
 import { ShopifyProductQuery } from "../../gatsby-graphql";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { getColorsAndImages, getColor, getSize, getVariant } from "../utils";
+import Seo from "../components/common/seo";
 
 const ProductWrapper = styled.section`
   --gap: 30px;
@@ -261,6 +262,12 @@ const Product = ({ data: { productData }, pageContext: { id } }: ProductProps) =
 
   return (
     <ProductWrapper>
+      <Seo
+        title={productData?.title!}
+        description={productData?.description!}
+        image={productData?.variants![0]?.image?.gatsbyImageData.src}
+        location="/collections"
+      />
       <Images>
         <OtherImages>
           {variants.map(({ id, image, color }) => (
