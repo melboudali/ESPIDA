@@ -247,10 +247,10 @@ const AddToCart = styled.button`
 
 interface ProductProps {
   data: ShopifyProductQuery;
-  pageContext: { id: string };
+  pageContext: { id: string; location: string };
 }
 
-const Product = ({ data: { productData }, pageContext: { id } }: ProductProps) => {
+const Product = ({ data: { productData }, pageContext: { id, location } }: ProductProps) => {
   const { client, addLineItems } = useContext(StoreContext);
   const [variants] = useState(getColorsAndImages(productData?.variants!));
   const [selectedVariant, setSelectedVariant] = useState(productData?.variants![0]);
@@ -261,116 +261,118 @@ const Product = ({ data: { productData }, pageContext: { id } }: ProductProps) =
   const productVariant = client.product.helpers.variantForOptions({ ...productData, id }, chosenVariant) || chosenVariant;
 
   return (
-    <ProductWrapper>
+    <>
       <Seo
         title={productData?.title!}
         description={productData?.description!}
         image={productData?.variants![0]?.image?.gatsbyImageData.src}
-        location="/collections"
+        location={location}
       />
-      <Images>
-        <OtherImages>
-          {variants.map(({ id, image, color }) => (
-            <SmallImage
-              key={id}
-              aria-label="image"
-              isSelected={image === selectedVariant?.image?.gatsbyImageData}
-              onClick={() => {
-                if (image !== selectedVariant?.image) {
-                  setSelectedVariant(productData?.variants?.find((variant) => variant?.id === id));
-                  setSelectedColor(color);
-                }
-              }}
-            >
-              <GatsbyImage key={id} image={image} alt="product_image" className="gatsby_image" />
-            </SmallImage>
-          ))}
-        </OtherImages>
-        <MainImage>
-          <GatsbyImage image={selectedVariant?.image?.gatsbyImageData} alt="product_image" className="gatsby_image" />
-        </MainImage>
-      </Images>
-      <Details>
-        <Tags>
-          {productData?.collections?.map((collection) => (
-            <p key={collection?.id}>{collection?.title}</p>
-          ))}
-        </Tags>
-        <ProductTitle>{productData?.title}</ProductTitle>
-        <Rate>
-          <Stars>
-            <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M6.99524 0.521791L5.08239 4.40022L0.802649 5.02416C0.0351658 5.13548 -0.272413 6.08165 0.284158 6.62358L3.38046 9.64078L2.64812 13.9029C2.5163 14.6734 3.32773 15.2504 4.00733 14.8901L7.83596 12.8777L11.6646 14.8901C12.3442 15.2475 13.1556 14.6734 13.0238 13.9029L12.2915 9.64078L15.3878 6.62358C15.9443 6.08165 15.6368 5.13548 14.8693 5.02416L10.5895 4.40022L8.67668 0.521791C8.33395 -0.16953 7.3409 -0.178317 6.99524 0.521791Z"
-                fill="#6B6B6B"
-              />
-            </svg>
-            <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M6.99524 0.521791L5.08239 4.40022L0.802649 5.02416C0.0351658 5.13548 -0.272413 6.08165 0.284158 6.62358L3.38046 9.64078L2.64812 13.9029C2.5163 14.6734 3.32773 15.2504 4.00733 14.8901L7.83596 12.8777L11.6646 14.8901C12.3442 15.2475 13.1556 14.6734 13.0238 13.9029L12.2915 9.64078L15.3878 6.62358C15.9443 6.08165 15.6368 5.13548 14.8693 5.02416L10.5895 4.40022L8.67668 0.521791C8.33395 -0.16953 7.3409 -0.178317 6.99524 0.521791Z"
-                fill="#6B6B6B"
-              />
-            </svg>
-            <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M6.99524 0.521791L5.08239 4.40022L0.802649 5.02416C0.0351658 5.13548 -0.272413 6.08165 0.284158 6.62358L3.38046 9.64078L2.64812 13.9029C2.5163 14.6734 3.32773 15.2504 4.00733 14.8901L7.83596 12.8777L11.6646 14.8901C12.3442 15.2475 13.1556 14.6734 13.0238 13.9029L12.2915 9.64078L15.3878 6.62358C15.9443 6.08165 15.6368 5.13548 14.8693 5.02416L10.5895 4.40022L8.67668 0.521791C8.33395 -0.16953 7.3409 -0.178317 6.99524 0.521791Z"
-                fill="#6B6B6B"
-              />
-            </svg>
-            <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M6.99524 0.521791L5.08239 4.40022L0.802649 5.02416C0.0351658 5.13548 -0.272413 6.08165 0.284158 6.62358L3.38046 9.64078L2.64812 13.9029C2.5163 14.6734 3.32773 15.2504 4.00733 14.8901L7.83596 12.8777L11.6646 14.8901C12.3442 15.2475 13.1556 14.6734 13.0238 13.9029L12.2915 9.64078L15.3878 6.62358C15.9443 6.08165 15.6368 5.13548 14.8693 5.02416L10.5895 4.40022L8.67668 0.521791C8.33395 -0.16953 7.3409 -0.178317 6.99524 0.521791Z"
-                fill="#6B6B6B"
-              />
-            </svg>
-            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M14.2319 5.13554L10.1358 4.53917L8.30526 0.83423C8.1407 0.503166 7.81972 0.335815 7.49873 0.335815C7.1797 0.335815 6.86095 0.500927 6.69583 0.83423L4.86477 4.53889L0.768315 5.1347C0.0337067 5.24104 -0.260696 6.14468 0.27186 6.6624L3.2352 9.54486L2.53389 13.6161C2.43427 14.1977 2.89854 14.6642 3.4185 14.6642C3.55647 14.6642 3.69835 14.6314 3.83464 14.5592L7.49929 12.6372L11.1637 14.5598C11.2997 14.6312 11.4413 14.6636 11.5787 14.6636C12.0992 14.6636 12.5643 14.1988 12.4647 13.617L11.7642 9.54542L14.7281 6.66352C15.2609 6.1458 14.9665 5.24188 14.2319 5.13554ZM10.825 8.5833L10.3179 9.07639L10.4377 9.77266L10.984 12.9476L8.12587 11.4478L7.49957 11.1193L7.50041 2.24272L8.92848 5.1333L9.24136 5.7666L9.94127 5.86846L13.138 6.33386L10.825 8.5833Z"
-                fill="#6B6B6B"
-              />
-            </svg>
-          </Stars>
-          <p>606 Reviews</p>
-        </Rate>
-        <Prices>
-          <NewPrice>${selectedVariant?.price}</NewPrice>
-          {selectedVariant?.compareAtPrice && <OldPrice>${selectedVariant?.compareAtPrice}</OldPrice>}
-        </Prices>
-        <Description>{productData?.description}</Description>
-        <ColorAndSizeContainer>
-          <p>color: {selectedVariant?.title?.split(" /")[0]}</p>
-          <ColorAndSizeWrapper>
-            {variants.map(({ id, color }) => (
-              <ColorElement
-                aria-label={color}
+      <ProductWrapper>
+        <Images>
+          <OtherImages>
+            {variants.map(({ id, image, color }) => (
+              <SmallImage
                 key={id}
-                color={getColor(color!)}
-                isSelected={id === selectedVariant?.id}
+                aria-label="image"
+                isSelected={image === selectedVariant?.image?.gatsbyImageData}
                 onClick={() => {
-                  if (id !== selectedVariant?.id) {
+                  if (image !== selectedVariant?.image) {
                     setSelectedVariant(productData?.variants?.find((variant) => variant?.id === id));
                     setSelectedColor(color);
                   }
                 }}
-              />
+              >
+                <GatsbyImage key={id} image={image} alt="product_image" className="gatsby_image" />
+              </SmallImage>
             ))}
-          </ColorAndSizeWrapper>
-        </ColorAndSizeContainer>
-        <ColorAndSizeContainer>
-          <p>size: {selectedSize}</p>
-          <ColorAndSizeWrapper>
-            {getSize(productData?.variants!).map(({ id, size }) => (
-              <Size key={id} aria-label={size} isSelected={selectedSize === size} onClick={() => setSelectedSize(size)}>
-                {size}
-              </Size>
+          </OtherImages>
+          <MainImage>
+            <GatsbyImage image={selectedVariant?.image?.gatsbyImageData} alt="product_image" className="gatsby_image" />
+          </MainImage>
+        </Images>
+        <Details>
+          <Tags>
+            {productData?.collections?.map((collection) => (
+              <p key={collection?.id}>{collection?.title}</p>
             ))}
-          </ColorAndSizeWrapper>
-        </ColorAndSizeContainer>
-        <AddToCart aria-label="add to cart" onClick={() => addLineItems!(productVariant.storefrontId, 1)}>
-          add to cart
-        </AddToCart>
-      </Details>
-    </ProductWrapper>
+          </Tags>
+          <ProductTitle>{productData?.title}</ProductTitle>
+          <Rate>
+            <Stars>
+              <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M6.99524 0.521791L5.08239 4.40022L0.802649 5.02416C0.0351658 5.13548 -0.272413 6.08165 0.284158 6.62358L3.38046 9.64078L2.64812 13.9029C2.5163 14.6734 3.32773 15.2504 4.00733 14.8901L7.83596 12.8777L11.6646 14.8901C12.3442 15.2475 13.1556 14.6734 13.0238 13.9029L12.2915 9.64078L15.3878 6.62358C15.9443 6.08165 15.6368 5.13548 14.8693 5.02416L10.5895 4.40022L8.67668 0.521791C8.33395 -0.16953 7.3409 -0.178317 6.99524 0.521791Z"
+                  fill="#6B6B6B"
+                />
+              </svg>
+              <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M6.99524 0.521791L5.08239 4.40022L0.802649 5.02416C0.0351658 5.13548 -0.272413 6.08165 0.284158 6.62358L3.38046 9.64078L2.64812 13.9029C2.5163 14.6734 3.32773 15.2504 4.00733 14.8901L7.83596 12.8777L11.6646 14.8901C12.3442 15.2475 13.1556 14.6734 13.0238 13.9029L12.2915 9.64078L15.3878 6.62358C15.9443 6.08165 15.6368 5.13548 14.8693 5.02416L10.5895 4.40022L8.67668 0.521791C8.33395 -0.16953 7.3409 -0.178317 6.99524 0.521791Z"
+                  fill="#6B6B6B"
+                />
+              </svg>
+              <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M6.99524 0.521791L5.08239 4.40022L0.802649 5.02416C0.0351658 5.13548 -0.272413 6.08165 0.284158 6.62358L3.38046 9.64078L2.64812 13.9029C2.5163 14.6734 3.32773 15.2504 4.00733 14.8901L7.83596 12.8777L11.6646 14.8901C12.3442 15.2475 13.1556 14.6734 13.0238 13.9029L12.2915 9.64078L15.3878 6.62358C15.9443 6.08165 15.6368 5.13548 14.8693 5.02416L10.5895 4.40022L8.67668 0.521791C8.33395 -0.16953 7.3409 -0.178317 6.99524 0.521791Z"
+                  fill="#6B6B6B"
+                />
+              </svg>
+              <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M6.99524 0.521791L5.08239 4.40022L0.802649 5.02416C0.0351658 5.13548 -0.272413 6.08165 0.284158 6.62358L3.38046 9.64078L2.64812 13.9029C2.5163 14.6734 3.32773 15.2504 4.00733 14.8901L7.83596 12.8777L11.6646 14.8901C12.3442 15.2475 13.1556 14.6734 13.0238 13.9029L12.2915 9.64078L15.3878 6.62358C15.9443 6.08165 15.6368 5.13548 14.8693 5.02416L10.5895 4.40022L8.67668 0.521791C8.33395 -0.16953 7.3409 -0.178317 6.99524 0.521791Z"
+                  fill="#6B6B6B"
+                />
+              </svg>
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M14.2319 5.13554L10.1358 4.53917L8.30526 0.83423C8.1407 0.503166 7.81972 0.335815 7.49873 0.335815C7.1797 0.335815 6.86095 0.500927 6.69583 0.83423L4.86477 4.53889L0.768315 5.1347C0.0337067 5.24104 -0.260696 6.14468 0.27186 6.6624L3.2352 9.54486L2.53389 13.6161C2.43427 14.1977 2.89854 14.6642 3.4185 14.6642C3.55647 14.6642 3.69835 14.6314 3.83464 14.5592L7.49929 12.6372L11.1637 14.5598C11.2997 14.6312 11.4413 14.6636 11.5787 14.6636C12.0992 14.6636 12.5643 14.1988 12.4647 13.617L11.7642 9.54542L14.7281 6.66352C15.2609 6.1458 14.9665 5.24188 14.2319 5.13554ZM10.825 8.5833L10.3179 9.07639L10.4377 9.77266L10.984 12.9476L8.12587 11.4478L7.49957 11.1193L7.50041 2.24272L8.92848 5.1333L9.24136 5.7666L9.94127 5.86846L13.138 6.33386L10.825 8.5833Z"
+                  fill="#6B6B6B"
+                />
+              </svg>
+            </Stars>
+            <p>606 Reviews</p>
+          </Rate>
+          <Prices>
+            <NewPrice>${selectedVariant?.price}</NewPrice>
+            {selectedVariant?.compareAtPrice && <OldPrice>${selectedVariant?.compareAtPrice}</OldPrice>}
+          </Prices>
+          <Description>{productData?.description}</Description>
+          <ColorAndSizeContainer>
+            <p>color: {selectedVariant?.title?.split(" /")[0]}</p>
+            <ColorAndSizeWrapper>
+              {variants.map(({ id, color }) => (
+                <ColorElement
+                  aria-label={color}
+                  key={id}
+                  color={getColor(color!)}
+                  isSelected={id === selectedVariant?.id}
+                  onClick={() => {
+                    if (id !== selectedVariant?.id) {
+                      setSelectedVariant(productData?.variants?.find((variant) => variant?.id === id));
+                      setSelectedColor(color);
+                    }
+                  }}
+                />
+              ))}
+            </ColorAndSizeWrapper>
+          </ColorAndSizeContainer>
+          <ColorAndSizeContainer>
+            <p>size: {selectedSize}</p>
+            <ColorAndSizeWrapper>
+              {getSize(productData?.variants!).map(({ id, size }) => (
+                <Size key={id} aria-label={size} isSelected={selectedSize === size} onClick={() => setSelectedSize(size)}>
+                  {size}
+                </Size>
+              ))}
+            </ColorAndSizeWrapper>
+          </ColorAndSizeContainer>
+          <AddToCart aria-label="add to cart" onClick={() => addLineItems!(productVariant.storefrontId, 1)}>
+            add to cart
+          </AddToCart>
+        </Details>
+      </ProductWrapper>
+    </>
   );
 };
 
