@@ -2,6 +2,7 @@ import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import { Helmet } from "react-helmet";
 import PropTypes from "prop-types";
+import { MySiteMetaDataQuery } from "../../../gatsby-graphql";
 
 interface SeoProps {
   title?: string;
@@ -12,7 +13,7 @@ interface SeoProps {
 }
 
 const Seo = ({ title, image, description, location }: SeoProps) => {
-  const { site }: any = useStaticQuery(graphql`
+  const { site }: MySiteMetaDataQuery = useStaticQuery(graphql`
     query mySiteMetaData {
       site {
         siteMetadata {
