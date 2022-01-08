@@ -1,4 +1,4 @@
-import { CreateShopifyProductQuery } from "../types";
+import { CreateShopifyCollectionQuery, CreateShopifyProductQuery } from "../../gatsby-graphql";
 
 export interface resPostType {
   data?: CreateShopifyProductQuery;
