@@ -10407,6 +10407,13 @@ export type AllShopifyProductQuery = { bestSellers: { nodes: Array<{ id: string,
 
 export type AllShopifyProductFragmentFragment = { id: string, title?: string | null | undefined, handle?: string | null | undefined, productType?: string | null | undefined, images?: Array<{ altText?: string | null | undefined, gatsbyImageData: any } | null | undefined> | null | undefined, variants?: Array<{ id: string, title?: string | null | undefined, storefrontId?: string | null | undefined, price?: string | null | undefined, compareAtPrice?: string | null | undefined, image?: { gatsbyImageData: any } | null | undefined } | null | undefined> | null | undefined };
 
+export type CollectionQueryVariables = Exact<{
+  id?: Maybe<Scalars['String']>;
+}>;
+
+
+export type CollectionQuery = { collectionProducts: { nodes: Array<{ id: string, title?: string | null | undefined, handle?: string | null | undefined, productType?: string | null | undefined, images?: Array<{ altText?: string | null | undefined, gatsbyImageData: any } | null | undefined> | null | undefined, variants?: Array<{ id: string, title?: string | null | undefined, storefrontId?: string | null | undefined, price?: string | null | undefined, compareAtPrice?: string | null | undefined, image?: { gatsbyImageData: any } | null | undefined } | null | undefined> | null | undefined }> } };
+
 export type ShopifyProductQueryVariables = Exact<{
   id?: Maybe<Scalars['String']>;
 }>;
