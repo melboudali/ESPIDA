@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import { AllCollectionsProductsQuery } from "../../gatsby-graphql";
 import ProductCard from "../components/common/card";
-import { PageTitle } from "../components/common/pageTitle";
+import PageTitle from "../components/common/pageTitle";
 import { shopifyProduct } from "../types";
 
 const Wrapper = styled.section`
