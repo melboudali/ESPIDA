@@ -37,7 +37,7 @@ interface PageTitleProps {
   quantity?: number;
 }
 
-export const PageTitle = ({ children, quantity }: PageTitleProps) => (
+const PageTitle = ({ children, quantity }: PageTitleProps) => (
   <Wrapper>
     {children}
     {!!quantity && <ItemsCount>{quantity}</ItemsCount>}
@@ -48,3 +48,5 @@ PageTitle.propTypes = {
   children: PropTypes.string.isRequired,
   quantity: PropTypes.number,
 };
+
+export default PageTitle;
