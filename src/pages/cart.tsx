@@ -4,10 +4,6 @@ import styled, { css } from "styled-components";
 import { StoreContext } from "../context";
 import PageTitle from "../components/common/pageTitle";
 
-const CartWrapper = styled.section`
-  margin-top: 40px;
-`;
-
 const CartAndCheckoutWrapper = styled.div`
   --flexDirection: column;
   display: flex;
@@ -220,7 +216,7 @@ const cart = () => {
   const totalPrice = items.reduce((total, item: any) => total + item.variant.price * item.quantity, 0);
 
   return (
-    <CartWrapper>
+    <>
       <PageTitle quantity={quantity}>shopping Cart</PageTitle>
       {!!quantity ? (
         <CartAndCheckoutWrapper>
@@ -278,7 +274,7 @@ const cart = () => {
           <p>no roducts in the cart</p>
         </EmptyCart>
       )}
-    </CartWrapper>
+    </>
   );
 };
 
