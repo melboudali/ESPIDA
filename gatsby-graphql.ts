@@ -303,6 +303,7 @@ export type SitePage = Node & {
 
 export type SitePageContext = {
   id?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
 };
 
 export type SitePlugin = Node & {
@@ -2977,6 +2978,7 @@ export type SiteFunctionSortInput = {
 
 export type SitePageContextFilterInput = {
   id?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePluginFilterInput = {
@@ -3216,6 +3218,7 @@ export type SitePageFieldsEnum =
   | 'internal___type'
   | 'isCreatedByStatefulCreatePages'
   | 'context___id'
+  | 'context___title'
   | 'pluginCreator___resolve'
   | 'pluginCreator___name'
   | 'pluginCreator___version'
@@ -10441,3 +10444,8 @@ export type CreateShopifyProductQueryVariables = Exact<{ [key: string]: never; }
 
 
 export type CreateShopifyProductQuery = { products: { nodes: Array<{ handle?: string | null | undefined, id: string, productType?: string | null | undefined }> } };
+
+export type CreateShopifyCollectionQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CreateShopifyCollectionQuery = { collections: { nodes: Array<{ id: string, title?: string | null | undefined, handle?: string | null | undefined }> } };
