@@ -262,12 +262,7 @@ const Product = ({ data: { productData }, pageContext: { id, location } }: Produ
 
   return (
     <>
-      <Seo
-        title={productData?.title!}
-        description={productData?.description!}
-        image={productData?.variants![0]?.image?.gatsbyImageData.src}
-        location={location}
-      />
+      <Seo title={productData?.title!} description={productData?.description!} image={productData?.images![0]?.src!} location={location} />
       <ProductWrapper>
         <Images>
           <OtherImages>
@@ -383,6 +378,9 @@ export const query = graphql`
     productData: shopifyProduct(id: { eq: $id }) {
       title
       description
+      images {
+        src
+      }
       collections {
         id
         title
