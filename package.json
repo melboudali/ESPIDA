@@ -7,6 +7,7 @@
   "dependencies": {
     "babel-plugin-styled-components": "^1.13.3",
     "gatsby": "^3.14.2",
+    "gatsby-plugin-google-gtag": "^4.4.0",
     "gatsby-plugin-graphql-codegen": "^3.1.0",
     "gatsby-plugin-image": "^1.14.1",
     "gatsby-plugin-mailchimp": "^5.2.2",
