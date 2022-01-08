@@ -8,6 +8,8 @@ export default {
     description: config.description,
     image: config.featuredImage,
     author: config.author,
+    siteUrl: config.siteUrl,
+    fbid: config.fbid,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
