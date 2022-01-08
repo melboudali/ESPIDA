@@ -36,12 +36,8 @@ export type variantsType = Array<
 export type shopifyProduct = {
   id: string;
   title?: string | null;
-  description?: string | null;
-  tags?: Array<string | null | undefined> | null;
   handle?: string | null;
   productType?: string | null;
-  publishedAt?: any | null;
-  collections?: Array<{ title?: string | null } | null | undefined> | null;
   images?: Array<{ altText?: string | null; gatsbyImageData: any } | null | undefined> | null;
   variants?: Array<
     | {
@@ -55,4 +51,8 @@ export type shopifyProduct = {
     | null
     | undefined
   > | null;
+  // description?: string | null;
+  // tags?: Array<string | null | undefined> | null;
+  // publishedAt?: any | null;
+  // collections?: Array<{ title?: string | null } | null | undefined> | null;
 };
