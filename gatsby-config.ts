@@ -7,9 +7,7 @@ export default {
     title: config.title,
     description: config.description,
     image: config.featuredImage,
-    siteUrl: config.siteUrl,
     author: config.author,
-    fbid: config.fbid,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -62,6 +60,12 @@ export default {
       options: {
         endpoint: process.env.MAILCHIMP_ENDPOINT, // string; add your MC list endpoint here; see instructions below
         timeout: 3500, // number; the amount of time, in milliseconds, that you want to allow mailchimp to respond to your request before timing out. defaults to 3500
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [config.googleAnalyticsTrackingID],
       },
     },
   ],
