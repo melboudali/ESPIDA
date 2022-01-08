@@ -3,6 +3,7 @@ import { StaticImage } from "gatsby-plugin-image";
 import styled, { css } from "styled-components";
 import { StoreContext } from "../context";
 import PageTitle from "../components/common/pageTitle";
+import Seo from "../components/common/seo";
 
 const CartAndCheckoutWrapper = styled.div`
   --flexDirection: column;
@@ -217,6 +218,7 @@ const cart = () => {
 
   return (
     <>
+      <Seo title="Cart" location="/cart" />
       <PageTitle quantity={quantity}>shopping Cart</PageTitle>
       {!!quantity ? (
         <CartAndCheckoutWrapper>
