@@ -66,7 +66,7 @@ function Seo({ description, lang, title, image }: SeoProps) {
           content: `summary_large_image`,
         },
         {
-          name: `twitter:twitter:image:src`,
+          name: `twitter:image:src`,
           content: defaultImage,
         },
         {
