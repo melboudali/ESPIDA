@@ -6,10 +6,6 @@ import ProductCard from "../components/common/card";
 import PageTitle from "../components/common/pageTitle";
 import { shopifyProduct } from "../types";
 
-const Wrapper = styled.section`
-  margin-top: 40px;
-`;
-
 const Cards = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -28,14 +24,14 @@ const Collections = ({
   },
 }: CollectionsProps) => {
   return (
-    <Wrapper>
+    <>
       <PageTitle quantity={nodes.length}>collections</PageTitle>
       <Cards>
         {nodes.map((node: shopifyProduct) => (
           <ProductCard key={node.id} product={node} />
         ))}
       </Cards>
-    </Wrapper>
+    </>
   );
 };
 
