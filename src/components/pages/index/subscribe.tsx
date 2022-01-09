@@ -1,15 +1,21 @@
-import { Link } from "gatsby";
 import React from "react";
+import { Link } from "gatsby";
 import styled from "styled-components";
 import useSubscribe from "../../../hooks/useSubscribe";
 
 const Wrapper = styled.div`
   --padding: 0 10px;
+  --lineHeight: 25px;
+  --alignText: start;
+  --flexDirection: column;
+  --alignItems: center;
+  --justifyContent: start;
+  --width: 100%;
+  --greyColor: #4a4a4a;
+  --secGreyColor: #cacaca;
   margin-top: 40px;
   padding: var(--padding);
   p {
-    --lineHeight: 25px;
-    --alignText: start;
     margin: 0;
     text-align: var(--alignText);
     text-transform: capitalize;
@@ -25,17 +31,9 @@ const Wrapper = styled.div`
         font-weight: 700;
       }
     }
-    @media (min-width: 750px) {
-      --lineHeight: :9px ;
-      --alignText:  center;
-    }
   }
-  form {
-    --flexDirection: column;
-    --alignItems:center;
-    --justifyContent: start;
-    --width: 100%;
 
+  form {
     margin: 50px auto 20px;
     display: flex;
     flex-direction: var(--flexDirection);
@@ -43,9 +41,6 @@ const Wrapper = styled.div`
     justify-content: var(--justifyContent);
     gap: 30px;
     input {
-      --greyColor: #4a4a4a;
-      --secGreyColor: #cacaca;
-
       font-size: 1.125rem;
       color: var(--greyColor);
       border-color: var(--greyColor);
@@ -57,7 +52,7 @@ const Wrapper = styled.div`
         height: 50px;
         padding: 0 0 0 5px;
         font-size: 1.125rem;
-        ::placeholder {
+        &::placeholder {
           color: var(--secGreyColor);
           text-transform: uppercase;
         }
@@ -74,22 +69,19 @@ const Wrapper = styled.div`
         cursor: pointer;
       }
     }
-    @media (min-width: 750px) {
+  }
+  @media (min-width: 750px) {
     --flexDirection: row;
-    --alignItems:start;
+    --alignItems: start;
     --justifyContent: center;
     --width: 585px;
-    }
+    --lineHeight: 9px;
+    --alignText: center;
+    --padding: 0;
   }
-  
-  @media (min-width: 750px) {
-      --padding: 0;
-    }
 `;
 
-interface SubscribeProps {}
-
-const Subscribe = ({}: SubscribeProps) => {
+const Subscribe = () => {
   const { email, loading, isSuccess, isError, errorMsg, onChange, onSubmit } = useSubscribe();
 
   return (
@@ -99,8 +91,8 @@ const Subscribe = ({}: SubscribeProps) => {
         updates.
       </p>
       <form onSubmit={onSubmit}>
-        <input value={email} onChange={onChange} placeholder="enter your email address" type="email" name="emil" id="mce-EMAIL" />
-        <input type="submit" value={loading ? "loading ..." : "sign up"} />
+        <input value={email} onChange={onChange} placeholder="enter your email address" type="email" name="email" id="mce-EMAIL" />
+        <input type="submit" value={loading ? "loading" : "sign up"} />
       </form>
       {isSuccess && <p style={{ color: "green" }}>Wow, new friends. Stay tuned, we’ll get in touch soon.</p>}
       {isError && errorMsg && <p style={{ color: "red" }}>{errorMsg}</p>}
