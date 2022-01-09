@@ -13,7 +13,7 @@ const Wrapper = styled.h1`
   letter-spacing: -0.04em;
   text-transform: uppercase;
   line-height: 35px;
-  color: #000;
+  color: var(--black);
   @media (min-width: 375px) {
     --fontSize: 1.875rem;
   }
@@ -27,7 +27,7 @@ const ItemsCount = styled.span`
   font-size: 0.6875rem;
   letter-spacing: normal;
   line-height: 13px;
-  color: #000;
+  color: var(--black);
   border-radius: 5px;
   background: #adadad;
 `;
