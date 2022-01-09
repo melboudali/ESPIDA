@@ -5,21 +5,21 @@ import PropTypes from "prop-types";
 
 const CustomLinkWrapper = styled(Link)`
   position: relative;
-  color: var(--black);
-  font-weight: 500;
   font-size: 0.9rem;
+  font-weight: 500;
   line-height: 10px;
   text-transform: uppercase;
+  color: var(--black);
   &:before {
     content: "";
     position: absolute;
     width: 0;
-    bottom: -10px;
     height: 2px;
-    background-color: var(--black);
-    left: 0;
-    right: 0;
     margin: 0 auto;
+    right: 0;
+    bottom: -10px;
+    left: 0;
+    background-color: var(--black);
     transition: width 300ms ease-in-out;
   }
   &:hover {
