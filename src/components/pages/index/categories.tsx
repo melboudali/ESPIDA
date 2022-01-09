@@ -33,16 +33,16 @@ const Jackets = styled(Link)`
     z-index: 2;
   }
   &:before {
-    z-index: 3;
     content: "";
     position: absolute;
+    z-index: 3;
     width: 100%;
     height: 100%;
     background: linear-gradient(90deg, var(--black) 0%, rgba(0, 0, 0, 0) 53.13%);
   }
   p {
-    z-index: 4;
     position: absolute;
+    z-index: 4;
     margin: 0;
     font-size: 3rem;
     font-weight: 700;
@@ -64,10 +64,10 @@ const Jackets = styled(Link)`
 `;
 
 const SweatersAndHoodies = styled.div`
-  flex: 497px;
   display: flex;
   flex-direction: column;
   gap: 40px;
+  flex: 497px;
 `;
 
 const SweatersStyle = css`
@@ -97,8 +97,8 @@ const SHComponentWrapper = styled(Link)`
     z-index: 2;
   }
   p {
-    z-index: 4;
     position: absolute;
+    z-index: 4;
     margin: 0;
     font-size: 2.2rem;
     font-weight: 700;
