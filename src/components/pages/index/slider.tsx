@@ -14,7 +14,7 @@ const SliderWrapper = styled.div`
     text-align: center;
     text-transform: uppercase;
     color: #666666;
-    margin: 0 0 60px 0;
+    margin: 0 0 60px;
   }
   @media (min-width: 890px) {
     --height: fit-content;
