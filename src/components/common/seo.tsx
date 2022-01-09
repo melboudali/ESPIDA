@@ -1,8 +1,8 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import { Helmet } from "react-helmet";
-import PropTypes from "prop-types";
 import { MySiteMetaDataQuery } from "../../../gatsby-graphql";
+import PropTypes from "prop-types";
 
 interface SeoProps {
   title?: string;
