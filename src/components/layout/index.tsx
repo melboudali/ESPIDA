@@ -1,9 +1,10 @@
 import React from "react";
 import { StoreContext } from "../../context";
-import GlobalStyles from "../../styles/globalStyles";
 import styled from "styled-components";
+import GlobalStyles from "../../styles/globalStyles";
 import Navbar from "../common/navbar";
 import Footer from "../common/footer";
+import PropTypes from "prop-types";
 
 const Banner = styled.div`
   --fontSize: 0.7rem;
@@ -11,9 +12,8 @@ const Banner = styled.div`
   align-items: center;
   justify-content: center;
   height: 41px;
-  width: 100%;
   color: var(--white);
-  background-color: var(--black);
+  background-image: linear-gradient(to right, #a14df0, #5e4df0);
   text-align: center;
   font-weight: 500;
   font-size: var(--fontSize);
@@ -71,6 +71,10 @@ const Layout = ({ children }: LayoutProps) => {
       )}
     </>
   );
+};
+
+Layout.propTypes = {
+  children: PropTypes.object.isRequired,
 };
 
 export default Layout;
