@@ -122,7 +122,7 @@ const NewPrice = styled.p`
   color: var(--black);
 `;
 
-const OldPrice = styled.div`
+const OldPrice = styled.p`
   color: var(--lightGrey);
   text-decoration: line-through;
 `;
