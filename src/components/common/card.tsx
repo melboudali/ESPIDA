@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
-import styled from "styled-components";
-import { shopifyProduct, variantType } from "../../types";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { getColor, getColorsAndImages } from "../../utils";
 import { Link } from "gatsby";
+import styled from "styled-components";
 import { StoreContext } from "../../context";
+import { shopifyProduct, variantType } from "../../types";
+import { getColor, getColorsAndImages } from "../../utils";
+import PropTypes from "prop-types";
 
 const Card = styled.div`
   --flex: 100% 0 0;
@@ -14,7 +15,6 @@ const Card = styled.div`
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
   transition: all 150ms ease-out;
-
   .gatsby_image {
     width: 100%;
     height: 384px;
@@ -54,9 +54,8 @@ const Colors = styled.div`
   gap: 5px;
 `;
 
-const ColorComponentWrapper = styled.div<{ color: string }>`
+const ColorComponentWrapper = styled.button<{ color: string }>`
   position: relative;
-  cursor: pointer;
   width: 13px;
   height: 13px;
   border-radius: 50%;
@@ -192,10 +191,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
 const ColorComponent = ({ color, variant, selectedVariant, setSelectedVariant }: ColorComponentProps) => {
   const [showTooltip, setShowTooltip] = useState(false);
-
-  const onMouseEnterLeave = () => {
-    setShowTooltip(!showTooltip);
-  };
+  const onMouseEnterLeave = () => setShowTooltip(!showTooltip);
 
   return (
     <ColorComponentWrapper
@@ -209,6 +205,17 @@ const ColorComponent = ({ color, variant, selectedVariant, setSelectedVariant }:
       {showTooltip && <ToolTip>{color}</ToolTip>}
     </ColorComponentWrapper>
   );
+};
+
+ProductCard.propTypes = {
+  product: PropTypes.object.isRequired,
+};
+
+ColorComponent.propTypes = {
+  color: PropTypes.string.isRequired,
+  variant: PropTypes.object.isRequired,
+  selectedVariant: PropTypes.object.isRequired,
+  setSelectedVariant: PropTypes.func.isRequired,
 };
 
 export default ProductCard;
