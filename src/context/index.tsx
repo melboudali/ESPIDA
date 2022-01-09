@@ -13,6 +13,7 @@ interface defualtValuesType {
   client: any;
   checkout: Client.Cart;
   loading: boolean;
+  quantity: number;
 }
 
 interface StoreProviderProps {
@@ -21,6 +22,7 @@ interface StoreProviderProps {
 
 const defaultValues: defualtValuesType = {
   client,
+  quantity: 0,
   checkout: {
     id: "",
     lineItems: [],
@@ -39,7 +41,16 @@ const localStorageKey = `shopify_checkout_id`;
 
 export const StoreProvider = ({ children }: StoreProviderProps) => {
   const [checkout, setCheckout] = React.useState(defaultValues.checkout);
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(defaultValues.loading);
+  const [quantity, setQuantity] = React.useState(defaultValues.quantity);
+
+  const changeQuantity = (items: Client.LineItem[]) => {
+    setQuantity(
+      items.reduce((total: any, item: any) => {
+        return total + item.quantity;
+      }, 0)
+    );
+  };
 
   const setCheckoutItem = (checkout: Client.Cart) => {
     if (isBrowser) {
@@ -47,6 +58,7 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
     }
 
     setCheckout(checkout);
+    changeQuantity(checkout.lineItems);
   };
 
   React.useEffect(() => {
@@ -79,6 +91,7 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
     ]);
 
     setCheckout(res);
+    changeQuantity(res.lineItems);
     setLoading(false);
   };
 
@@ -86,6 +99,7 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
     setLoading(true);
     const res = await client.checkout.removeLineItems(checkout.id, [lineItemID]);
     setCheckout(res);
+    changeQuantity(res.lineItems);
     setLoading(false);
   };
 
@@ -93,6 +107,7 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
     setLoading(true);
     const res = await client.checkout.updateLineItems(checkout.id, [{ id: lineItemID, quantity }]);
     setCheckout(res);
+    changeQuantity(res.lineItems);
     setLoading(false);
   };
 
@@ -105,6 +120,7 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
         removeLineItems,
         checkout,
         loading,
+        quantity,
       }}
     >
       {children}
