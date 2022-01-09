@@ -13,7 +13,6 @@ const TitleWithBg = styled.div`
   overflow: hidden;
   border-radius: 10px;
   z-index: 1;
-
   .img {
     height: 100%;
     width: 100%;
@@ -25,21 +24,23 @@ const TitleWithBg = styled.div`
   }
 `;
 
-const Title = styled.h1<{ fontSize: string }>`
-  margin: 0;
+const Title = styled(Link)<{ fontSize: string }>`
   color: var(--balck);
+  display: flex;
+  justify-content: center;
   font-size: ${({ fontSize }) => fontSize};
   font-weight: 700;
   line-height: 35px;
   letter-spacing: 0.365em;
   text-transform: uppercase;
-  text-align: center;
+  &:hover {
+    color: #9c50ff;
+  }
 `;
 
 const Content = styled.div`
   --fontSize: 2rem;
   --padding: 15px 50px;
-
   position: absolute;
   display: flex;
   align-items: center;
@@ -61,14 +62,19 @@ const Content = styled.div`
     color: var(--white);
   }
   a {
+    --color: var(--white);
     font-weight: 700;
     font-size: 1.125rem;
     line-height: 21px;
     letter-spacing: 0.365em;
     text-transform: uppercase;
-    color: var(--white);
+    color: var(--color);
     padding: var(--padding);
     border: 4px solid var(--white);
+    &:hover {
+      --color: var(--black);
+      background-color: var(--white);
+    }
   }
   @media (min-width: 750px) {
     --fontSize: 6rem;
@@ -79,22 +85,25 @@ const Content = styled.div`
 interface SectionTitleProps {
   title: string;
   children?: React.ReactNode;
-  link?: string;
   fontSize: string;
 }
 
-const SectionTitle = ({ title, link, fontSize, children }: SectionTitleProps) => {
-  if (children && link)
+const SectionTitle = ({ title, fontSize, children }: SectionTitleProps) => {
+  if (children)
     return (
       <TitleWithBg>
         {children}
         <Content>
           <h1>{title}</h1>
-          <Link to={link}>shop now</Link>
+          <Link to="/collections/new-releases">shop now</Link>
         </Content>
       </TitleWithBg>
     );
-  return <Title fontSize={fontSize}>{title}</Title>;
+  return (
+    <Title fontSize={fontSize} to="/collections/best-selling">
+      {title}
+    </Title>
+  );
 };
 
 SectionTitle.defaultProps = {
@@ -103,7 +112,6 @@ SectionTitle.defaultProps = {
 
 SectionTitle.propTypes = {
   title: PropTypes.string.isRequired,
-  link: PropTypes.string,
   fontSize: PropTypes.string.isRequired,
   children: PropTypes.object,
 };
