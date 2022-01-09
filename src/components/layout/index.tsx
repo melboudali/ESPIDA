@@ -23,6 +23,10 @@ const Banner = styled.div`
   }
 `;
 
+const NavbarWrapper = styled.header`
+  display: unset;
+`;
+
 const Main = styled.main`
   max-width: 1280px;
   margin: 40px auto 0;
@@ -54,10 +58,10 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <GlobalStyles />
-      <header>
+      <NavbarWrapper>
         <Banner>Free U.S. Shipping & Returns $150+ | Free Intl Shipping $200+ </Banner>
         <Navbar />
-      </header>
+      </NavbarWrapper>
       <Main>{children}</Main>
       <Footer />
       {loading && (
