@@ -1,8 +1,8 @@
 import React from "react";
+import { Link } from "gatsby";
 import styled, { css } from "styled-components";
 import SectionTitle from "../title";
 import Subscribe from "../../pages/index/subscribe";
-import { Link } from "gatsby";
 
 const ContainerStyle = css`
   max-width: 1280px;
@@ -14,26 +14,7 @@ const SectionContainer = styled.section`
 `;
 
 const FooterWrapper = styled.footer`
-  position: relative;
   background-color: var(--black);
-  z-index: 0;
-  &:after {
-    display: none;
-    content: "";
-    position: absolute;
-    background-color: var(--white);
-    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQzOSIgaGVpZ2h0PSIxMTgiIHZpZXdCb3g9IjAgMCAxNDM5IDExOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgNC4yOTIzMUM0OTIuNSAtMzEuODQzOSAxMTEzLjUgMTc3LjA1NCAxNDQwIDQuMjkyMzFWMTE4SDBWNC4yOTIzMVoiIGZpbGw9ImJsYWNrIi8+Cjwvc3ZnPgo=);
-    background-repeat: repeat-x;
-    width: 100%;
-    height: 118px;
-    top: 0;
-    /* left: 50%;
-    transform: translate(0, -50%); */
-    z-index: -1;
-    @media (min-width: 750px) {
-      display: block;
-    }
-  }
 `;
 
 const FooterContainer = styled.div`
@@ -44,7 +25,7 @@ const FooterContainer = styled.div`
   flex-wrap: wrap;
   gap: 13px;
   justify-content: center;
-  padding: 80px 10px 0;
+  padding: 80px 10px;
   color: var(--white);
   @media (min-width: 750px) {
     --flexDirection: row;
@@ -109,10 +90,8 @@ const FootBanner = styled.div`
   --justifyContent: center;
   --display: none;
   --gap: 5px;
-
   background-color: #101010;
   height: 40px;
-  margin-top: 80px;
   div {
     ${ContainerStyle}
     display: flex;
@@ -129,10 +108,10 @@ const FootBanner = styled.div`
     }
     ul {
       display: flex;
+      gap: var(--gap);
       list-style: none;
       margin: 0;
       padding: 0;
-      gap: var(--gap);
       li {
         display: flex;
         align-items: center;
@@ -160,14 +139,12 @@ const Footer = () => {
     { name: "accessories", url: "#" },
     { name: "gift cards", url: "#" },
   ];
-
   const secondMenu = [
     { name: "our story", url: "#" },
     { name: "our products", url: "#" },
     { name: "privacy policy", url: "#" },
     { name: "terms of service", url: "#" },
   ];
-
   const thirdMenu = [
     { name: "contact us", url: "#" },
     { name: "faq", url: "#" },
@@ -439,19 +416,17 @@ const Footer = () => {
   );
 };
 
-const FooterLinks = ({ LinksTitle, Links }: FooterLinksProps) => {
-  return (
-    <FooterLinksWrapper>
-      <h3>{LinksTitle}</h3>
-      <ul>
-        {Links.map(({ name, url }, id) => (
-          <li key={id}>
-            <Link to={url}>{name}</Link>
-          </li>
-        ))}
-      </ul>
-    </FooterLinksWrapper>
-  );
-};
+const FooterLinks = ({ LinksTitle, Links }: FooterLinksProps) => (
+  <FooterLinksWrapper>
+    <h3>{LinksTitle}</h3>
+    <ul>
+      {Links.map(({ name, url }, id) => (
+        <li key={id}>
+          <Link to={url}>{name}</Link>
+        </li>
+      ))}
+    </ul>
+  </FooterLinksWrapper>
+);
 
 export default Footer;
