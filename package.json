@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "espida-clothing",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Our mission is to outfit the world's most ambitious people. We design apparel with timeless style, versatility, and comfort in mind.",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Moe EL BOUDALI <contact@elboudali.com>",
   "dependencies": {
     "babel-plugin-styled-components": "^1.13.3",
     "gatsby": "^3.14.2",
@@ -62,9 +62,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/melboudali/ESPIDA"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/melboudali/ESPIDA/issues"
   }
 }
