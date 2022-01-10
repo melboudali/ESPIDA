@@ -1,14 +1,15 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { AllShopifyProductQuery } from "../../gatsby-graphql";
-import { shopifyProduct } from "../types";
 import { StaticImage } from "gatsby-plugin-image";
 import styled from "styled-components";
+import { AllShopifyProductQuery } from "../../gatsby-graphql";
+import { shopifyProduct } from "../types";
 import Seo from "../components/common/seo";
 import Categories from "../components/pages/index/categories";
 import SectionTitle from "../components/common/title";
 import ProductCard from "../components/common/card";
 import Slider from "../components/pages/index/slider";
+import PropTypes from "prop-types";
 
 const SectionContainer = styled.section`
   margin: 80px 0;
@@ -58,6 +59,10 @@ const IndexPage = ({ data: { bestSellers, newReleases } }: IndexPageProps) => (
     </SectionContainer>
   </>
 );
+
+IndexPage.propTypes = {
+  data: PropTypes.object.isRequired,
+};
 
 export default IndexPage;
 
