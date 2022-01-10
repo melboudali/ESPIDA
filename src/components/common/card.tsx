@@ -14,20 +14,22 @@ const Card = styled.div`
   width: 0;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
-  transition: all 150ms ease-out;
   .gatsby_image {
     width: 100%;
     height: 384px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }
-  &:hover {
-    z-index: 2;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
-    transform: translateY(-2px);
-  }
   @media (min-width: 451px) {
     --flex: 300px 0 0;
+  }
+  @media (min-width: 750px) {
+    transition: all 150ms ease-out;
+    &:hover {
+      z-index: 2;
+      box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+      transform: translateY(-2px);
+    }
   }
 `;
 
