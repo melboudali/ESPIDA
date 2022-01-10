@@ -2,15 +2,16 @@ import React, { useContext } from "react";
 import { StaticImage } from "gatsby-plugin-image";
 import styled, { css } from "styled-components";
 import { StoreContext } from "../context";
-import PageTitle from "../components/common/pageTitle";
 import Seo from "../components/common/seo";
+import PageTitle from "../components/common/pageTitle";
+import PropTypes from "prop-types";
 
 const CartAndCheckoutWrapper = styled.div`
   --flexDirection: column;
   display: flex;
   flex-direction: var(--flexDirection);
   gap: 40px;
-  margin: 40px 0;
+  margin-top: 40px;
   @media (min-width: 750px) {
     --flexDirection: row;
   }
@@ -29,11 +30,10 @@ const ButtonStyle = css`
 
 const CartItem = styled.div`
   --imageWidth: 100px;
-  --gap: 10px;
   --padding: 5px;
   position: relative;
   display: flex;
-  gap: var(--gap);
+  gap: 20px;
   margin-top: 10px;
   padding: var(--padding);
   border-radius: 10px;
@@ -58,7 +58,6 @@ const CartItem = styled.div`
   }
   @media (min-width: 750px) {
     --imageWidth: 200px;
-    --gap: 20px;
     --padding: 10px;
   }
 `;
@@ -127,8 +126,9 @@ const Quantity = styled.div`
 
 const Checkout = styled.div`
   --sticky: relative;
+  --top: unset;
   position: var(--sticky);
-  top: 76px;
+  top: var(--top);
   height: fit-content;
   flex: calc(100% - (60% + 40px));
   margin-top: 11px;
@@ -147,6 +147,7 @@ const Checkout = styled.div`
   }
   @media (min-width: 750px) {
     --sticky: sticky;
+    --top: 76px;
   }
 `;
 
@@ -173,11 +174,10 @@ const OrderSummaryItemWrapper = styled.div`
 
 const CheckoutButton = styled.a`
   div {
-    height: 40px;
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 40px;
     background-image: linear-gradient(to left, #a14df0, #5e4df0);
     color: var(--white);
     border-radius: 10px;
@@ -187,11 +187,10 @@ const CheckoutButton = styled.a`
 `;
 
 const EmptyCart = styled.div`
-  width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin: 80px 0 200px;
+  margin: 80px 0 120px;
   .img {
     width: 200px;
   }
@@ -209,11 +208,9 @@ interface OrderSummaryItemType {
   price: string;
 }
 
-const cart = () => {
+const Cart = () => {
   const { checkout, quantity, updateLineItems, removeLineItems } = useContext(StoreContext);
-
-  const items = checkout ? checkout.lineItems : [];
-  const totalPrice = items.reduce((total, item: any) => total + item.variant.price * item.quantity, 0);
+  const totalPrice = checkout.lineItems.reduce((total, item: any) => total + item.variant.price * item.quantity, 0);
 
   return (
     <>
@@ -222,7 +219,7 @@ const cart = () => {
       {!!quantity ? (
         <CartAndCheckoutWrapper>
           <CartItems>
-            {items.map((item: any) => (
+            {checkout.lineItems.map((item: any) => (
               <CartItem key={item.variant.id}>
                 <button className="remove" onClick={() => removeLineItems!(item.id)}>
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -271,7 +268,7 @@ const cart = () => {
         </CartAndCheckoutWrapper>
       ) : (
         <EmptyCart>
-          <StaticImage src="../assets/images/cart.png" alt="" className="img" />
+          <StaticImage src="../images/cart.png" alt="" className="img" />
           <p>no roducts in the cart</p>
         </EmptyCart>
       )}
@@ -286,4 +283,9 @@ const OrderSummaryItem = ({ title, price }: OrderSummaryItemType) => (
   </OrderSummaryItemWrapper>
 );
 
-export default cart;
+OrderSummaryItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+};
+
+export default Cart;
