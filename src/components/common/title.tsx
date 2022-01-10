@@ -24,18 +24,14 @@ const TitleWithBg = styled.div`
   }
 `;
 
-const Title = styled(Link)<{ fontSize: string }>`
+const Title = styled.h1<{ fontSize: string }>`
   color: var(--balck);
-  display: flex;
-  justify-content: center;
   font-size: ${({ fontSize }) => fontSize};
   font-weight: 700;
   line-height: 35px;
   letter-spacing: 0.365em;
   text-transform: uppercase;
-  &:hover {
-    color: #9c50ff;
-  }
+  text-align: center;
 `;
 
 const Content = styled.div`
@@ -85,25 +81,22 @@ const Content = styled.div`
 interface SectionTitleProps {
   title: string;
   children?: React.ReactNode;
+  link?: string;
   fontSize: string;
 }
 
-const SectionTitle = ({ title, fontSize, children }: SectionTitleProps) => {
-  if (children)
+const SectionTitle = ({ title, link, fontSize, children }: SectionTitleProps) => {
+  if (children && link)
     return (
       <TitleWithBg>
         {children}
         <Content>
           <h1>{title}</h1>
-          <Link to="/collections/new-releases">shop now</Link>
+          <Link to={link}>shop now</Link>
         </Content>
       </TitleWithBg>
     );
-  return (
-    <Title fontSize={fontSize} to="/collections/best-selling">
-      {title}
-    </Title>
-  );
+  return <Title fontSize={fontSize}>{title}</Title>;
 };
 
 SectionTitle.defaultProps = {
@@ -112,6 +105,7 @@ SectionTitle.defaultProps = {
 
 SectionTitle.propTypes = {
   title: PropTypes.string.isRequired,
+  link: PropTypes.string,
   fontSize: PropTypes.string.isRequired,
   children: PropTypes.object,
 };
