@@ -1,11 +1,12 @@
-import { graphql } from "gatsby";
 import React from "react";
+import { graphql } from "gatsby";
 import styled from "styled-components";
 import { AllCollectionsProductsQuery } from "../../gatsby-graphql";
-import ProductCard from "../components/common/card";
-import PageTitle from "../components/common/pageTitle";
 import Seo from "../components/common/seo";
+import PageTitle from "../components/common/pageTitle";
+import ProductCard from "../components/common/card";
 import { shopifyProduct } from "../types";
+import PropTypes from "prop-types";
 
 const Cards = styled.div`
   display: flex;
@@ -23,18 +24,20 @@ const Collections = ({
   data: {
     allShopifyProduct: { nodes },
   },
-}: CollectionsProps) => {
-  return (
-    <>
-      <Seo title="Collections" location="/collections" />
-      <PageTitle quantity={nodes.length}>collections</PageTitle>
-      <Cards>
-        {nodes.map((node: shopifyProduct) => (
-          <ProductCard key={node.id} product={node} />
-        ))}
-      </Cards>
-    </>
-  );
+}: CollectionsProps) => (
+  <>
+    <Seo title="Collections" location="/collections" />
+    <PageTitle quantity={nodes.length}>collections</PageTitle>
+    <Cards>
+      {nodes.map((node: shopifyProduct) => (
+        <ProductCard key={node.id} product={node} />
+      ))}
+    </Cards>
+  </>
+);
+
+Collections.propTypes = {
+  data: PropTypes.object.isRequired,
 };
 
 export default Collections;
