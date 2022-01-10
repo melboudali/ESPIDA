@@ -128,7 +128,7 @@ const Quantity = styled.div`
 const Checkout = styled.div`
   --sticky: relative;
   position: var(--sticky);
-  top: 10px;
+  top: 76px;
   height: fit-content;
   flex: calc(100% - (60% + 40px));
   margin-top: 11px;
@@ -210,10 +210,9 @@ interface OrderSummaryItemType {
 }
 
 const cart = () => {
-  const { checkout, updateLineItems, removeLineItems } = useContext(StoreContext);
+  const { checkout, quantity, updateLineItems, removeLineItems } = useContext(StoreContext);
 
   const items = checkout ? checkout.lineItems : [];
-  const quantity = items.reduce((total: number, item: { quantity: number }) => total + item.quantity, 0);
   const totalPrice = items.reduce((total, item: any) => total + item.variant.price * item.quantity, 0);
 
   return (
