@@ -1,5 +1,5 @@
 export default {
-  title: "Espida Clothing",
+  title: "ESPIDA Clothing",
   description:
     "Our mission is to outfit the world's most ambitious people. We design apparel with timeless style, versatility, and comfort in mind.",
   siteUrl: "https://espida.elboudali.com",
