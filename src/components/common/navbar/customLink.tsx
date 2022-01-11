@@ -34,11 +34,7 @@ interface CustomLinkProps {
   children: string;
 }
 
-const CustomLink = ({ children, to }: CustomLinkProps) => (
-  <CustomLinkWrapper to={to} aria-label={children}>
-    {children}
-  </CustomLinkWrapper>
-);
+const CustomLink = ({ children, to }: CustomLinkProps) => <CustomLinkWrapper to={to}>{children}</CustomLinkWrapper>;
 
 CustomLink.propTypes = { to: PropTypes.string.isRequired, children: PropTypes.string.isRequired };
 
