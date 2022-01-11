@@ -1,11 +1,12 @@
 import React, { useState, useContext } from "react";
-import { graphql } from "gatsby";
 import { StoreContext } from "../../src/context";
+import { graphql } from "gatsby";
 import styled, { css } from "styled-components";
 import { ShopifyProductQuery } from "../../gatsby-graphql";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { getColorsAndImages, getColor, getSize, getVariant } from "../utils";
 import Seo from "../components/common/seo";
+import { getColorsAndImages, getColor, getSize, getVariant } from "../utils";
+import PropTypes from "prop-types";
 
 const ProductWrapper = styled.section`
   --gap: 30px;
@@ -105,7 +106,6 @@ const Details = styled.div`
 const Tags = styled.div`
   display: flex;
   gap: 10px;
-
   p {
     padding: 6px 10px;
     margin: 0;
@@ -269,7 +269,7 @@ const Product = ({ data: { productData }, pageContext: { id, location } }: Produ
             {variants.map(({ id, image, color }) => (
               <SmallImage
                 key={id}
-                aria-label="image"
+                aria-label="variant image"
                 isSelected={image === selectedVariant?.image?.gatsbyImageData}
                 onClick={() => {
                   if (image !== selectedVariant?.image) {
@@ -369,6 +369,11 @@ const Product = ({ data: { productData }, pageContext: { id, location } }: Produ
       </ProductWrapper>
     </>
   );
+};
+
+Product.propTypes = {
+  data: PropTypes.object.isRequired,
+  pageContext: PropTypes.object.isRequired,
 };
 
 export default Product;
