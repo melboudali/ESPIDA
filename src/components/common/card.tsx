@@ -125,7 +125,7 @@ const NewPrice = styled.p`
 `;
 
 const OldPrice = styled.p`
-  color: var(--lightGrey);
+  color: var(--grey);
   text-decoration: line-through;
 `;
 
@@ -194,10 +194,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
 const ColorComponent = ({ color, variant, selectedVariant, setSelectedVariant }: ColorComponentProps) => {
   const [showTooltip, setShowTooltip] = useState(false);
   const onMouseEnterLeave = () => setShowTooltip(!showTooltip);
-
+  const colorName = getColor(color);
   return (
     <ColorComponentWrapper
-      color={getColor(color)}
+      aria-label={colorName}
+      color={colorName}
       onMouseEnter={onMouseEnterLeave}
       onMouseLeave={onMouseEnterLeave}
       onClick={() => {
