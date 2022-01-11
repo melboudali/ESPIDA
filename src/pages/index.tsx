@@ -40,7 +40,7 @@ const IndexPage = ({ data: { bestSellers, newReleases } }: IndexPageProps) => (
       </Cards>
     </SectionContainer>
     <SectionContainer>
-      <SectionTitle title="new releases" link="/collections/new-releases">
+      <SectionTitle title="new releases" link="/collections/new-releases/">
         <StaticImage
           src="https://images.unsplash.com/photo-1542219550-2da790bf52e9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80"
           alt="new releases"
