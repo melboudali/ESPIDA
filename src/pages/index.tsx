@@ -29,7 +29,7 @@ interface IndexPageProps {
 
 const IndexPage = ({ data: { bestSellers, newReleases } }: IndexPageProps) => (
   <>
-    <Seo title="Home" />
+    <Seo />
     <Categories />
     <SectionContainer>
       <SectionTitle title="Best Sellers" />
