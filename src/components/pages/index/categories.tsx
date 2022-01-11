@@ -124,6 +124,7 @@ const Categories = () => (
         src="https://images.unsplash.com/photo-1627637454030-5ddd536e06e5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
         alt="jackets"
         className="img"
+        loading="eager"
       />
       <p>jackets</p>
     </Jackets>
@@ -133,6 +134,7 @@ const Categories = () => (
           src="https://images.unsplash.com/photo-1516826957135-700dedea698c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1374&q=80"
           alt="sweaters"
           className="img"
+          loading="eager"
         />
         <p>sweaters</p>
       </SHComponentWrapper>
@@ -141,6 +143,7 @@ const Categories = () => (
           src="https://images.unsplash.com/photo-1569240192190-e37f8b0010be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
           alt="hoodies"
           className="img"
+          loading="eager"
         />
         <p>hoodies</p>
       </SHComponentWrapper>
