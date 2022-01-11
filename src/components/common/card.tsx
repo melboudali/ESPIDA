@@ -20,6 +20,9 @@ const Card = styled.div`
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }
+  a {
+    display: block;
+  }
   @media (min-width: 451px) {
     --flex: 300px 0 0;
   }
