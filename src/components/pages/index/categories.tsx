@@ -119,7 +119,7 @@ const SHComponentWrapper = styled(Link)`
 
 const Categories = () => (
   <CategoriesWrapper>
-    <Jackets to="/collections/jackets">
+    <Jackets to="/collections/jackets/">
       <StaticImage
         src="https://images.unsplash.com/photo-1627637454030-5ddd536e06e5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
         alt="jackets"
@@ -129,7 +129,7 @@ const Categories = () => (
       <p>jackets</p>
     </Jackets>
     <SweatersAndHoodies>
-      <SHComponentWrapper to="/collections/sweaters">
+      <SHComponentWrapper to="/collections/sweaters/">
         <StaticImage
           src="https://images.unsplash.com/photo-1516826957135-700dedea698c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1374&q=80"
           alt="sweaters"
@@ -138,7 +138,7 @@ const Categories = () => (
         />
         <p>sweaters</p>
       </SHComponentWrapper>
-      <SHComponentWrapper to="/collections/hoodies">
+      <SHComponentWrapper to="/collections/hoodies/">
         <StaticImage
           src="https://images.unsplash.com/photo-1569240192190-e37f8b0010be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
           alt="hoodies"
