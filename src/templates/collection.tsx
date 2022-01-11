@@ -1,11 +1,12 @@
-import { graphql } from "gatsby";
 import React from "react";
+import { graphql } from "gatsby";
 import { CollectionQuery } from "../../gatsby-graphql";
 import styled from "styled-components";
-import PageTitle from "../components/common/pageTitle";
-import { shopifyProduct } from "../types";
-import ProductCard from "../components/common/card";
 import Seo from "../components/common/seo";
+import { shopifyProduct } from "../types";
+import PageTitle from "../components/common/pageTitle";
+import ProductCard from "../components/common/card";
+import PropTypes from "prop-types";
 
 const Cards = styled.div`
   --justifyContent: center;
@@ -41,6 +42,11 @@ const Collection = ({
       </Cards>
     </>
   );
+};
+
+Collection.propTypes = {
+  pageContext: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired,
 };
 
 export default Collection;
