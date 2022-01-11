@@ -21,7 +21,7 @@ const turnProductsIntoPages = async (args: CreatePagesArgs) => {
     actions.createPage({
       path: `collections/${productType}/${handle}`,
       component: postTemplate,
-      context: { id, location: `/collections/${productType}/${handle}` },
+      context: { id, location: `/collections/${productType}/${handle}/` },
     });
   });
 };
@@ -45,7 +45,7 @@ const turnCollectionsIntoPages = async (args: CreatePagesArgs) => {
     actions.createPage({
       path: `collections/${handle}`,
       component: collectionTemplate,
-      context: { id, title, location: `/collections/${handle}` },
+      context: { id, title, location: `/collections/${handle}/` },
     });
   });
 };
