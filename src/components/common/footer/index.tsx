@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 import styled, { css } from "styled-components";
 import SectionTitle from "../title";
 import Subscribe from "../../pages/index/subscribe";
+import config from "../../../data/config";
 
 const ContainerStyle = css`
   max-width: 1280px;
@@ -207,7 +208,7 @@ const Footer = () => {
         </FooterContainer>
         <FootBanner>
           <div>
-            <p>© {new Date().getFullYear()} espida</p>
+            <p>{`©${new Date().getFullYear()} ${config.title}`}</p>
             <ul>
               <li>
                 <svg width="38" height="24" viewBox="0 0 38 24" fill="none" xmlns="http://www.w3.org/2000/svg">
