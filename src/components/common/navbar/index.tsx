@@ -108,7 +108,7 @@ const Navbar = () => {
   return (
     <NavbarWrapper>
       <Nav>
-        <Menu aria-label="menu">
+        <Menu aria-label="Menu">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M2 2H22" stroke="black" strokeWidth="3" strokeLinecap="round" />
             <path d="M2 9H16" stroke="black" strokeWidth="3" strokeLinecap="round" />
@@ -123,7 +123,7 @@ const Navbar = () => {
           <CustomLink to="/collections">collections</CustomLink>
         </LeftMenu>
         <LogoWrapper>
-          <Link to="/">
+          <Link to="/" aria-label="Logo">
             <svg width="114" height="47" viewBox="0 0 114 47" fill="none" xmlns="http://www.w3.org/2000/svg">
               <line
                 y1="-1.5"
@@ -150,7 +150,7 @@ const Navbar = () => {
           </Link>
         </LogoWrapper>
         <RightMenu animation={quantity > 0}>
-          <Link to="/cart">
+          <Link to="/cart" aria-label="Cart">
             <svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M7 17.5C7.41421 17.5 7.75 17.1642 7.75 16.75C7.75 16.3358 7.41421 16 7 16C6.58579 16 6.25 16.3358 6.25 16.75C6.25 17.1642 6.58579 17.5 7 17.5Z"
