@@ -19,7 +19,7 @@ const turnProductsIntoPages = async (args: CreatePagesArgs) => {
 
   res.data?.products.nodes.forEach(({ id, productType, handle }: postType) => {
     actions.createPage({
-      path: `collections/${productType}/${handle}`,
+      path: `collections/${productType}/${handle}/`,
       component: postTemplate,
       context: { id, location: `/collections/${productType}/${handle}/` },
     });
@@ -43,7 +43,7 @@ const turnCollectionsIntoPages = async (args: CreatePagesArgs) => {
 
   res.data?.collections.nodes.forEach(({ id, handle, title }: collectionType) => {
     actions.createPage({
-      path: `collections/${handle}`,
+      path: `collections/${handle}/`,
       component: collectionTemplate,
       context: { id, title, location: `/collections/${handle}/` },
     });
