@@ -4,10 +4,14 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const CustomLinkWrapper = styled(Link)`
+  --customLinkFont: 2rem;
+  --customLinkLetterSpacing: 6px;
+  --lineHeight: 37px;
   position: relative;
-  font-size: 0.9rem;
+  font-size: var(--customLinkFont);
+  letter-spacing: var(--customLinkLetterSpacing);
   font-weight: 500;
-  line-height: 10px;
+  line-height: var(--lineHeight);
   text-transform: uppercase;
   color: var(--black);
   &:before {
@@ -27,15 +31,38 @@ const CustomLinkWrapper = styled(Link)`
       width: 100%;
     }
   }
+  @media (min-width: 750px) {
+    --customLinkFont: 0.9rem;
+    --customLinkLetterSpacing: 1.6px;
+    --lineHeight: 10px;
+  }
 `;
 
 interface CustomLinkProps {
   to: string;
   children: string;
+  closeModal?: () => void;
+  menuIsOpen?: boolean;
 }
 
-const CustomLink = ({ children, to }: CustomLinkProps) => <CustomLinkWrapper to={to}>{children}</CustomLinkWrapper>;
+const CustomLink = ({ children, to, closeModal, menuIsOpen }: CustomLinkProps) => (
+  <CustomLinkWrapper
+    to={to}
+    onClick={() => {
+      if (menuIsOpen && closeModal) {
+        closeModal();
+      }
+    }}
+  >
+    {children}
+  </CustomLinkWrapper>
+);
 
-CustomLink.propTypes = { to: PropTypes.string.isRequired, children: PropTypes.string.isRequired };
+CustomLink.propTypes = {
+  to: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
+  closeModal: PropTypes.func,
+  menuIsOpen: PropTypes.bool,
+};
 
 export default CustomLink;
