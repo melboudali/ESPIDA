@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 import styled from "styled-components";
 import { StoreContext } from "../../../context";
 import CustomLink from "./customLink";
+import Modal from "./modal";
 
 const NavbarWrapper = styled.div`
   position: sticky;
@@ -22,13 +23,12 @@ const Nav = styled.div`
   padding: 0 10px;
 `;
 
-const Menu = styled.button`
+const Menu = styled.div`
   --display: block;
   --paddingLeft: 10px;
   display: var(--display);
   align-items: center;
   flex: 33.33%;
-  text-align: start;
   padding-left: var(--paddingLeft);
   @media (min-width: 750px) {
     --display: none;
@@ -104,16 +104,29 @@ const LogoWrapper = styled.div`
 
 const Navbar = () => {
   const { quantity } = React.useContext(StoreContext);
+  const [menuIsOpen, setMenuIsOpen] = React.useState(false);
+
+  const ScrollbarToggler = (arg: "show" | "hide") => {
+    document.documentElement.style.overflowY = arg === "show" ? "visible" : "hidden";
+  };
+
+  const menuToggler = () => {
+    setMenuIsOpen(!menuIsOpen);
+    ScrollbarToggler("hide");
+  };
 
   return (
     <NavbarWrapper>
       <Nav>
-        <Menu aria-label="Menu">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 2H22" stroke="black" strokeWidth="3" strokeLinecap="round" />
-            <path d="M2 9H16" stroke="black" strokeWidth="3" strokeLinecap="round" />
-            <path d="M2 16H10" stroke="black" strokeWidth="3" strokeLinecap="round" />
-          </svg>
+        {menuIsOpen && <Modal setMenuIsOpen={setMenuIsOpen} ScrollbarToggler={ScrollbarToggler} menuIsOpen={menuIsOpen} />}
+        <Menu>
+          <button aria-label="Menu" onClick={menuToggler}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 2H22" stroke="black" strokeWidth="3" strokeLinecap="round" />
+              <path d="M2 9H16" stroke="black" strokeWidth="3" strokeLinecap="round" />
+              <path d="M2 16H10" stroke="black" strokeWidth="3" strokeLinecap="round" />
+            </svg>
+          </button>
         </Menu>
         <LeftMenu>
           <CustomLink to="/collections/shirts">shirts</CustomLink>
