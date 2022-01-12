@@ -47,7 +47,7 @@ const Wrapper = styled.div`
       border-style: solid;
       border-width: 0 0 3px;
       outline: none;
-      &:nth-child(1) {
+      &[type="email"] {
         width: var(--width);
         height: 50px;
         padding: 0 0 0 5px;
@@ -57,7 +57,7 @@ const Wrapper = styled.div`
           text-transform: uppercase;
         }
       }
-      &:nth-child(2) {
+      &[type="submit"] {
         width: 110px;
         height: 50px;
         padding: 0;
