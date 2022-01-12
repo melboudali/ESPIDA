@@ -269,7 +269,7 @@ const Cart = () => {
       ) : (
         <EmptyCart>
           <StaticImage src="../images/cart.png" alt="" className="img" />
-          <p>no roducts in the cart</p>
+          <p>no products in the cart</p>
         </EmptyCart>
       )}
     </>
