@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
-import useClickOutside from "../../../hooks/useClickOutside";
-import CustomLink from "./CustomLink";
 import styled, { css } from "styled-components";
+import useClickOutside from "../../../hooks/useClickOutside";
+import CustomLink from "./customLink";
 import PropTypes from "prop-types";
 
 const FlexStyle = css`
