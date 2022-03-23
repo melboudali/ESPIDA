@@ -10,7 +10,7 @@ interface defualtValuesType {
   addLineItems?: (variantId: string | number, quantity: number) => Promise<void>;
   removeLineItems?: (lineItemID: string) => Promise<void>;
   updateLineItems?: (lineItemID: string, quantity: number) => Promise<void>;
-  client: any;
+  client: Client.Client;
   checkout: Client.Cart;
   loading: boolean;
   quantity: number;
@@ -45,11 +45,7 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
   const [quantity, setQuantity] = React.useState(defaultValues.quantity);
 
   const changeQuantity = (items: Client.LineItem[]) => {
-    setQuantity(
-      items.reduce((total: any, item: any) => {
-        return total + item.quantity;
-      }, 0)
-    );
+    setQuantity(items.reduce((total, item) => total + item.quantity, 0));
   };
 
   const setCheckoutItem = (checkout: Client.Cart) => {
