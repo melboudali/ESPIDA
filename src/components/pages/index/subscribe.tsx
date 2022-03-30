@@ -16,13 +16,11 @@ const Wrapper = styled.div`
   margin-top: 40px;
   padding: var(--padding);
   p {
-    margin: 0;
+    margin: 20px 0;
     text-align: var(--alignText);
     text-transform: capitalize;
     line-height: var(--lineHeight);
-    &:nth-child(1) {
-      font-size: 1.125rem;
-    }
+
     &:nth-child(3) {
       font-size: 0.875rem;
       a {
@@ -30,6 +28,14 @@ const Wrapper = styled.div`
         text-decoration: underline;
         font-weight: 700;
       }
+    }
+    &:nth-child(4) {
+      font-size: 1.125rem;
+      color: green;
+    }
+    &:nth-child(5) {
+      font-size: 1.125rem;
+      color: red;
     }
   }
 
@@ -94,11 +100,11 @@ const Subscribe = () => {
         <input value={email} onChange={onChange} placeholder="enter your email address" type="email" name="email" id="mce-EMAIL" />
         <input type="submit" value={loading ? "loading" : "sign up"} />
       </form>
-      {isSuccess && <p style={{ color: "green" }}>Wow, new friends. Stay tuned, we’ll get in touch soon.</p>}
-      {isError && errorMsg && <p style={{ color: "red" }}>{errorMsg}</p>}
       <p>
         Note: You can opt-out at any time. See our <Link to="#">Privacy Policy</Link> and <Link to="#">Terms</Link>.
       </p>
+      {isSuccess && <p>Wow, new friends. Stay tuned, we'll get in touch soon.</p>}
+      {isError && errorMsg && <p>{errorMsg}</p>}
     </Wrapper>
   );
 };
