@@ -6,6 +6,12 @@ import Navbar from "../common/navbar";
 import Footer from "../common/footer";
 import PropTypes from "prop-types";
 
+const Body = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
+
 const Banner = styled.div`
   --fontSize: 0.7rem;
   display: flex;
@@ -29,8 +35,10 @@ const NavbarWrapper = styled.header`
 
 const Main = styled.main`
   max-width: 1280px;
+  width: 100%;
   margin: 40px auto 0;
   padding: 0 10px;
+  flex: 1;
 `;
 
 const Loading = styled.div`
@@ -58,12 +66,14 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <GlobalStyles />
-      <NavbarWrapper>
-        <Banner>Free U.S. Shipping & Returns $150+ | Free Intl Shipping $200+ </Banner>
-        <Navbar />
-      </NavbarWrapper>
-      <Main>{children}</Main>
-      <Footer />
+      <Body>
+        <NavbarWrapper>
+          <Banner>Free U.S. Shipping & Returns $150+ | Free Intl Shipping $200+ </Banner>
+          <Navbar />
+        </NavbarWrapper>
+        <Main>{children}</Main>
+        <Footer />
+      </Body>
       {loading && (
         <Loading>
           <p>Loading ...</p>
