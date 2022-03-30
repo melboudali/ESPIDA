@@ -14,7 +14,7 @@ const SectionContainer = styled.section`
   margin: 80px 0;
 `;
 
-const FooterWrapper = styled.div`
+const FooterWrapper = styled.footer`
   background-color: var(--black);
 `;
 
